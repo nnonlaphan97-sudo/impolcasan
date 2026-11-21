@@ -736,19 +736,110 @@ body,button,input,textarea,select{
   margin-bottom:310px!important;
 }
 /* Weather card is a separate overlay; the wallpaper still fills the home. */
+
+/* Samsung-style transparent weather widget */
 #page-home .home-weather{
-  position:absolute;top:65px;left:20px;right:20px;
-  display:flex;align-items:center;gap:12px;
-  padding:12px 15px;border:0;border-radius:18px;
-  background:rgba(235,243,255,.22);
-  color:#fff;text-align:left;
-  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
-  font:inherit;cursor:pointer;
+  position:absolute!important;
+  top:7%!important;
+  left:7%!important;
+  right:auto!important;
+  width:45%!important;
+  height:190px!important;
+
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+
+  padding:6px!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+
+  color:#fff!important;
+  text-align:left!important;
+  font:inherit!important;
+  cursor:pointer;
 }
-.home-weather .weather-icon{width:39px;height:39px;flex-shrink:0}
-.home-weather .weather-info{display:flex;flex-direction:column;gap:3px}
-.home-weather .weather-temp{font-size:21px;font-weight:700;line-height:1.2}
-.home-weather .weather-desc{font-size:12px;font-weight:500}
+
+#page-home .weather-icon{
+  width:76px!important;
+  height:76px!important;
+  align-self:flex-end!important;
+  flex-shrink:0!important;
+}
+
+#page-home .weather-info{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:3px!important;
+  width:100%;
+}
+
+#page-home .weather-temp{
+  font-size:32px!important;
+  font-weight:600!important;
+  line-height:1.15!important;
+}
+
+#page-home .weather-desc{
+  font-size:12px!important;
+  font-weight:400!important;
+}
+
+#page-home .weather-location{
+  font-size:12px!important;
+  font-weight:400!important;
+  opacity:.8;
+}
+
+/* LINE icon on Home */
+#page-home .home-grid{
+  position:absolute!important;
+  top:34%!important;
+  left:0!important;
+  right:0!important;
+  margin:0!important;
+  padding:0 18px!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  align-items:start!important;
+}
+
+#page-home .home-app{
+  width:100%!important;
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  gap:7px!important;
+  font-size:12px!important;
+  font-weight:400!important;
+  color:#fff!important;
+  text-shadow:none!important;
+}
+
+#page-home .home-app .line-icon{
+  width:48px!important;
+  height:48px!important;
+  border-radius:13px!important;
+  background:#06C755!important;
+  box-shadow:none!important;
+}
+
+#page-home .home-app .line-icon svg{
+  width:43px!important;
+  height:43px!important;
+  display:block!important;
+}
+
+  
 </style>
 </head>
 
@@ -977,27 +1068,55 @@ body,button,input,textarea,select{
           </div>
         </div>
   <section class="app-page home-wall" id="page-home">
-    <button class="home-weather" id="homeWeather" type="button" aria-label="ดูสภาพอากาศ">
-      <svg class="weather-icon" viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="31" cy="15" r="9" fill="#FFDF9B"/>
-        <path d="M13 37h24a8 8 0 0 0 0-16c-1 0-2 .1-2.8.5A12 12 0 0 0 12 25a6 6 0 0 0 1 12Z" fill="#F6FAFF"/>
+   
+<button class="home-weather" id="homeWeather"
+        type="button" aria-label="ดูสภาพอากาศ">
+
+  <svg class="weather-icon" viewBox="0 0 100 100"
+       aria-hidden="true">
+    <circle cx="58" cy="36" r="24" fill="#FFD45C"/>
+    <circle cx="58" cy="36" r="28"
+            fill="none" stroke="#F5BB50"
+            stroke-width="3" opacity=".55"/>
+    <path d="M23 76h51c10 0 15-6 15-14s-7-14-15-14h-5
+             C66 35 54 30 43 35c-8 3-12 9-13 17
+             C17 49 10 57 10 65c0 7 5 11 13 11Z"
+          fill="#FFFFFF"/>
+  </svg>
+
+  <span class="weather-info">
+    <span class="weather-temp" id="weatherTemp">--°</span>
+    <span class="weather-desc" id="weatherDesc">
+      แตะเพื่อดูสภาพอากาศ
+    </span>
+    <span class="weather-location" id="weatherLocation">
+      กำลังรอตำแหน่ง
+    </span>
+  </span>
+</button>
+
+
+<div class="home-grid">
+  <button class="home-app" data-open="line" type="button">
+    <span class="app-icon line-icon">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path
+          fill="#FFFFFF"
+          d="M32 8C17.1 8 5 17.4 5 29.1c0 10.4 9.2 19.2 21.7 21l-1.5 7.1c-.2 1.1.8 1.8 1.8 1.2l12.1-7.1C50.8 48.8 59 40.2 59 29.1 59 17.4 46.9 8 32 8Z"
+        />
+        <g fill="#06C755">
+          <path d="M14 23h3.5v13h7V39H14z"/>
+          <rect x="26" y="23" width="3.5" height="16" rx="1"/>
+          <path d="M32 39V23h3.5l7.2 9.8V23h3.5v16h-3.5l-7.2-9.8V39z"/>
+          <path d="M49 23h10v3h-6.5v3.5h6v3h-6V36H59v3H49z"/>
+        </g>
       </svg>
-      <span class="weather-info"><span class="weather-temp" id="weatherTemp">สภาพอากาศ</span><span class="weather-desc" id="weatherDesc">แตะเพื่อดูอากาศปัจจุบัน</span></span>
-    </button>
-    <div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon">
-<svg viewBox="0 0 64 64" aria-hidden="true">
-  <path
-    d="M32 8C17.1 8 5 17.5 5 29.3c0 10.6 9.5 19.4 22.4 21.1l-1.5 7.2c-.2 1.1.8 1.7 1.8 1.1l12.1-7.2C51.1 48.8 59 40.2 59 29.3 59 17.5 46.9 8 32 8Z"
-    fill="#FFFFFF"
-  />
-  <g fill="#06C755">
-    <path d="M14 23h4v14h7v3H14Z"/>
-    <rect x="27" y="23" width="4" height="17" rx="1"/>
-    <path d="M34 40V23h3.7l7.2 10.1V23h3.7v17h-3.7l-7.2-10V40Z"/>
-    <path d="M51 23h9v3h-5v4h4.5v3H55v4h5v3h-9Z"/>
-  </g>
-</svg>
-</span><span>LINE</span></button></div></section>
+    </span>
+    <span>LINE</span>
+  </button>
+</div>
+</section>
+
   <section class="app-page clock-page" id="page-clock">
     <div class="app-header"><h2>นาฬิกา</h2><button class="icon-btn" id="clockMore" aria-label="ตัวเลือกเพิ่มเติม">⋮</button></div>
     <div class="clock-tabs"><button data-clocktab="alarms" class="active">นาฬิกาปลุก</button><button data-clocktab="world">นาฬิกาโลก</button><button data-clocktab="stopwatch">จับเวลา</button><button data-clocktab="timer">ตั้งเวลา</button></div>
@@ -1181,40 +1300,124 @@ shell.addEventListener('mousedown',e=>{navMouseY=e.clientY});
 shell.addEventListener('mouseup',e=>{if(navMouseY!==null&&navMouseY>shell.getBoundingClientRect().bottom-115&&navMouseY-e.clientY>45)revealNav();navMouseY=null});
 $('chatSticker').onclick=()=>{};
 
-restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();setInterval(syncTime,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTime()});openPage('home');$('lineToast').classList.remove('show')
+restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();setInterval(syncTime,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTime()});openPage('home');$('lineToast').classList.remove('show');
 
 (function(){
-  const card=document.getElementById('homeWeather');
-  const temp=document.getElementById('weatherTemp');
-  const desc=document.getElementById('weatherDesc');
-  if(!card)return;
-  function describe(code){
-    if(code===0)return 'ท้องฟ้าแจ่มใส';
-    if([1,2,3].includes(code))return 'มีเมฆบางส่วน';
-    if([45,48].includes(code))return 'มีหมอก';
-    if([51,53,55,56,57].includes(code))return 'ฝนปรอย';
-    if([61,63,65,66,67,80,81,82].includes(code))return 'มีฝน';
-    if([95,96,99].includes(code))return 'ฝนฟ้าคะนอง';
+
+(function(){
+  const card = document.getElementById('homeWeather');
+  const temp = document.getElementById('weatherTemp');
+  const desc = document.getElementById('weatherDesc');
+  const locationText =
+    document.getElementById('weatherLocation');
+
+  if (!card) return;
+
+  function weatherName(code) {
+    if (code === 0) return 'ท้องฟ้าแจ่มใส';
+    if ([1, 2, 3].includes(code)) return 'มีเมฆบางส่วน';
+    if ([45, 48].includes(code)) return 'มีหมอก';
+    if ([51, 53, 55, 56, 57].includes(code))
+      return 'ฝนปรอย';
+    if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code))
+      return 'มีฝน';
+    if ([95, 96, 99].includes(code))
+      return 'ฝนฟ้าคะนอง';
     return 'สภาพอากาศปัจจุบัน';
   }
-  async function loadWeather(){
-    if(!navigator.geolocation){desc.textContent='เบราว์เซอร์ไม่รองรับตำแหน่ง';return;}
-    desc.textContent='กำลังตรวจสอบตำแหน่ง';
-    navigator.geolocation.getCurrentPosition(async pos=>{
-      try{
-        const {latitude,longitude}=pos.coords;
-        const url='https://api.open-meteo.com/v1/forecast?latitude='+encodeURIComponent(latitude)+'&longitude='+encodeURIComponent(longitude)+'&current=temperature_2m,weather_code&timezone=auto';
-        const response=await fetch(url);
-        if(!response.ok)throw Error('weather unavailable');
-        const data=await response.json();
-        if(typeof data.current?.temperature_2m!=='number')throw Error('missing weather');
-        temp.textContent=Math.round(data.current.temperature_2m)+'°C';
-        desc.textContent=describe(data.current.weather_code);
-      }catch(e){desc.textContent='โหลดอากาศไม่สำเร็จ แตะเพื่อลองใหม่';}
-    },()=>{desc.textContent='อนุญาตตำแหน่งเพื่อดูอากาศ';},{enableHighAccuracy:false,timeout:12000,maximumAge:600000});
+
+  function getWeather() {
+    if (!navigator.geolocation) {
+      desc.textContent = 'ไม่รองรับการระบุตำแหน่ง';
+      return;
+    }
+
+    desc.textContent = 'กำลังโหลดสภาพอากาศ';
+
+    navigator.geolocation.getCurrentPosition(
+      async function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        try {
+          const url =
+            'https://api.open-meteo.com/v1/forecast' +
+            '?latitude=' + encodeURIComponent(lat) +
+            '&longitude=' + encodeURIComponent(lon) +
+            '&current=temperature_2m,weather_code' +
+            '&daily=sunset' +
+            '&timezone=auto';
+
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('Weather error');
+
+          const data = await response.json();
+
+          temp.textContent =
+            Math.round(data.current.temperature_2m) + '°';
+
+          const sunset = data.daily?.sunset?.[0];
+
+          if (sunset) {
+            const sunsetTime = sunset.split('T')[1];
+            desc.textContent =
+              'อาทิตย์ตกเวลา ' + sunsetTime;
+          } else {
+            desc.textContent =
+              weatherName(data.current.weather_code);
+          }
+
+          locationText.textContent =
+            'ตำแหน่งปัจจุบัน';
+
+          // ชื่อสถานที่จาก OpenStreetMap
+          try {
+            const geoUrl =
+              'https://nominatim.openstreetmap.org/reverse' +
+              '?format=jsonv2&lat=' +
+              encodeURIComponent(lat) +
+              '&lon=' + encodeURIComponent(lon) +
+              '&accept-language=th,en';
+
+            const geoResponse = await fetch(geoUrl);
+
+            if (geoResponse.ok) {
+              const geo = await geoResponse.json();
+              const a = geo.address || {};
+
+              locationText.textContent =
+                a.suburb ||
+                a.town ||
+                a.city ||
+                a.county ||
+                a.state ||
+                'ตำแหน่งปัจจุบัน';
+            }
+          } catch (e) {
+            // ยังแสดงอุณหภูมิได้ แม้ชื่อพื้นที่โหลดไม่ได้
+          }
+
+        } catch (e) {
+          desc.textContent =
+            'โหลดข้อมูลไม่สำเร็จ แตะเพื่อลองใหม่';
+        }
+      },
+      function() {
+        desc.textContent =
+          'แตะและอนุญาตตำแหน่งเพื่อดูอากาศ';
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 12000,
+        maximumAge: 600000
+      }
+    );
   }
-  card.addEventListener('click',loadWeather);
+
+  card.addEventListener('click', getWeather);
+  getWeather();
 })();
+
 </script>
 
 </body>
