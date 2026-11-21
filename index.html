@@ -898,6 +898,30 @@ body,button,input,textarea,select{
 #page-line-profile .line-profile-cover{background-position:center center}
 #page-line-profile .line-profile-top{top:max(12px,env(safe-area-inset-top))}
 #page-line .line-friend-avatar img,#page-line .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+
+/* Friend directory matching the reference, with four-quadrant category previews */
+#page-line-directory{background:#111;color:#f8f8f8;padding:0!important;overflow:hidden}
+.line-dir-head{display:flex;align-items:center;justify-content:center;position:relative;height:78px;padding:12px 18px 0;flex-shrink:0;font-size:21px;font-weight:700}
+.line-dir-back{position:absolute;left:16px;top:14px;border:1px solid #555;background:#303030;color:#fff;width:47px;height:47px;border-radius:50%;display:grid;place-items:center}
+.line-dir-back svg{width:25px;height:25px;stroke:currentColor;stroke-width:2;fill:none}
+.line-dir-search{margin:9px 16px 10px;background:#222;border-radius:28px;display:flex;align-items:center;padding:0 15px;gap:10px;height:44px;color:#888;flex-shrink:0}
+.line-dir-search input{min-width:0;flex:1;background:none;border:0;outline:0;color:white;font-size:15px}
+.line-dir-tabs{display:flex;overflow-x:auto;gap:22px;padding:0 18px;border-bottom:1px solid #272727;scrollbar-width:none;flex-shrink:0}
+.line-dir-tabs button{white-space:nowrap;border:0;background:none;color:#747474;font-size:15px;font-weight:650;padding:13px 1px 14px;border-bottom:2px solid transparent}
+.line-dir-tabs button.active{color:#fff;border-bottom-color:#fff}
+.line-dir-content{overflow-y:auto;flex:1;min-height:0;padding:14px 16px 94px}
+.line-dir-count{font-size:15px;font-weight:650;margin:0 0 12px}
+.line-dir-row{display:flex;align-items:center;gap:15px;width:100%;min-height:70px;padding:8px 0;background:none;color:#fff;border:0;text-align:left;font-size:16px}
+.line-dir-row .line-dir-face{width:49px;height:49px;flex-shrink:0;border-radius:50%;background:#343434;display:grid;place-items:center;overflow:hidden;font-size:17px}
+.line-dir-face img,.line-mosaic img{width:100%;height:100%;object-fit:cover}
+.line-mosaic{width:49px;height:49px;border-radius:50%;overflow:hidden;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);background:#333;flex-shrink:0}
+.line-mosaic span{display:grid;place-items:center;overflow:hidden;border:1px solid #111;font-size:11px;background:#52505b}
+.line-mosaic.three span:first-child{grid-row:span 2;font-size:15px}
+.line-dir-footer{position:absolute;bottom:12px;left:12px;right:12px;height:65px;border:1px solid #505050;background:#303030ee;border-radius:999px;display:flex;align-items:center;justify-content:space-around;backdrop-filter:blur(12px)}
+.line-dir-footer button{border:0;background:none;color:white;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;padding:4px 13px}
+.line-dir-footer button.active{background:#171717;border-radius:999px}
+.line-dir-footer svg{width:23px;height:23px;stroke:white;fill:none;stroke-width:2}
+#friendProfileChat svg{fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;width:30px!important;height:30px!important}
 </style>
 </head>
 
@@ -1185,6 +1209,13 @@ body,button,input,textarea,select{
       <button data-line-tab="wallet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="15" rx="2"/><path d="M2 10h20"/><circle cx="18" cy="15" r="1" fill="currentColor"/></svg><span>Wallet</span></button>
     </div>
   </section>
+<section class="app-page" id="page-line-directory" aria-label="รายชื่อเพื่อน">
+ <div class="line-dir-head"><button class="line-dir-back" id="lineDirectoryBack" aria-label="กลับ"><svg viewBox="0 0 24 24"><path d="m15 4-8 8 8 8"/></svg></button>รายชื่อเพื่อน</div>
+ <label class="line-dir-search"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></svg><input id="lineDirectorySearch" placeholder="ค้นหา"></label>
+ <div class="line-dir-tabs"><button data-dir-tab="favorites" class="active">รายการโปรด</button><button data-dir-tab="friends">เพื่อน</button><button data-dir-tab="groups">กลุ่ม</button><button data-dir-tab="official">บัญชีทางการ</button></div>
+ <div class="line-dir-content" id="lineDirectoryContent"></div>
+ <div class="line-dir-footer"><button data-dir-bottom="home" class="active"><svg viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v11H3z"/></svg>หน้าหลัก</button><button data-dir-bottom="chats"><svg viewBox="0 0 24 24"><path d="M12 3c-6 0-10 4-10 9 0 3 2 5 4 7l-1 3 5-2c6 1 12-3 12-8S18 3 12 3z"/></svg>แชท</button><button data-dir-bottom="today"><svg viewBox="0 0 24 24"><path d="M19 5a9 9 0 1 0 0 14A8 8 0 0 1 11 9a8 8 0 0 1 8-4z"/></svg>TODAY</button><button data-dir-bottom="wallet"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>Wallet</button></div>
+</section>
   <section class="app-page" id="page-line-profile" aria-label="โปรไฟล์เพื่อน LINE">
     <div class="line-profile-cover" id="friendCover"></div>
     <div class="line-profile-top">
@@ -1338,7 +1369,7 @@ carrier.addEventListener('pointerdown',beginResetHold);
 carrier.addEventListener('contextmenu',e=>e.preventDefault());
 carrier.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();beginResetHold({type:'keyboard'})}});
 carrier.addEventListener('keyup',cancelResetHold);
-function openPage(next){page=next;document.querySelectorAll('.app-page').forEach(el=>el.classList.toggle('active',el.id==='page-'+next));if(next==='clock')renderClock();if(next==='line')setLineTab('chats');if(next==='food')renderFood();}
+function openPage(next){page=next;document.querySelectorAll('.app-page').forEach(el=>el.classList.toggle('active',el.id==='page-'+next));if(next==='clock')renderClock();if(next==='line')setLineTab(lineRequestedTab||'chats');if(next==='food')renderFood();}
 function renderClock(){document.querySelectorAll('[data-clocktab]').forEach(b=>b.classList.toggle('active',b.dataset.clocktab===clockTab));$('addAlarm').style.display=clockTab==='alarms'?'block':'none';const c=$('clockContent');if(clockTab!=='alarms'){const text={world:'กรุงเทพมหานคร · '+timeStr(),stopwatch:'00:00.00',timer:'00:00:00'};c.innerHTML='<div class="clock-extra"><div style="font-size:42px;margin-bottom:16px">'+text[clockTab]+'</div><button class="primary-action" id="clockToolBtn">'+(clockTab==='world'?'เพิ่มเมือง':'เริ่ม')+'</button><div id="clockToolResult" style="margin-top:15px"></div></div>';const b=$('clockToolBtn');b.onclick=()=>{if(clockTab==='world'){$('clockToolResult').textContent='กรุงเทพมหานคร · ประเทศไทย'}else{$('clockToolResult').textContent='เริ่มใช้งาน '+(clockTab==='timer'?'ตั้งเวลา':'จับเวลา');}};return}
  c.innerHTML=alarms.map((a,i)=>'<div class="alarm-card"><div class="alarm-top"><div role="button" tabindex="0" data-edit-alarm="'+i+'"><div class="alarm-time">'+a.time+'</div><div class="alarm-label">'+escapeHtml(a.label)+'</div></div><button class="switch '+(a.on?'on':'')+'" data-toggle-alarm="'+i+'" aria-label="เปิดปิดนาฬิกาปลุก" aria-pressed="'+a.on+'"></button></div><div class="alarm-days">'+['อา','จ','อ','พ','พฤ','ศ','ส'].map((d,n)=>'<span class="'+(a.days.includes(n)?'on':'')+'">'+d+'</span>').join('')+'</div></div>').join('');
  c.querySelectorAll('[data-toggle-alarm]').forEach(b=>b.onclick=()=>{const a=alarms[+b.dataset.toggleAlarm];a.on=!a.on;persist();renderClock()});c.querySelectorAll('[data-edit-alarm]').forEach(b=>b.onclick=()=>editAlarm(+b.dataset.editAlarm));}
@@ -1383,6 +1414,7 @@ const lineFriendProfiles = {
   "คุณตาถา": {avatar:"",cover:"",birthday:"",status:""}
 };
 let currentLineFriend="", lineProfileReturnPage="line", lineProfileReturnTab="home";
+let lineRequestedTab="chats", lineDirectoryTab="favorites";
 function lineFriendImage(name){const d=lineFriendProfiles[name];return d&&d.avatar?'<img src="'+escapeHtml(d.avatar)+'" alt="">':escapeHtml(name.slice(0,1));}
 function showLineFriendProfile(name,returnPage='line'){
  currentLineFriend=name;lineProfileReturnPage=returnPage;
@@ -1400,10 +1432,11 @@ function showLineFriendProfile(name,returnPage='line'){
 }
 function closeLineFriendProfile(){
  if(lineProfileReturnPage==='chat'){openPage('chat');return;}
- openPage('line');setLineTab(lineProfileReturnTab);
- if(lineProfileReturnTab==='home'){$('lineSeeAll')?.click();}
+ if(lineProfileReturnPage==='line-directory'){openPage('line-directory');renderLineDirectory();return;}
+ lineRequestedTab=lineProfileReturnTab;openPage('line');
 }
 $('friendProfileClose').onclick=closeLineFriendProfile;
+$('friendProfileChat').querySelector('svg').innerHTML='<path d="M12 3.5c-5.6 0-10 3.7-10 8.2 0 2.7 1.4 4.9 3.8 6.3L5 22l4.8-2.5c.7.2 1.4.2 2.2.2 5.6 0 10-3.6 10-8S17.6 3.5 12 3.5Z"/><circle cx="8" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="16" cy="12" r="1"/>';
 $('friendProfileChat').onclick=()=>{
  const id=Object.keys(chats).find(k=>({nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'})[k]===currentLineFriend);
  if(id){openChat(id);return;}
@@ -1431,10 +1464,12 @@ function lineTopActions(tab){
  const buttons=tab==='home'?['bookmark','bell','plus','settings']:tab==='chats'?['bag','plus']:tab==='today'?['search','bell','user']:['bell'];
  return '<div class="line-top-actions">'+buttons.map((name,i)=>'<button type="button" class="line-top-action" data-action="'+name+'" aria-label="'+name+'">'+lineIcon(name)+(name==='bell'?'<i class="line-dot"></i>':'')+'</button>').join('')+'</div>';
 }
-function lineFriendGroup(title, subtitle, icon, count, onclick){return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'"><span class="line-group-avatar">'+lineIcon(icon)+'</span><span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
+function lineFriendGroup(title, subtitle, icon, count, onclick){const previews={favorites:['ปะป๊าเต','พ่อพ่อนิววี่','จัมโม่'],friends:['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน'],groups:['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']};const preview=previews[onclick]?lineMosaic(previews[onclick]):'<span class="line-group-avatar">'+lineIcon(icon)+'</span>';return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'">'+preview+'<span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
 function lineServices(){return '<div class="line-service-grid">'+[['stamp','ธีม'],['smile','สติกเกอร์'],['bag','LINE SHOPPING'],['gift','LINE GIFT'],['wallet','บัญชีทางการ']].map(([ico,name])=>'<div class="line-service">'+lineIcon(ico)+'<span>'+name+'</span></div>').join('')+'</div>'}
 function setLineTab(tab){
+ lineRequestedTab=tab;
  const extra=$('lineExtra'),list=$('chatList'),search=document.querySelector('#page-line .line-search');
+ extra.classList.remove('show-friends');
  const header=document.querySelector('#page-line .line-header'),heading=header.querySelector('h2');
  document.querySelectorAll('[data-line-tab]').forEach(b=>b.classList.toggle('active',b.dataset.lineTab===tab));
  const isChats=tab==='chats';list.hidden=!isChats;search.hidden=tab!=='chats';extra.hidden=isChats;
@@ -1453,21 +1488,48 @@ function setLineTab(tab){
    '<div class="line-home-search">'+lineIcon('search')+'<input id="lineFriendSearch" placeholder="ค้นหา" aria-label="ค้นหาเพื่อน">'+lineIcon('scan')+'</div>'+
    '<div class="line-section-heading"><strong>รายชื่อเพื่อน</strong><button id="lineSeeAll">ดูทั้งหมด</button></div>'+
    lineFriendGroup('วันเกิดเพื่อนในช่วงนี้','เพื่อนที่มีวันเกิดเร็ว ๆ นี้','gift','', 'birthday')+
-   lineFriendGroup('รายการโปรด','ปะป๊าเต, พ่อพ่อนิววี่, แม่นมนิว','bookmark','3','favorites')+
-   lineFriendGroup('เพื่อน','รายชื่อเพื่อนทั้งหมด','user',String(lineFriends.length),'all')+
-   lineFriendGroup('กลุ่ม','กลุ่มแชทของซัง','user','', 'groups')+
+   lineFriendGroup('รายการโปรด','ปะป๊าเต, พ่อพ่อนิววี่, จัมโม่','bookmark','3','favorites')+
+   lineFriendGroup('เพื่อน','จัมโม่, น้องนุ่ง, เบบี๋, คิงแมน','user',String(lineFriends.length),'friends')+
+   lineFriendGroup('กลุ่ม','ดิส, ซีฟู้ด, เสาตึก, ลูกเพื่อนพ่อ, แฟมิลี่','user','5', 'groups')+
    '<div class="line-section-heading line-services-heading"><strong>บริการ</strong><span>ดูทั้งหมด</span></div>'+lineServices()+'<div id="lineFriendsResults" hidden></div>';
   const inp=$('lineFriendSearch'),results=$('lineFriendsResults');
   const showFriends=(q='')=>{results.hidden=false;results.innerHTML='';renderLineFriends(q);extra.classList.add('show-friends');};
   inp.addEventListener('input',()=>{if(inp.value.trim())showFriends(inp.value);else{results.hidden=true;extra.classList.remove('show-friends')}});
-  $('lineSeeAll').onclick=()=>showFriends();
-  extra.querySelectorAll('[data-fgroup]').forEach(b=>b.onclick=()=>{const kind=b.dataset.fgroup;showFriends();if(kind==='favorites')showFriends('ปะป๊า');});
+  $('lineSeeAll').onclick=()=>openLineDirectory('friends');
+  extra.querySelectorAll('[data-fgroup]').forEach(b=>b.onclick=()=>openLineDirectory(b.dataset.fgroup));
  } else if(tab==='today'){
   extra.innerHTML='<div class="line-today-cats"><b>TOP</b><span>ดูดวง</span><span>Eats</span><span>ท่องเที่ยวไทย</span><span>ข่าว</span></div><div class="line-hashtags"><span>#กิน ออมพลัง</span><span>#ช่อง ดูดี</span><span>#ราคาทอง</span></div><div class="line-today-skeleton"></div><div class="line-today-skeleton small"></div><button class="line-today-talk">ชวนคุย</button>';
  } else {
   extra.innerHTML='<div class="line-wallet-balance"><div>฿ ***,***</div><small>ยอดเงินจำลอง</small></div><div class="line-wallet-pay">LINE Pay　 รับโปรคุ้มก่อนใคร　'+lineIcon('scan')+'</div><div class="line-wallet-grid">'+[['wallet','LINE POINTS'],['bag','LINE Pay'],['stamp','ยืมเงิน'],['wallet','LINE BK'],['smile','ร้านสติกเกอร์'],['stamp','ร้านธีม'],['bag','LINE MAN'],['gift','LINE GIFT']].map(([ico,name])=>'<div class="line-service">'+lineIcon(ico)+'<span>'+name+'</span></div>').join('')+'</div><div class="line-wallet-pills"><span>บริการจาก LINE</span><span>MINI App</span><span>LINE SHOPPING</span></div><div class="line-section-heading"><strong>สติกเกอร์ที่คุณอาจสนใจ</strong></div><div class="line-sticker-skeleton"></div>';
  }
 }
+
+const lineDirectoryFavorites=['ปะป๊าเต','พ่อพ่อนิววี่','จัมโม่'];
+const lineDirectoryFeatured=['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน'];
+const lineDirectoryGroups=['ดิส','ซีฟู้ด','เสาตึก','ลูกเพื่อนพ่อ','แฟมิลี่'];
+const lineAlias={'จัมโม่':'JUMMO','น้องนุ่ง':'NONG NOOONG','เบบี๋':'BABII','คิงแมน':'KING MAN'};
+function lineMosaic(names){return '<span class="line-mosaic '+(names.length===3?'three':'')+'">'+names.map(n=>'<span>'+lineFriendImage(lineAlias[n]||n)+'</span>').join('')+'</span>'}
+function openLineDirectory(tab='friends'){
+ lineDirectoryTab=tab==='all'?'friends':tab==='birthday'?'friends':tab;
+ openPage('line-directory');$('lineDirectorySearch').value='';renderLineDirectory();
+}
+function renderLineDirectory(){
+ document.querySelectorAll('[data-dir-tab]').forEach(b=>b.classList.toggle('active',b.dataset.dirTab===lineDirectoryTab));
+ const q=$('lineDirectorySearch').value.trim().toLocaleLowerCase();
+ let items=lineDirectoryTab==='favorites'?lineDirectoryFavorites:lineDirectoryTab==='groups'?lineDirectoryGroups:lineDirectoryTab==='official'?[]:[...lineDirectoryFeatured,...lineFriends.filter(n=>!lineDirectoryFeatured.includes(n)&&!Object.values(lineAlias).includes(n))];
+ items=items.filter(n=>n.toLocaleLowerCase().includes(q));
+ const heading=lineDirectoryTab==='favorites'?'รายการโปรด':lineDirectoryTab==='groups'?'กลุ่ม':lineDirectoryTab==='official'?'บัญชีทางการ':'เพื่อน';
+ $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?lineMosaic(['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน']):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+'</span></button>').join('');
+ $('lineDirectoryContent').querySelectorAll('[data-dir-person]').forEach(b=>b.onclick=()=>{
+  if(lineDirectoryTab==='groups'){return;}
+  showLineFriendProfile(b.dataset.dirPerson,'line-directory');
+ });
+}
+$('lineDirectoryBack').onclick=()=>{lineRequestedTab='home';openPage('line');};
+$('lineDirectorySearch').oninput=renderLineDirectory;
+document.querySelectorAll('[data-dir-tab]').forEach(b=>b.onclick=()=>{lineDirectoryTab=b.dataset.dirTab;renderLineDirectory();});
+document.querySelectorAll('[data-dir-bottom]').forEach(b=>b.onclick=()=>{lineRequestedTab=b.dataset.dirBottom;openPage('line');});
+
 document.querySelectorAll('[data-line-tab]').forEach(b=>b.onclick=()=>setLineTab(b.dataset.lineTab));
 
 let navTimer=null;
