@@ -967,7 +967,7 @@ body,button,input,textarea,select{
 #page-line-own-profile .line-own-status{margin-top:8px!important;max-width:94%;line-height:1.5;overflow-wrap:anywhere}
 #page-line-own-profile .line-own-birthday,#page-line-profile .line-profile-birthday{display:flex;align-items:center;justify-content:center;gap:5px}
 #page-line-own-profile .line-own-birthday[hidden],#page-line-profile .line-profile-birthday[hidden]{display:none!important}
-.line-birthday-icon{width:16px;height:16px;flex:none;display:inline-block;vertical-align:middle}
+.line-birthday-icon{width:20px;height:20px;flex:none;display:inline-block;vertical-align:middle}
 #page-line-profile .line-profile-center{top:42%!important;transform:translateY(-5%)!important}
 #page-line .line-group-mosaic{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;overflow:hidden;border-radius:50%}
 #page-line .line-group-mosaic>span{display:grid;place-items:center;overflow:hidden}
@@ -1280,9 +1280,9 @@ body,button,input,textarea,select{
     </div>
     <div class="line-own-center">
       <div class="line-own-avatar" id="lineOwnAvatar">P</div>
-      <div class="line-own-name" id="lineOwnName">P.Pond</div>
-      <div class="line-own-birthday" id="lineOwnBirthday">♟ 8 เม.ย.</div>
-      <div class="line-own-status" id="lineOwnStatus">毎回、会話はだんだん雨に消えていく。</div>
+      <div class="line-own-name" id="lineOwnName">โพก้าซัง</div>
+      <div class="line-own-birthday" id="lineOwnBirthday">6 มี.ค.</div>
+      <div class="line-own-status" id="lineOwnStatus"></div>
     </div>
     <div class="line-own-actions">
       <button id="lineOwnExtra"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-7 16-7 16 0"/></svg><span>โปรไฟล์เสริม</span></button>
@@ -1474,7 +1474,7 @@ $('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm()
 $('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
 $('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
 const lineFriendPeople = ["ปะป๊าเต", "พ่อพ่อนิววี่", "พี่เหมียวเร้ก", "พี่ฉกาย", "พี่พุพุ", "พี่เจมีไนน์", "แม่นมนิว", "คุณตาถา"];
-const lineFriendMascots = ["BABII", "JAIDEE", "AVOCEAN", "KING MAN", "TOMAFOX", "YUZU MUMU", "SAMRUAY", "PERMPOON", "METAA", "LUNAR", "ANY", "MUVMUV", "WESLEY", "LYKYOU", "MR. SATURNWORLD", "LOOK KHUNNOO", "JUMMO", "MOMO", "DOMIIA", "PAODY", "GUINZLY", "NEONA", "SMYLE", "NONG NOOONG", "NILKNHAKE", "REXXA", "CERI", "VIMMY", "JEWEL", "FLAREY", "PONPON"];
+const lineFriendMascots = ["BABII", "JAIDEE", "AVOCEAN", "KING MAN", "TOMAFOX", "YUZU MUMU", "SAMRUAY", "PERMPOON", "METAA", "LUNAR", "ANY", "MUVMUV", "WESLEY", "LYKYOU", "MR. SATURNWORLD", "LOOK KHUNNOO", "JUMMO", "MOMO", "DOMIIA", "PAODY", "GUINZLY", "NEONA", "SMYLE", "NONG NOOONG", "NILKNHAKE", "REXXA", "CERI", "VIMMY", "JEWEL", "FLAREY", "PONPON", "SOL CUTE"];
 const lineFriends = [...lineFriendPeople, ...lineFriendMascots];
 // Fill in each friend's photo, cover, birthday and status here when the images are ready.
 // Blank birthdays are intentionally hidden; no birth dates are guessed.
@@ -1491,18 +1491,65 @@ const lineFriendProfiles = {
 for(const friend of [...lineFriends,'จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน']){
  if(!lineFriendProfiles[friend])lineFriendProfiles[friend]={avatar:'',cover:'',birthday:'',status:''};
 }
+const lineBirthdays = {
+  "DOMIIA": "12 ม.ค.",
+  "SMYLE": "3 ก.พ.",
+  "NEONA": "3 ก.พ.",
+  "WESLEY": "17 ก.พ.",
+  "AVOCEAN": "22 ก.พ.",
+  "BABII": "28 ก.พ.",
+  "พี่เจมีไนน์": "13 มิ.ย.",
+  "พี่เหมียวเร้ก": "18 ธ.ค.",
+  "พี่ฉกาย": "25 มิ.ย.",
+  "พี่พุพุ": "5 ก.ค.",
+  "METAA": "4 มี.ค.",
+  "ANY": "14 มี.ค.",
+  "JUMMO": "16 มี.ค.",
+  "SAMRUAY": "27 มี.ค.",
+  "LOOK KHUNNOO": "27 มี.ค.",
+  "SOL CUTE": "27 มี.ค.",
+  "REXXA": "6 เม.ย.",
+  "KING MAN": "1 พ.ค.",
+  "VIMMY": "18 พ.ค.",
+  "GUINZLY": "21 พ.ค.",
+  "MUVMUV": "24 พ.ค.",
+  "JEWEL": "25 พ.ค.",
+  "MOMO": "30 พ.ค.",
+  "PONPON": "10 มิ.ย.",
+  "FLAREY": "18 มิ.ย.",
+  "CERI": "27 มิ.ย.",
+  "NILKNHAKE": "28 มิ.ย.",
+  "ANGELO": "20 ก.ค.",
+  "MR. SATURNWORLD": "14 ส.ค.",
+  "PERMPOON": "15 ส.ค.",
+  "YUZU MUMU": "16 ส.ค.",
+  "JAIDEE": "17 ส.ค.",
+  "TOMAFOX": "17 ส.ค.",
+  "RENJIN": "9 ก.ย.",
+  "LYKYOU": "12 ก.ย.",
+  "PAODY": "15 ก.ย.",
+  "NONG NOOONG": "27 ก.ย.",
+  "LUNAR": "7 ธ.ค.",
+  "ปะป๊าเต": "20 ก.ค.",
+  "พ่อพ่อนิววี่": "30 ม.ค."
+};
+for(const [name,date] of Object.entries(lineBirthdays)){
+  if(!lineFriendProfiles[name])lineFriendProfiles[name]={avatar:"",cover:"",birthday:"",status:""};
+  lineFriendProfiles[name].birthday=date;
+}
 let currentLineFriend="", lineProfileReturnPage="line", lineProfileReturnTab="home";
 let lineRequestedTab="chats", lineDirectoryTab="favorites";
 function lineFriendImage(name){const d=lineFriendProfiles[name];return d&&d.avatar?'<img src="'+escapeHtml(d.avatar)+'" alt="">':escapeHtml(name.slice(0,1));}
 function showLineFriendProfile(name,returnPage='line'){
  currentLineFriend=name;lineProfileReturnPage=returnPage;
  if(returnPage==='line')lineProfileReturnTab=document.querySelector('[data-line-tab].active')?.dataset.lineTab||'home';
- const d=lineFriendProfiles[name]||{};
+ const profileKey=({'จัมโม่':'JUMMO','น้องนุ่ง':'NONG NOOONG','เบบี๋':'BABII','คิงแมน':'KING MAN'})[name]||name;
+ const d=lineFriendProfiles[profileKey]||{};
  $('friendCover').style.backgroundImage=d.cover?'url("'+encodeURI(d.cover).replace(/"/g,'%22')+'")':'';
  $('friendProfileAvatar').innerHTML=lineFriendImage(name);
  $('friendProfileMini').innerHTML=lineFriendImage(name);
  $('friendProfileName').textContent=name;
- $('friendProfileBirthday').innerHTML=d.birthday?'<svg class="line-birthday-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v9H4zM3 12c2 2 4 2 6 0 2 2 4 2 6 0 2 2 4 2 6 0M12 4v4M12 2c-2 2-2 3 0 4 2-1 2-2 0-4Z"/></svg>'+'<span>'+escapeHtml(d.birthday)+'</span>':'';
+ $('friendProfileBirthday').innerHTML=d.birthday?'<svg class="line-birthday-icon" viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 3.5C16.8 7 18.2 9.7 20 10.2c2.7-1.2 3-4.3 0-6.7Z"/><path d="M20 12v5"/><rect x="6" y="21" width="28" height="15" rx="5"/><path d="M6.5 24c2.3 0 2.3 3.7 4.7 3.7s2.4-3.7 4.8-3.7 2.4 3.7 4.8 3.7 2.4-3.7 4.8-3.7 2.4 3.7 4.8 3.7 2.4-3.7 4.6-3.7"/><path d="M11 21v-1.5c0-2 1.6-3.5 3.6-3.5h10.8c2 0 3.6 1.5 3.6 3.5V21"/><path d="M10 32c6 2 14 2 20 0" opacity=".55"/></svg>'+'<span>'+escapeHtml(d.birthday)+'</span>':'';
  $('friendProfileBirthday').hidden=!d.birthday;
  $('friendProfileStatus').textContent=d.status||'';
  $('friendProfileStatus').hidden=!d.status;
@@ -1585,10 +1632,10 @@ function setLineTab(tab){
 
 
 // Editable own LINE profile. Supply image files in photo/ when ready.
-const lineOwnProfile={name:'P.Pond',avatar:'',cover:'',birthday:'8 เม.ย.',status:'毎回、会話はだんだん雨に消えていく。'};
+const lineOwnProfile={name:'โพก้าซัง',avatar:'',cover:'',birthday:'6 มี.ค.',status:''};
 function showLineOwnProfile(){
   $('lineOwnName').textContent=lineOwnProfile.name;
-  $('lineOwnBirthday').innerHTML=lineOwnProfile.birthday?'<svg class="line-birthday-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v9H4zM3 12c2 2 4 2 6 0 2 2 4 2 6 0 2 2 4 2 6 0M12 4v4M12 2c-2 2-2 3 0 4 2-1 2-2 0-4Z"/></svg>'+'<span>'+escapeHtml(lineOwnProfile.birthday)+'</span>':'';
+  $('lineOwnBirthday').innerHTML=lineOwnProfile.birthday?'<svg class="line-birthday-icon" viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 3.5C16.8 7 18.2 9.7 20 10.2c2.7-1.2 3-4.3 0-6.7Z"/><path d="M20 12v5"/><rect x="6" y="21" width="28" height="15" rx="5"/><path d="M6.5 24c2.3 0 2.3 3.7 4.7 3.7s2.4-3.7 4.8-3.7 2.4 3.7 4.8 3.7 2.4-3.7 4.8-3.7 2.4 3.7 4.8 3.7 2.4-3.7 4.6-3.7"/><path d="M11 21v-1.5c0-2 1.6-3.5 3.6-3.5h10.8c2 0 3.6 1.5 3.6 3.5V21"/><path d="M10 32c6 2 14 2 20 0" opacity=".55"/></svg>'+'<span>'+escapeHtml(lineOwnProfile.birthday)+'</span>':'';
   $('lineOwnBirthday').hidden=!lineOwnProfile.birthday;
   $('lineOwnStatus').textContent=lineOwnProfile.status||'';
   $('lineOwnStatus').hidden=!lineOwnProfile.status;
