@@ -710,6 +710,12 @@ body,button,input,textarea,select{
 .chat-header{border-bottom:1px solid #f1f1f1!important}
 .chat-header .icon-btn svg{width:23px!important;height:23px!important}
 .chat-compose{background:#fff!important;border-top:1px solid #e7e7e7!important}
+
+/* Home adjustments: flat status bar and higher LINE app placement */
+.app-shell>.app-status, .app-shell>.app-status *,
+.app-shell>.app-status .home-carrier{ text-shadow:none!important;filter:none!important; }
+#page-home .home-grid{margin-bottom:160px!important;}
+#page-home .home-app{ text-shadow:none!important; }
 </style>
 </head>
 
@@ -937,7 +943,7 @@ body,button,input,textarea,select{
 
           </div>
         </div>
-  <section class="app-page home-wall" id="page-home"><div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C17 7 6 17 6 29.5c0 11.4 9.6 20.8 22.5 22.8l-1.7 6.3c-.3 1.2.9 1.8 2 1.2l12.3-7.3C51.2 49.6 58 41 58 29.5 58 17 47 7 32 7Z" fill="#fff"/><g fill="none" stroke="#06C755" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 25v13h8"/><path d="M27 25v13"/><path d="M32 38V25l8 13V25"/><path d="M49 25h-6v13h6M43 31.5h5.3"/></g></svg></span><span>LINE</span></button><button class="home-app" data-open="food"><span class="app-icon kitchen-icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v8m4-8v8M5 8h4m-2 3v10M17 3v18m0-18c6 3 6 9 0 10"/></svg></span><span>ครัวของซัง</span></button></div></section>
+  <section class="app-page home-wall" id="page-home"><div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C17 7 6 17 6 29.5c0 11.4 9.6 20.8 22.5 22.8l-1.7 6.3c-.3 1.2.9 1.8 2 1.2l12.3-7.3C51.2 49.6 58 41 58 29.5 58 17 47 7 32 7Z" fill="#fff"/><g fill="none" stroke="#06C755" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 25v13h8"/><path d="M27 25v13"/><path d="M32 38V25l8 13V25"/><path d="M49 25h-6v13h6M43 31.5h5.3"/></g></svg></span><span>LINE</span></button></div></section>
   <section class="app-page clock-page" id="page-clock">
     <div class="app-header"><h2>นาฬิกา</h2><button class="icon-btn" id="clockMore" aria-label="ตัวเลือกเพิ่มเติม">⋮</button></div>
     <div class="clock-tabs"><button data-clocktab="alarms" class="active">นาฬิกาปลุก</button><button data-clocktab="world">นาฬิกาโลก</button><button data-clocktab="stopwatch">จับเวลา</button><button data-clocktab="timer">ตั้งเวลา</button></div>
