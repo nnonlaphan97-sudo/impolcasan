@@ -716,6 +716,29 @@ body,button,input,textarea,select{
 .app-shell>.app-status .home-carrier{ text-shadow:none!important;filter:none!important; }
 #page-home .home-grid{margin-bottom:160px!important;}
 #page-home .home-app{ text-shadow:none!important; }
+
+/* Precise status sizing on both lock and home, without shadows */
+.status-right{gap:4px!important}
+.status-right>svg:nth-child(1){width:15px!important;height:15px!important}
+.status-right>svg:nth-child(2){width:14px!important;height:16px!important}
+.status-right>svg:nth-child(3){width:16px!important;height:16px!important}
+.status-right>svg:nth-child(4){width:29px!important;height:15px!important}
+.status,.status *,.app-shell>.app-status,.app-shell>.app-status *{text-shadow:none!important;filter:none!important}
+#page-home .home-grid{margin-bottom:235px!important}
+/* Weather card is a separate overlay; the wallpaper still fills the home. */
+#page-home .home-weather{
+  position:absolute;top:65px;left:20px;right:20px;
+  display:flex;align-items:center;gap:12px;
+  padding:12px 15px;border:0;border-radius:18px;
+  background:rgba(235,243,255,.22);
+  color:#fff;text-align:left;
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  font:inherit;cursor:pointer;
+}
+.home-weather .weather-icon{width:39px;height:39px;flex-shrink:0}
+.home-weather .weather-info{display:flex;flex-direction:column;gap:3px}
+.home-weather .weather-temp{font-size:21px;font-weight:700;line-height:1.2}
+.home-weather .weather-desc{font-size:12px;font-weight:500}
 </style>
 </head>
 
@@ -750,7 +773,7 @@ body,button,input,textarea,select{
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-label="ปิดเสียง" role="img">
               <path d="M4 9h4l5-4v14l-5-4H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2Z" fill="white"/>
               <path d="M16 9c1.4 1.1 2.1 2.5 2.1 4s-.7 2.9-2.1 4" stroke="white" stroke-width="2.3" stroke-linecap="round"/>
-              <path d="M2.5 2.5 21.5 21.5" stroke="#161821" stroke-width="4" stroke-linecap="round"/>
+              
               <path d="M2.5 2.5 21.5 21.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
 
@@ -881,7 +904,7 @@ body,button,input,textarea,select{
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-label="ปิดเสียง" role="img">
               <path d="M4 9h4l5-4v14l-5-4H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2Z" fill="white"/>
               <path d="M16 9c1.4 1.1 2.1 2.5 2.1 4s-.7 2.9-2.1 4" stroke="white" stroke-width="2.3" stroke-linecap="round"/>
-              <path d="M2.5 2.5 21.5 21.5" stroke="#161821" stroke-width="4" stroke-linecap="round"/>
+              
               <path d="M2.5 2.5 21.5 21.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
 
@@ -943,7 +966,15 @@ body,button,input,textarea,select{
 
           </div>
         </div>
-  <section class="app-page home-wall" id="page-home"><div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C17 7 6 17 6 29.5c0 11.4 9.6 20.8 22.5 22.8l-1.7 6.3c-.3 1.2.9 1.8 2 1.2l12.3-7.3C51.2 49.6 58 41 58 29.5 58 17 47 7 32 7Z" fill="#fff"/><g fill="none" stroke="#06C755" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 25v13h8"/><path d="M27 25v13"/><path d="M32 38V25l8 13V25"/><path d="M49 25h-6v13h6M43 31.5h5.3"/></g></svg></span><span>LINE</span></button></div></section>
+  <section class="app-page home-wall" id="page-home">
+    <button class="home-weather" id="homeWeather" type="button" aria-label="ดูสภาพอากาศ">
+      <svg class="weather-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="31" cy="15" r="9" fill="#FFDF9B"/>
+        <path d="M13 37h24a8 8 0 0 0 0-16c-1 0-2 .1-2.8.5A12 12 0 0 0 12 25a6 6 0 0 0 1 12Z" fill="#F6FAFF"/>
+      </svg>
+      <span class="weather-info"><span class="weather-temp" id="weatherTemp">สภาพอากาศ</span><span class="weather-desc" id="weatherDesc">แตะเพื่อดูอากาศปัจจุบัน</span></span>
+    </button>
+    <div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C17 7 6 17 6 29.5c0 11.4 9.6 20.8 22.5 22.8l-1.7 6.3c-.3 1.2.9 1.8 2 1.2l12.3-7.3C51.2 49.6 58 41 58 29.5 58 17 47 7 32 7Z" fill="#fff"/><g fill="none" stroke="#06C755" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 25v13h8"/><path d="M27 25v13"/><path d="M32 38V25l8 13V25"/><path d="M49 25h-6v13h6M43 31.5h5.3"/></g></svg></span><span>LINE</span></button></div></section>
   <section class="app-page clock-page" id="page-clock">
     <div class="app-header"><h2>นาฬิกา</h2><button class="icon-btn" id="clockMore" aria-label="ตัวเลือกเพิ่มเติม">⋮</button></div>
     <div class="clock-tabs"><button data-clocktab="alarms" class="active">นาฬิกาปลุก</button><button data-clocktab="world">นาฬิกาโลก</button><button data-clocktab="stopwatch">จับเวลา</button><button data-clocktab="timer">ตั้งเวลา</button></div>
@@ -1124,6 +1155,39 @@ shell.addEventListener('mouseup',e=>{if(navMouseY!==null&&navMouseY>shell.getBou
 $('chatSticker').onclick=()=>{};
 
 restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();setInterval(syncTime,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTime()});openPage('home');$('lineToast').classList.remove('show')
+
+(function(){
+  const card=document.getElementById('homeWeather');
+  const temp=document.getElementById('weatherTemp');
+  const desc=document.getElementById('weatherDesc');
+  if(!card)return;
+  function describe(code){
+    if(code===0)return 'ท้องฟ้าแจ่มใส';
+    if([1,2,3].includes(code))return 'มีเมฆบางส่วน';
+    if([45,48].includes(code))return 'มีหมอก';
+    if([51,53,55,56,57].includes(code))return 'ฝนปรอย';
+    if([61,63,65,66,67,80,81,82].includes(code))return 'มีฝน';
+    if([95,96,99].includes(code))return 'ฝนฟ้าคะนอง';
+    return 'สภาพอากาศปัจจุบัน';
+  }
+  async function loadWeather(){
+    if(!navigator.geolocation){desc.textContent='เบราว์เซอร์ไม่รองรับตำแหน่ง';return;}
+    desc.textContent='กำลังตรวจสอบตำแหน่ง';
+    navigator.geolocation.getCurrentPosition(async pos=>{
+      try{
+        const {latitude,longitude}=pos.coords;
+        const url='https://api.open-meteo.com/v1/forecast?latitude='+encodeURIComponent(latitude)+'&longitude='+encodeURIComponent(longitude)+'&current=temperature_2m,weather_code&timezone=auto';
+        const response=await fetch(url);
+        if(!response.ok)throw Error('weather unavailable');
+        const data=await response.json();
+        if(typeof data.current?.temperature_2m!=='number')throw Error('missing weather');
+        temp.textContent=Math.round(data.current.temperature_2m)+'°C';
+        desc.textContent=describe(data.current.weather_code);
+      }catch(e){desc.textContent='โหลดอากาศไม่สำเร็จ แตะเพื่อลองใหม่';}
+    },()=>{desc.textContent='อนุญาตตำแหน่งเพื่อดูอากาศ';},{enableHighAccuracy:false,timeout:12000,maximumAge:600000});
+  }
+  card.addEventListener('click',loadWeather);
+})();
 </script>
 
 </body>
