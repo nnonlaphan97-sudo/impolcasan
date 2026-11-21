@@ -22,7 +22,7 @@ html,body{
 
 body{
   background:#0e0e12;
-  font-family:"SamsungOne","Noto Sans Thai",Arial,sans-serif;
+  font-family:"MiTNThin","Noto Sans Thai","Roboto",Arial,sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -545,20 +545,29 @@ button{
 .shortcut:active{transform:scale(.92)}
 .swipe-unlock-hint{bottom:1.2%;color:#fff8db;font-size:clamp(11px,3vw,14px)}
 
-/* Requested custom font: upload font to photo/ in the same website */
+/* Custom MiTNThin font: place MiTNThin.ttf in the photo folder */
 @font-face{
-  font-family:"PK Nakhon Sawan Demo";
-  src:url("photo/PK%20Nakhon%20Sawan%20Demo.ttf") format("truetype");
-  font-style:normal;font-weight:normal;font-display:swap;
+  font-family:"MiTNThin";
+  src:url("photo/MiTNThin.ttf") format("truetype");
+  font-style:normal;
+  font-weight:100 900;
+  font-display:swap;
 }
-.clock-area{top:18.5%!important}
+body,button,input,textarea,select{
+  font-family:"MiTNThin","Noto Sans Thai","Roboto",Arial,sans-serif!important;
+}
+.clock-area{top:20%!important}
 .clock-area .time{
-  font-family:"PK Nakhon Sawan Demo", "SamsungOne",sans-serif!important;
-  font-weight:normal!important;
-  letter-spacing:0!important;
-  line-height:1.05!important;
+  font-family:"MiTNThin","Noto Sans Thai",sans-serif!important;
+  font-weight:800!important;
+  letter-spacing:-2px!important;
+  line-height:1.01!important;
+  -webkit-text-stroke:.75px currentColor;
 }
 .lock-icon{width:17px!important;height:21px!important;top:5.4%!important}
+/* The bottom-left handset should be compact, thick and rounded */
+.shortcut-phone svg{width:30px!important;height:30px!important;overflow:visible}
+.shortcut-phone{display:flex;align-items:center;justify-content:center}
 /* Alarm setup and ringing are temporarily disabled */
 .home-app[data-open="clock"],#page-clock,#alarmModal,#alarmFull{display:none!important}
 </style>
@@ -681,9 +690,8 @@ button{
         <!-- BOTTOM SHORTCUTS: pastel filled icons, no circular buttons -->
         <div class="bottom">
           <button class="shortcut shortcut-phone" aria-label="โทรศัพท์">
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <path d="M14 7c-3-2-7-1-9 2-4 6-2 16 4 26 6 10 16 19 26 24 10 5 20 6 25 1 3-3 4-7 1-10l-11-10c-3-3-7-3-10 0l-6 6C25 42 19 35 16 27l6-6c3-3 3-7 0-10L14 7Z" fill="#FFBBA7"/>
-              <path d="M14 7c-3-2-7-1-9 2-4 6-2 16 4 26 6 10 16 19 26 24 10 5 20 6 25 1 3-3 4-7 1-10l-11-10c-3-3-7-3-10 0l-6 6C25 42 19 35 16 27l6-6c3-3 3-7 0-10L14 7Z" fill="none" stroke="#FFD2C1" stroke-width="1.5"/>
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M11 8.5c-2.6-1.1-5.2.1-6.1 2.9-2.4 7.8 2.6 17.8 10.4 25.4 7.6 7.8 17.6 12.8 25.4 10.4 2.8-.9 4-3.5 2.9-6.1l-3.7-7.1c-.8-1.5-2.7-2.1-4.2-1.3l-4.7 2.6c-4.2-2.5-7.5-5.8-10-10l2.6-4.7c.8-1.5.2-3.4-1.3-4.2L11 8.5Z" fill="#FFBBA7" stroke="#FFD5C5" stroke-width="1" stroke-linejoin="round"/>
             </svg>
           </button>
           <button class="shortcut shortcut-camera" aria-label="กล้อง">
