@@ -960,6 +960,20 @@ body,button,input,textarea,select{
 .line-own-actions button{border:0;background:none;color:#fff;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12px;text-shadow:0 1px 4px #0008}
 .line-own-actions svg{width:29px;height:29px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .line-own-premium{position:absolute;z-index:2;bottom:5%;left:0;right:0;text-align:center;border-top:1px solid #ffffff40;padding:18px 8px;font-size:14px}
+
+/* Requested profile positioning, SVG icons, and category mosaic */
+#page-line-own-profile .line-own-center{top:40%!important;transform:translateY(-4%)!important;gap:0!important}
+#page-line-own-profile .line-own-actions{bottom:15%!important}
+#page-line-own-profile .line-own-status{margin-top:8px!important;max-width:94%;line-height:1.5;overflow-wrap:anywhere}
+#page-line-own-profile .line-own-birthday,#page-line-profile .line-profile-birthday{display:flex;align-items:center;justify-content:center;gap:5px}
+#page-line-own-profile .line-own-birthday[hidden],#page-line-profile .line-profile-birthday[hidden]{display:none!important}
+.line-birthday-icon{width:16px;height:16px;flex:none;display:inline-block;vertical-align:middle}
+#page-line-profile .line-profile-center{top:42%!important;transform:translateY(-5%)!important}
+#page-line .line-group-mosaic{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;overflow:hidden;border-radius:50%}
+#page-line .line-group-mosaic>span{display:grid;place-items:center;overflow:hidden}
+#page-line .line-group-mosaic svg{width:80%;height:80%;stroke:#626b78}
+#page-line-directory .line-dir-face svg{width:65%;height:65%;stroke:#687182}
+#page-line-directory .line-dir-face{display:grid;place-items:center}
 </style>
 </head>
 
@@ -1261,7 +1275,7 @@ body,button,input,textarea,select{
       <div style="display:flex;gap:8px">
         <button id="lineOwnGallery" aria-label="รูปภาพ"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m4 18 6-6 4 4 3-3 4 4"/></svg></button>
         <button id="lineOwnQR" aria-label="คิวอาร์โค้ด"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM19 19h2v2h-2z"/></svg></button>
-        <button id="lineOwnSettings" aria-label="ตั้งค่า"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg></button>
+        <button id="lineOwnSettings" aria-label="ตั้งค่า"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg></button>
       </div>
     </div>
     <div class="line-own-center">
@@ -1474,6 +1488,9 @@ const lineFriendProfiles = {
   "แม่นมนิว": {avatar:"",cover:"",birthday:"",status:""},
   "คุณตาถา": {avatar:"",cover:"",birthday:"",status:""}
 };
+for(const friend of [...lineFriends,'จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน']){
+ if(!lineFriendProfiles[friend])lineFriendProfiles[friend]={avatar:'',cover:'',birthday:'',status:''};
+}
 let currentLineFriend="", lineProfileReturnPage="line", lineProfileReturnTab="home";
 let lineRequestedTab="chats", lineDirectoryTab="favorites";
 function lineFriendImage(name){const d=lineFriendProfiles[name];return d&&d.avatar?'<img src="'+escapeHtml(d.avatar)+'" alt="">':escapeHtml(name.slice(0,1));}
@@ -1485,7 +1502,7 @@ function showLineFriendProfile(name,returnPage='line'){
  $('friendProfileAvatar').innerHTML=lineFriendImage(name);
  $('friendProfileMini').innerHTML=lineFriendImage(name);
  $('friendProfileName').textContent=name;
- $('friendProfileBirthday').textContent=d.birthday?'♧ '+d.birthday:'';
+ $('friendProfileBirthday').innerHTML=d.birthday?'<svg class="line-birthday-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v9H4zM3 12c2 2 4 2 6 0 2 2 4 2 6 0 2 2 4 2 6 0M12 4v4M12 2c-2 2-2 3 0 4 2-1 2-2 0-4Z"/></svg>'+'<span>'+escapeHtml(d.birthday)+'</span>':'';
  $('friendProfileBirthday').hidden=!d.birthday;
  $('friendProfileStatus').textContent=d.status||'';
  $('friendProfileStatus').hidden=!d.status;
@@ -1525,7 +1542,7 @@ function lineTopActions(tab){
  const buttons=tab==='home'?['bookmark','bell','plus','settings']:tab==='chats'?['bag','plus']:tab==='today'?['search','bell','user']:['bell'];
  return '<div class="line-top-actions">'+buttons.map((name,i)=>'<button type="button" class="line-top-action" data-action="'+name+'" aria-label="'+name+'">'+lineIcon(name)+(name==='bell'?'<i class="line-dot"></i>':'')+'</button>').join('')+'</div>';
 }
-function lineFriendGroup(title, subtitle, icon, count, onclick){const previews={favorites:['ปะป๊าเต','พ่อพ่อนิววี่','จัมโม่'],friends:['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน'],groups:['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']};const preview=onclick==='groups'?'<span class="line-group-avatar">ก</span>':previews[onclick]?lineMosaic(previews[onclick]):'<span class="line-group-avatar">'+lineIcon(icon)+'</span>';return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'">'+preview+'<span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
+function lineFriendGroup(title, subtitle, icon, count, onclick){const previews={favorites:['ปะป๊าเต','พ่อพ่อนิววี่','จัมโม่'],friends:['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน'],groups:['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']};const preview=onclick==='groups'?lineGroupMosaic(['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']):previews[onclick]?lineMosaic(previews[onclick]):'<span class="line-group-avatar">'+lineIcon(icon)+'</span>';return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'">'+preview+'<span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
 function lineServices(){return '<div class="line-service-grid">'+[['stamp','ธีม'],['smile','สติกเกอร์'],['bag','LINE SHOPPING'],['gift','LINE GIFT'],['wallet','บัญชีทางการ']].map(([ico,name])=>'<div class="line-service">'+lineIcon(ico)+'<span>'+name+'</span></div>').join('')+'</div>'}
 function setLineTab(tab){
  lineRequestedTab=tab;
@@ -1571,7 +1588,7 @@ function setLineTab(tab){
 const lineOwnProfile={name:'P.Pond',avatar:'',cover:'',birthday:'8 เม.ย.',status:'毎回、会話はだんだん雨に消えていく。'};
 function showLineOwnProfile(){
   $('lineOwnName').textContent=lineOwnProfile.name;
-  $('lineOwnBirthday').textContent=lineOwnProfile.birthday?'♧ '+lineOwnProfile.birthday:'';
+  $('lineOwnBirthday').innerHTML=lineOwnProfile.birthday?'<svg class="line-birthday-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v9H4zM3 12c2 2 4 2 6 0 2 2 4 2 6 0 2 2 4 2 6 0M12 4v4M12 2c-2 2-2 3 0 4 2-1 2-2 0-4Z"/></svg>'+'<span>'+escapeHtml(lineOwnProfile.birthday)+'</span>':'';
   $('lineOwnBirthday').hidden=!lineOwnProfile.birthday;
   $('lineOwnStatus').textContent=lineOwnProfile.status||'';
   $('lineOwnStatus').hidden=!lineOwnProfile.status;
@@ -1589,6 +1606,8 @@ const lineDirectoryFeatured=['จัมโม่','น้องนุ่ง','�
 const lineDirectoryGroups=['ดิส','ซีฟู้ด','เสาตึก','ลูกเพื่อนพ่อ','แฟมิลี่'];
 const lineGroupPhotos={'ดิส':'','ซีฟู้ด':'','เสาตึก':'','ลูกเพื่อนพ่อ':'','แฟมิลี่':''};
 const lineAlias={'จัมโม่':'JUMMO','น้องนุ่ง':'NONG NOOONG','เบบี๋':'BABII','คิงแมน':'KING MAN'};
+function lineGroupAvatar(name){const url=lineGroupPhotos[name];return url?'<img src="'+escapeHtml(url)+'" alt="">':'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M2 20c0-7 12-7 12 0M14 16c4-2 8 0 8 4"/></svg>';}
+function lineGroupMosaic(names){return '<span class="line-mosaic line-group-mosaic">'+names.map(n=>'<span>'+lineGroupAvatar(n)+'</span>').join('')+'</span>';}
 function lineMosaic(names){return '<span class="line-mosaic '+(names.length===3?'three':'')+'">'+names.map(n=>'<span>'+lineFriendImage(lineAlias[n]||n)+'</span>').join('')+'</span>'}
 function openLineDirectory(tab='friends'){
  lineDirectoryTab=tab==='all'?'friends':tab==='birthday'?'friends':tab;
@@ -1600,7 +1619,7 @@ function renderLineDirectory(){
  let items=lineDirectoryTab==='favorites'?lineDirectoryFavorites:lineDirectoryTab==='groups'?lineDirectoryGroups:lineDirectoryTab==='official'?[]:[...lineDirectoryFeatured,...lineFriends.filter(n=>!lineDirectoryFeatured.includes(n)&&!Object.values(lineAlias).includes(n))];
  items=items.filter(n=>n.toLocaleLowerCase().includes(q));
  const heading=lineDirectoryTab==='favorites'?'รายการโปรด':lineDirectoryTab==='groups'?'กลุ่ม':lineDirectoryTab==='official'?'บัญชีทางการ':'เพื่อน';
- $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?(lineGroupPhotos[n]?'<img src="'+escapeHtml(lineGroupPhotos[n])+'" alt="">':escapeHtml(n.slice(0,1))):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+'</span></button>').join('');
+ $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?lineGroupAvatar(n):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+'</span></button>').join('');
  $('lineDirectoryContent').querySelectorAll('[data-dir-person]').forEach(b=>b.onclick=()=>{
   if(lineDirectoryTab==='groups'){return;}
   showLineFriendProfile(b.dataset.dirPerson,'line-directory');
