@@ -799,6 +799,82 @@ body,button,input,textarea,select{
 .line-panel-services{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 6px;text-align:center;margin:15px 0}
 .line-panel-service{font-size:11px;display:flex;flex-direction:column;align-items:center;gap:7px}
 .line-panel-service svg{width:28px;height:28px}
+
+/* Status bar visible on Home only, hidden inside apps */
+.app-shell:has(.app-page.active:not(#page-home)) > .app-status{display:none!important}
+.app-shell .app-page:not(#page-home){padding-top:0!important}
+/* Line header remains below simulated camera cutout only on Home */
+#page-line .line-header{padding-top:13px!important}
+#page-line .line-bottom button[data-line-tab="chats"] svg{width:27px!important;height:27px!important}
+#page-line .line-bottom button[data-line-tab="today"] svg{width:26px!important;height:26px!important}
+.line-friend-search{width:100%;border:0;border-radius:28px;background:#f4f4f4;padding:13px 16px;font-size:14px;outline:none}
+.line-friend-count{color:#999;font-size:12px;margin:14px 0 6px}
+.line-friend-item{width:100%;display:flex;align-items:center;gap:13px;border:0;background:white;text-align:left;padding:11px 3px;border-bottom:1px solid #f5f5f5;color:#202020}
+.line-friend-avatar{width:47px;height:47px;flex-shrink:0;border-radius:50%;background:#e9edf2;display:grid;place-items:center;font-weight:700;color:#566575}
+.line-friend-item span:last-child{font-size:15px}
+.line-friend-item:active{background:#f5f5f5}
+.line-friend-profile{padding:20px 5px;text-align:center}
+.line-friend-profile .line-friend-avatar{width:84px;height:84px;font-size:32px;margin:0 auto 16px}
+.line-friend-back{border:0;background:none;font-size:16px;padding:8px;color:#333}
+
+/* LINE 2026: floating capsule tab bar and full home composition */
+#page-line{background:#fff!important;position:relative!important;padding:0!important;overflow:hidden!important}
+#page-line .line-header{flex-shrink:0;height:73px!important;min-height:73px!important;padding:13px 16px 9px!important;align-items:center!important;gap:10px!important}
+#page-line .line-header h2{font-size:24px!important;font-weight:750!important;letter-spacing:-.6px!important}
+#page-line .line-header-home{height:92px!important;min-height:92px!important;align-items:flex-start!important;padding-top:20px!important}
+#page-line .line-header-home h2{display:none}
+#page-line .line-top-actions{margin-left:auto;display:flex;align-items:center;justify-content:space-around;gap:0;border:1px solid #e2e2e2;border-radius:999px;padding:5px 9px;min-height:47px;box-shadow:0 2px 7px #00000006;background:#fff}
+#page-line .line-top-action{border:0;background:transparent;position:relative;width:40px;height:37px;padding:6px;display:grid;place-items:center;color:#111}
+#page-line .line-top-action svg{width:26px;height:26px}
+#page-line .line-dot{position:absolute;right:5px;top:3px;width:7px;height:7px;border-radius:50%;background:#06c755}
+#page-line .line-bottom{position:absolute!important;bottom:12px!important;left:12px!important;right:12px!important;height:66px!important;z-index:4!important;background:rgba(255,255,255,.92)!important;border:1px solid #d9d9d9!important;border-radius:999px!important;box-shadow:0 3px 15px #0000000a!important;backdrop-filter:blur(14px)!important;display:flex!important;align-items:center!important;padding:5px!important;gap:2px!important}
+#page-line .line-bottom button{flex:1!important;min-width:0!important;height:55px!important;border:0!important;border-radius:999px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;padding:3px!important;color:#171717!important;background:transparent!important;font-size:10px!important;font-weight:650!important}
+#page-line .line-bottom button.active{background:#eaeaea!important;color:#090909!important}
+#page-line .line-bottom svg{width:25px!important;height:25px!important;stroke-width:2.2!important}
+#page-line .line-extra{padding:0 16px 94px!important;overflow-y:auto!important;flex:1!important}
+#page-line .line-search{flex-shrink:0;margin:0 16px 10px!important;border-radius:999px!important;height:43px!important}
+#page-line .chat-list{padding-bottom:95px!important;overflow-y:auto!important}
+#page-line .line-profile{display:flex;justify-content:space-between;align-items:center;min-height:120px;padding:10px 0 16px}
+#page-line .line-profile-name{display:flex;flex-direction:column;gap:7px;min-width:0}
+#page-line .line-profile-name strong{font-size:24px;font-weight:750;letter-spacing:-.5px}
+#page-line .line-profile-name small{font-size:13px;color:#8b8b8b}
+#page-line .line-profile-avatar{width:64px;height:64px;display:grid;place-items:center;background:#e6eef7;border-radius:50%;font-size:20px;font-weight:700;color:#6a7b93}
+#page-line .line-home-search{height:45px;background:#f5f5f5;border-radius:999px;display:flex;align-items:center;gap:9px;padding:0 14px;margin:3px 0 17px;color:#999}
+#page-line .line-home-search svg{width:21px;height:21px;flex-shrink:0}
+#page-line .line-home-search input{flex:1;min-width:0;border:0;background:none;outline:0;font:inherit;font-size:14px}
+#page-line .line-section-heading{display:flex;align-items:center;justify-content:space-between;margin:13px 0 8px;font-size:16px}
+#page-line .line-section-heading strong{font-weight:700}
+#page-line .line-section-heading button,#page-line .line-section-heading span{border:0;background:transparent;color:#aaa;font-size:13px}
+#page-line .line-group-item{width:100%;display:flex;align-items:center;gap:13px;padding:12px 0;border:0;background:#fff;text-align:left;color:#171717}
+#page-line .line-group-avatar{width:48px;height:48px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:#eef0f4;color:#626a76}
+#page-line .line-group-avatar svg{width:25px;height:25px}
+#page-line .line-group-copy{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+#page-line .line-group-copy strong{font-size:15px;font-weight:700}
+#page-line .line-group-copy small{font-size:12px;color:#999;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#page-line .line-group-count{font-size:13px;color:#999}
+#page-line .line-group-item>svg{width:17px;height:17px;color:#aaa}
+#page-line .line-services-heading{margin-top:32px}
+#page-line .line-service-grid,#page-line .line-wallet-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px 4px;margin:17px 0 25px}
+#page-line .line-service{display:flex;align-items:center;flex-direction:column;gap:8px;text-align:center;font-size:11px;line-height:1.3;min-width:0}
+#page-line .line-service svg{width:30px;height:30px}
+#page-line .line-today-cats{display:flex;gap:22px;white-space:nowrap;overflow:hidden;border-bottom:1px solid #eee;padding:8px 0 18px;font-size:14px;color:#aaa}
+#page-line .line-today-cats b{color:#111;border-bottom:2px solid #111;padding-bottom:8px}
+#page-line .line-hashtags{display:flex;gap:8px;overflow:hidden;white-space:nowrap;padding:19px 0}
+#page-line .line-hashtags span{padding:9px 14px;background:#f6f0f3;border-radius:30px;font-size:12px}
+#page-line .line-today-skeleton{height:190px;background:linear-gradient(120deg,#f2f2f2,#e9e9e9,#f2f2f2);border-radius:10px;margin-bottom:18px}
+#page-line .line-today-skeleton.small{height:135px}
+#page-line .line-today-talk{position:absolute;bottom:99px;right:20px;background:#06c755;color:#fff;border:0;border-radius:999px;padding:12px 22px}
+#page-line .line-wallet-balance{background:#06c755;border-radius:15px 15px 0 0;color:#fff;padding:25px 19px;font-size:21px;font-weight:700}
+#page-line .line-wallet-balance small{font-size:11px;opacity:.85;font-weight:400}
+#page-line .line-wallet-pay{border:1px solid #eee;padding:18px 14px;border-radius:0 0 14px 14px;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+#page-line .line-wallet-pay svg{width:24px;height:24px}
+#page-line .line-wallet-grid{margin-top:25px;row-gap:25px}
+#page-line .line-wallet-pills{display:flex;gap:8px;overflow:hidden;white-space:nowrap;margin:30px 0}
+#page-line .line-wallet-pills span{padding:10px 13px;border:1px solid #eee;border-radius:999px;font-size:12px}
+#page-line .line-wallet-pills span:first-child{background:#111;color:#fff}
+#page-line .line-sticker-skeleton{height:135px;border-radius:12px;background:linear-gradient(90deg,#f2e4e4,#f0eef6,#e5f1e8)}
+#page-line .line-extra.show-friends>.line-profile,#page-line .line-extra.show-friends>.line-home-search,#page-line .line-extra.show-friends>.line-section-heading,#page-line .line-extra.show-friends>.line-group-item,#page-line .line-extra.show-friends>.line-service-grid{display:none!important}
+#page-line .line-friend-count{padding-top:12px}
 </style>
 </head>
 
@@ -1081,8 +1157,8 @@ body,button,input,textarea,select{
     <div class="line-extra" id="lineExtra" hidden></div>
     <div class="line-bottom">
       <button data-line-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 10 12 3l9 7v11h-7v-7h-4v7H3z"/></svg><span>หน้าหลัก</span></button>
-      <button class="active" data-line-tab="chats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18v13H10l-6 3v-3H3z"/><circle cx="8" cy="11" r="1" fill="currentColor"/><circle cx="12" cy="11" r="1" fill="currentColor"/><circle cx="16" cy="11" r="1" fill="currentColor"/></svg><span>แชท</span></button>
-      <button data-line-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 4a9 9 0 1 0 0 16 9 9 0 0 1-7-13 9 9 0 0 0 7-3Z"/><circle cx="19" cy="5" r="2" fill="currentColor"/></svg><span>TODAY</span></button>
+      <button class="active" data-line-tab="chats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3.5c-5.6 0-10 3.6-10 8.2 0 2.5 1.4 4.6 3.7 6.1L5 22l4.7-2.5c.8.2 1.5.3 2.3.3 5.6 0 10-3.6 10-8.1S17.6 3.5 12 3.5Z"/><path d="M7.4 11.7h.2m4.3 0h.2m4.3 0h.2" stroke-width="2.8" stroke-linecap="round"/></svg><span>แชท</span></button>
+      <button data-line-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.8 5.2a8.7 8.7 0 1 0 .3 13.5A8.3 8.3 0 0 1 10 10a8.4 8.4 0 0 1 8.8-4.8Z" stroke-linejoin="round"/><circle cx="19.5" cy="5" r="2.5" fill="currentColor" stroke="none"/></svg><span>TODAY</span></button>
       <button data-line-tab="wallet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="15" rx="2"/><path d="M2 10h20"/><circle cx="18" cy="15" r="1" fill="currentColor"/></svg><span>Wallet</span></button>
     </div>
   </section>
@@ -1243,25 +1319,67 @@ $('navHome').onclick=()=>{openPage('home');hideNav()};$('navBack').onclick=()=>o
 $('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm();$('alarmFull').classList.remove('show');gameMinute+=5;syncTime();persist();setTimeout(showAlarm,900)};
 $('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
 $('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
+const lineFriendPeople = ["ปะป๊าเต", "พ่อพ่อนิววี่", "พี่เหมียวเร้ก", "พี่ฉกาย", "พี่พุพุ", "พี่เจมีไนน์", "แม่นมนิว", "คุณตาถา"];
+const lineFriendMascots = ["BABII", "JAIDEE", "AVOCEAN", "KING MAN", "TOMAFOX", "YUZU MUMU", "SAMRUAY", "PERMPOON", "METAA", "LUNAR", "ANY", "MUVMUV", "WESLEY", "LYKYOU", "MR. SATURNWORLD", "LOOK KHUNNOO", "JUMMO", "MOMO", "DOMIIA", "PAODY", "GUINZLY", "NEONA", "SMYLE", "NONG NOOONG", "NILKNHAKE", "REXXA", "CERI", "VIMMY", "JEWEL", "FLAREY", "PONPON"];
+const lineFriends = [...lineFriendPeople, ...lineFriendMascots];
+function renderLineFriends(filter=''){
+  const target=document.getElementById('lineFriendsResults');if(!target)return;
+  const matched=lineFriends.filter(n=>n.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
+  const safe=n=>n.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  target.innerHTML='<div class="line-friend-count">เพื่อน '+matched.length+' คน</div>'+matched.map(n=>'<button class="line-friend-item" type="button" data-friend="'+safe(n)+'"><span class="line-friend-avatar">'+safe(n.slice(0,1))+'</span><span>'+safe(n)+'</span></button>').join('');
+  target.querySelectorAll('[data-friend]').forEach(b=>b.onclick=()=>{
+    const n=b.dataset.friend;
+    const chatId=Object.keys(chats).find(k=>({nanny:"แม่นมนิว",tay:"ปะป๊าเต",new:"พ่อพ่อนิววี่"})[k]===n);
+    if(chatId){openChat(chatId);return;}
+    const extra=document.getElementById('lineExtra');
+    extra.innerHTML='<button class="line-friend-back" id="backFriends">‹ รายชื่อเพื่อน</button><div class="line-friend-profile"><div class="line-friend-avatar">'+safe(n.slice(0,1))+'</div><h2>'+safe(n)+'</h2><p class="line-panel-muted">เพื่อนใน LINE ของซัง</p></div>';
+    document.getElementById('backFriends').onclick=()=>setLineTab('home');
+  });
+}
+function lineIcon(name){
+ const paths={bookmark:'<path d="M6 3h12v18l-6-4-6 4z"/>',bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 9h18c0-1-3-2-3-9ZM10 21h4"/>',plus:'<path d="M12 3v18M3 12h18"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M10 2h4l1 3 3 1 3-1 2 4-3 2v3l3 2-2 4-3-1-3 1-1 3h-4l-1-3-3-1-3 1-2-4 3-2v-3L1 9l2-4 3 1 3-1z"/>',search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',scan:'<path d="M8 3H4v5m12-5h4v5M4 16v5h4m12-5v5h-4M5 12h14"/>',chevron:'<path d="m9 5 7 7-7 7"/>',smile:'<circle cx="12" cy="12" r="9"/><path d="M8 14q4 5 8 0M8 9h.01M16 9h.01"/>',gift:'<rect x="3" y="9" width="18" height="12"/><path d="M3 13h18M12 9v12M12 9C3 9 6 1 10 5l2 4Zm0 0c9 0 6-8 2-4l-2 4Z"/>',bag:'<path d="M4 8h16l1 13H3L4 8Zm5 0V6a3 3 0 0 1 6 0v2"/>',stamp:'<path d="M9 3a3 3 0 0 1 6 0v5l3 5v3H6v-3l3-5V3ZM4 20h16"/>',wallet:'<rect x="2" y="6" width="20" height="15" rx="2"/><path d="M2 10h20"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-8 16-8 16 0"/>'};
+ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.gift)+'</svg>';
+}
+function lineTopActions(tab){
+ const buttons=tab==='home'?['bookmark','bell','plus','settings']:tab==='chats'?['bag','plus']:tab==='today'?['search','bell','user']:['bell'];
+ return '<div class="line-top-actions">'+buttons.map((name,i)=>'<button type="button" class="line-top-action" data-action="'+name+'" aria-label="'+name+'">'+lineIcon(name)+(name==='bell'?'<i class="line-dot"></i>':'')+'</button>').join('')+'</div>';
+}
+function lineFriendGroup(title, subtitle, icon, count, onclick){return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'"><span class="line-group-avatar">'+lineIcon(icon)+'</span><span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
+function lineServices(){return '<div class="line-service-grid">'+[['stamp','ธีม'],['smile','สติกเกอร์'],['bag','LINE SHOPPING'],['gift','LINE GIFT'],['wallet','บัญชีทางการ']].map(([ico,name])=>'<div class="line-service">'+lineIcon(ico)+'<span>'+name+'</span></div>').join('')+'</div>'}
 function setLineTab(tab){
-  const extra=$('lineExtra'), list=$('chatList'), search=document.querySelector('#page-line .line-search');
-  const heading=document.querySelector('#page-line .line-header h2');
-  document.querySelectorAll('[data-line-tab]').forEach(b=>b.classList.toggle('active',b.dataset.lineTab===tab));
-  const isChats=tab==='chats';
-  list.hidden=!isChats;search.hidden=!isChats;extra.hidden=isChats;
-  heading.textContent=({home:'หน้าหลัก',chats:'แชท',today:'LINE TODAY',wallet:'Wallet'})[tab]||'แชท';
-  if(isChats){renderChats();return;}
-  if(tab==='home'){
-    extra.innerHTML='<div class="line-panel-heading">POLCASAN</div><div class="line-panel-muted">โทรศัพท์ของซัง</div><div class="line-panel-search">⌕ &nbsp;ค้นหา</div><div class="line-panel-section">รายชื่อเพื่อน</div>'+
-      ['แม่นมนิว','ปะป๊าเต','พ่อพ่อนิววี่'].map((n,i)=>'<div class="line-panel-row"><span class="line-panel-avatar">'+['น','ต','น'][i]+'</span><span>'+n+'</span></div>').join('')+
-      '<div class="line-panel-section">บริการ</div><div class="line-panel-services">'+
-      ['ธีม','สติกเกอร์','LINE GIFT','บัญชีทางการ'].map(n=>'<div class="line-panel-service"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M8 12h8M12 8v8"/></svg>'+n+'</div>').join('')+'</div>';
-  } else if(tab==='today'){
-    extra.innerHTML='<div class="line-panel-section">TOP　　ดูดวง　　Eats　　ท่องเที่ยวไทย　　ข่าว</div><div class="line-panel-search">#กิน ออมพลัง　　#ช่อง ดูดี　　#ราคาทอง</div><div style="height:210px;background:#f3f3f3;border-radius:12px"></div><p class="line-panel-muted">พื้นที่ LINE TODAY จำลอง — ยังไม่มีฟีดข่าวออนไลน์</p>';
-  } else {
-    extra.innerHTML='<div style="border-radius:16px;background:#06c755;color:#fff;padding:22px 17px;font-size:20px;font-weight:700;margin-top:12px">Wallet <div style="font-size:14px;margin-top:14px">฿ ***,***</div></div><div class="line-panel-section">บริการจาก LINE</div><div class="line-panel-services">'+
-      ['LINE POINTS','LINE Pay','ยืมเงิน','LINE BK','สติกเกอร์','LINE MAN','LINE GIFT','ช้อปปิ้ง'].map(n=>'<div class="line-panel-service"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>'+n+'</div>').join('')+'</div><p class="line-panel-muted">Wallet จำลอง ไม่เชื่อมต่อบัญชีหรือการชำระเงินจริง</p>';
-  }
+ const extra=$('lineExtra'),list=$('chatList'),search=document.querySelector('#page-line .line-search');
+ const header=document.querySelector('#page-line .line-header'),heading=header.querySelector('h2');
+ document.querySelectorAll('[data-line-tab]').forEach(b=>b.classList.toggle('active',b.dataset.lineTab===tab));
+ const isChats=tab==='chats';list.hidden=!isChats;search.hidden=tab!=='chats';extra.hidden=isChats;
+ header.classList.toggle('line-header-home',tab==='home');
+ heading.textContent=({home:'',chats:'แชท',today:'LINE TODAY',wallet:'Wallet'})[tab]||'แชท';
+ header.querySelector('.line-actions').style.display='none';
+ let actions=header.querySelector('.line-top-actions');if(actions)actions.remove();
+ header.insertAdjacentHTML('beforeend',lineTopActions(tab));
+ header.querySelectorAll('.line-top-action').forEach(b=>b.onclick=()=>{
+  if(b.dataset.action==='search'){const input=extra.querySelector('input')||search;input?.focus();}
+  else if(b.dataset.action==='plus'&&tab==='chats')setLineTab('home');
+ });
+ if(isChats){renderChats();return;}
+ if(tab==='home'){
+  extra.innerHTML='<div class="line-profile"><div class="line-profile-name"><strong>POLCASAN</strong><small>ซังและครอบครัวของซัง</small></div><span class="line-profile-avatar">ซัง</span></div>'+
+   '<div class="line-home-search">'+lineIcon('search')+'<input id="lineFriendSearch" placeholder="ค้นหา" aria-label="ค้นหาเพื่อน">'+lineIcon('scan')+'</div>'+
+   '<div class="line-section-heading"><strong>รายชื่อเพื่อน</strong><button id="lineSeeAll">ดูทั้งหมด</button></div>'+
+   lineFriendGroup('วันเกิดเพื่อนในช่วงนี้','เพื่อนที่มีวันเกิดเร็ว ๆ นี้','gift','', 'birthday')+
+   lineFriendGroup('รายการโปรด','ปะป๊าเต, พ่อพ่อนิววี่, แม่นมนิว','bookmark','3','favorites')+
+   lineFriendGroup('เพื่อน','รายชื่อเพื่อนทั้งหมด','user',String(lineFriends.length),'all')+
+   lineFriendGroup('กลุ่ม','กลุ่มแชทของซัง','user','', 'groups')+
+   '<div class="line-section-heading line-services-heading"><strong>บริการ</strong><span>ดูทั้งหมด</span></div>'+lineServices()+'<div id="lineFriendsResults" hidden></div>';
+  const inp=$('lineFriendSearch'),results=$('lineFriendsResults');
+  const showFriends=(q='')=>{results.hidden=false;results.innerHTML='';renderLineFriends(q);extra.classList.add('show-friends');};
+  inp.addEventListener('input',()=>{if(inp.value.trim())showFriends(inp.value);else{results.hidden=true;extra.classList.remove('show-friends')}});
+  $('lineSeeAll').onclick=()=>showFriends();
+  extra.querySelectorAll('[data-fgroup]').forEach(b=>b.onclick=()=>{const kind=b.dataset.fgroup;showFriends();if(kind==='favorites')showFriends('ปะป๊า');});
+ } else if(tab==='today'){
+  extra.innerHTML='<div class="line-today-cats"><b>TOP</b><span>ดูดวง</span><span>Eats</span><span>ท่องเที่ยวไทย</span><span>ข่าว</span></div><div class="line-hashtags"><span>#กิน ออมพลัง</span><span>#ช่อง ดูดี</span><span>#ราคาทอง</span></div><div class="line-today-skeleton"></div><div class="line-today-skeleton small"></div><button class="line-today-talk">ชวนคุย</button>';
+ } else {
+  extra.innerHTML='<div class="line-wallet-balance"><div>฿ ***,***</div><small>ยอดเงินจำลอง</small></div><div class="line-wallet-pay">LINE Pay　 รับโปรคุ้มก่อนใคร　'+lineIcon('scan')+'</div><div class="line-wallet-grid">'+[['wallet','LINE POINTS'],['bag','LINE Pay'],['stamp','ยืมเงิน'],['wallet','LINE BK'],['smile','ร้านสติกเกอร์'],['stamp','ร้านธีม'],['bag','LINE MAN'],['gift','LINE GIFT']].map(([ico,name])=>'<div class="line-service">'+lineIcon(ico)+'<span>'+name+'</span></div>').join('')+'</div><div class="line-wallet-pills"><span>บริการจาก LINE</span><span>MINI App</span><span>LINE SHOPPING</span></div><div class="line-section-heading"><strong>สติกเกอร์ที่คุณอาจสนใจ</strong></div><div class="line-sticker-skeleton"></div>';
+ }
 }
 document.querySelectorAll('[data-line-tab]').forEach(b=>b.onclick=()=>setLineTab(b.dataset.lineTab));
 
