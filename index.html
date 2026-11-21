@@ -98,11 +98,17 @@ button{font:inherit;cursor:pointer}
 }
 .status-right{display:flex;align-items:center;gap:6px}
 .status svg{display:block}
+
 .clock-area{
-  position:absolute;top:12.5%;left:0;right:0;
-  text-align:center;color:white;
-  text-shadow:0 2px 12px #0003;
+  position:absolute;
+  top:17.5%;
+  left:0;
+  right:0;
+  text-align:center;
+  color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.3);
 }
+
 .lock-icon{width:19px;height:23px;margin:0 auto 16px}
 .date{font-size:clamp(14px,4vw,22px);font-weight:400}
 .time{
@@ -222,15 +228,35 @@ button{font:inherit;cursor:pointer}
             <circle cx="12" cy="20" r="1" fill="white" stroke="none"/>
           </svg>
 
-          <!-- Battery -->
-          <svg width="36" height="19" viewBox="0 0 42 22">
-            <rect x="1" y="2" width="36" height="18" rx="7" fill="#FFFFFF" opacity=".9"/>
-            <rect x="37" y="8" width="3" height="6" rx="1" fill="white"/>
-            <rect x="3" y="4" width="29" height="14" rx="5" fill="#82BA90"/>
-            <text x="18" y="15" text-anchor="middle" font-size="12" font-family="Arial" font-weight="bold" fill="#FFFFFF">85</text>
-          </svg>
-        </div>
-      </div>
+        
+<!-- Samsung One UI battery -->
+<svg
+  width="31"
+  height="16"
+  viewBox="0 0 31 16"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="Battery 85 percent"
+>
+  <rect
+    x="0.5"
+    y="1.5"
+    width="30"
+    height="13"
+    rx="6.5"
+    fill="#FFFFFF"
+  />
+
+  <text
+    x="15.5"
+    y="10.9"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="9.2"
+    font-weight="600"
+    fill="#202127"
+  >85</text>
+</svg>
+
 
       <div class="clock-area">
 
