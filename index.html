@@ -740,8 +740,8 @@ body,button,input,textarea,select{
 
 /* Final Home layout: compact transparent weather, separated app row */
 #page-home .home-weather{
- position:absolute!important;top:9%!important;left:7%!important;right:auto!important;
- width:43%!important;height:auto!important;min-height:0!important;
+ position:absolute!important;top:8%!important;left:2.5%!important;right:auto!important;
+ width:36%!important;height:auto!important;min-height:0!important;
  padding:0!important;margin:0!important;border:0!important;
  background:transparent!important;border-radius:0!important;box-shadow:none!important;
  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
@@ -775,6 +775,30 @@ body,button,input,textarea,select{
  display:flex!important;align-items:center!important;justify-content:center!important;
 }
 #page-home .home-app .line-icon svg{width:46px!important;height:46px!important;display:block!important;overflow:hidden!important}
+
+
+/* Accurate compact home alignment */
+#page-home .home-weather{left:2.5%!important;width:36%!important;top:8%!important;align-items:center!important;text-align:center!important}
+#page-home .weather-icon{align-self:center!important}
+#page-home .weather-info{align-items:center!important;text-align:center!important}
+#page-home .home-grid{top:39%!important}
+#page-home .home-app .line-icon{display:grid!important;place-items:center!important}
+#page-home .home-app .line-icon svg{width:43px!important;height:43px!important}
+#page-line .line-bottom{height:66px!important;flex-shrink:0;display:flex!important;align-items:center!important;justify-content:space-around!important;padding:5px 7px 7px!important}
+#page-line .line-bottom button{flex:1!important;min-width:0!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:3px!important;padding:5px 0!important}
+#page-line .line-bottom button.active{background:#f0f0f0!important;border-radius:26px!important}
+#page-line .line-bottom svg{width:23px!important;height:23px!important}
+#page-line .line-extra{flex:1;min-height:0;overflow-y:auto;padding:12px 17px;background:#fff}
+#page-line .line-extra[hidden]{display:none!important}
+.line-panel-heading{font-size:22px;font-weight:750;margin:14px 0 16px}
+.line-panel-search{background:#f5f5f5;border-radius:28px;padding:12px 16px;color:#999;margin:12px 0 24px}
+.line-panel-section{font-size:17px;font-weight:700;margin:18px 0 12px}
+.line-panel-row{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid #f5f5f5;font-size:15px}
+.line-panel-avatar{width:43px;height:43px;border-radius:50%;display:grid;place-items:center;background:#e8e9ed;font-size:17px;flex-shrink:0}
+.line-panel-muted{color:#929292;font-size:12px}
+.line-panel-services{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 6px;text-align:center;margin:15px 0}
+.line-panel-service{font-size:11px;display:flex;flex-direction:column;align-items:center;gap:7px}
+.line-panel-service svg{width:28px;height:28px}
 </style>
 </head>
 
@@ -1035,8 +1059,8 @@ body,button,input,textarea,select{
   <button class="home-app" data-open="line" type="button">
     <span class="app-icon line-icon">
       <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path fill="#fff" d="M32 8C17.1 8 5 17.4 5 29.2c0 10.6 9.1 19 21.8 21.1l-1.7 7.1c-.3 1.2.9 1.9 2 1.2l12.2-7.4C50.7 48.5 59 40.1 59 29.2 59 17.4 46.9 8 32 8Z"/>
-        <text x="32" y="35.6" text-anchor="middle" dominant-baseline="middle" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="900" letter-spacing="-1" textLength="39" lengthAdjust="spacingAndGlyphs" fill="#06C755">LINE</text>
+        <path fill="#fff" d="M32 7C16.8 7 4.5 16.7 4.5 28.7c0 10.5 9.2 19.3 21.7 21.2l-1.3 7.3c-.2 1.1 1 1.7 1.9 1.1l12.6-7.5C51.1 48.1 59.5 39.6 59.5 28.7 59.5 16.7 47.2 7 32 7Z"/>
+        <text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Arial,Helvetica,sans-serif" font-size="15.5" font-weight="900" textLength="37" lengthAdjust="spacingAndGlyphs" fill="#06C755">LINE</text>
       </svg>
     </span>
     <span>LINE</span>
@@ -1054,7 +1078,13 @@ body,button,input,textarea,select{
     <div class="app-header line-header"><h2>แชท</h2><div class="line-actions"><button class="icon-btn" aria-label="ค้นหา" id="lineSearch"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.7" cy="10.7" r="6.8"/><path d="m16 16 5 5"/></svg></button><button class="icon-btn" aria-label="เพิ่มแชท" id="lineAdd"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h10a3 3 0 0 1 3 3v2M5 5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M11 14l9-9 2 2-9 9-4 1z"/></svg></button></div></div>
     <div class="line-search"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.7" cy="10.7" r="6.8"/><path d="m16 16 5 5"/></svg><span>ค้นหา</span></div>
     <div id="chatList" class="chat-list"></div>
-    <div class="line-bottom"><button data-line-tab="home"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>หน้าหลัก</button><button class="active" data-line-tab="chats"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-6 3v-3a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2Z"/><path d="M7 10h10M7 14h7"/></svg>แชท</button><button data-line-tab="friends"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-7 13-7 13 0"/><path d="M16 5a3 3 0 0 1 0 6M18 14c2.4.7 3.5 2.5 3.5 6"/></svg>เพื่อน</button></div>
+    <div class="line-extra" id="lineExtra" hidden></div>
+    <div class="line-bottom">
+      <button data-line-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 10 12 3l9 7v11h-7v-7h-4v7H3z"/></svg><span>หน้าหลัก</span></button>
+      <button class="active" data-line-tab="chats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18v13H10l-6 3v-3H3z"/><circle cx="8" cy="11" r="1" fill="currentColor"/><circle cx="12" cy="11" r="1" fill="currentColor"/><circle cx="16" cy="11" r="1" fill="currentColor"/></svg><span>แชท</span></button>
+      <button data-line-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 4a9 9 0 1 0 0 16 9 9 0 0 1-7-13 9 9 0 0 0 7-3Z"/><circle cx="19" cy="5" r="2" fill="currentColor"/></svg><span>TODAY</span></button>
+      <button data-line-tab="wallet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="15" rx="2"/><path d="M2 10h20"/><circle cx="18" cy="15" r="1" fill="currentColor"/></svg><span>Wallet</span></button>
+    </div>
   </section>
   <section class="app-page chat-room" id="page-chat">
     <div class="app-header chat-header"><button class="icon-btn" data-back="line" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button><h3 id="chatTitle">แม่นมนิว</h3><button class="icon-btn" id="chatCall" aria-label="โทร"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3c-2 0-4 3-3 7 2 7 7 12 14 14 4 1 7-1 7-3l-1-4-6-3-3 3c-3-1-5-3-6-6l3-3-3-6Z"/></svg></button><button class="icon-btn" id="chatMenu" aria-label="เมนู"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
@@ -1186,7 +1216,7 @@ carrier.addEventListener('pointerdown',beginResetHold);
 carrier.addEventListener('contextmenu',e=>e.preventDefault());
 carrier.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();beginResetHold({type:'keyboard'})}});
 carrier.addEventListener('keyup',cancelResetHold);
-function openPage(next){page=next;document.querySelectorAll('.app-page').forEach(el=>el.classList.toggle('active',el.id==='page-'+next));if(next==='clock')renderClock();if(next==='line')renderChats();if(next==='food')renderFood();}
+function openPage(next){page=next;document.querySelectorAll('.app-page').forEach(el=>el.classList.toggle('active',el.id==='page-'+next));if(next==='clock')renderClock();if(next==='line')setLineTab('chats');if(next==='food')renderFood();}
 function renderClock(){document.querySelectorAll('[data-clocktab]').forEach(b=>b.classList.toggle('active',b.dataset.clocktab===clockTab));$('addAlarm').style.display=clockTab==='alarms'?'block':'none';const c=$('clockContent');if(clockTab!=='alarms'){const text={world:'กรุงเทพมหานคร · '+timeStr(),stopwatch:'00:00.00',timer:'00:00:00'};c.innerHTML='<div class="clock-extra"><div style="font-size:42px;margin-bottom:16px">'+text[clockTab]+'</div><button class="primary-action" id="clockToolBtn">'+(clockTab==='world'?'เพิ่มเมือง':'เริ่ม')+'</button><div id="clockToolResult" style="margin-top:15px"></div></div>';const b=$('clockToolBtn');b.onclick=()=>{if(clockTab==='world'){$('clockToolResult').textContent='กรุงเทพมหานคร · ประเทศไทย'}else{$('clockToolResult').textContent='เริ่มใช้งาน '+(clockTab==='timer'?'ตั้งเวลา':'จับเวลา');}};return}
  c.innerHTML=alarms.map((a,i)=>'<div class="alarm-card"><div class="alarm-top"><div role="button" tabindex="0" data-edit-alarm="'+i+'"><div class="alarm-time">'+a.time+'</div><div class="alarm-label">'+escapeHtml(a.label)+'</div></div><button class="switch '+(a.on?'on':'')+'" data-toggle-alarm="'+i+'" aria-label="เปิดปิดนาฬิกาปลุก" aria-pressed="'+a.on+'"></button></div><div class="alarm-days">'+['อา','จ','อ','พ','พฤ','ศ','ส'].map((d,n)=>'<span class="'+(a.days.includes(n)?'on':'')+'">'+d+'</span>').join('')+'</div></div>').join('');
  c.querySelectorAll('[data-toggle-alarm]').forEach(b=>b.onclick=()=>{const a=alarms[+b.dataset.toggleAlarm];a.on=!a.on;persist();renderClock()});c.querySelectorAll('[data-edit-alarm]').forEach(b=>b.onclick=()=>editAlarm(+b.dataset.editAlarm));}
@@ -1213,7 +1243,27 @@ $('navHome').onclick=()=>{openPage('home');hideNav()};$('navBack').onclick=()=>o
 $('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm();$('alarmFull').classList.remove('show');gameMinute+=5;syncTime();persist();setTimeout(showAlarm,900)};
 $('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
 $('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
-document.querySelectorAll('[data-line-tab]').forEach(b=>b.onclick=()=>{if(b.dataset.lineTab==='chats')renderChats();else if(b.dataset.lineTab==='friends')alert('เพื่อน: แม่นมนิว, ปะป๊าเต, พ่อพ่อนิววี่');else alert('แท็บนี้จะเปิดในภารกิจถัดไป')});
+function setLineTab(tab){
+  const extra=$('lineExtra'), list=$('chatList'), search=document.querySelector('#page-line .line-search');
+  const heading=document.querySelector('#page-line .line-header h2');
+  document.querySelectorAll('[data-line-tab]').forEach(b=>b.classList.toggle('active',b.dataset.lineTab===tab));
+  const isChats=tab==='chats';
+  list.hidden=!isChats;search.hidden=!isChats;extra.hidden=isChats;
+  heading.textContent=({home:'หน้าหลัก',chats:'แชท',today:'LINE TODAY',wallet:'Wallet'})[tab]||'แชท';
+  if(isChats){renderChats();return;}
+  if(tab==='home'){
+    extra.innerHTML='<div class="line-panel-heading">POLCASAN</div><div class="line-panel-muted">โทรศัพท์ของซัง</div><div class="line-panel-search">⌕ &nbsp;ค้นหา</div><div class="line-panel-section">รายชื่อเพื่อน</div>'+
+      ['แม่นมนิว','ปะป๊าเต','พ่อพ่อนิววี่'].map((n,i)=>'<div class="line-panel-row"><span class="line-panel-avatar">'+['น','ต','น'][i]+'</span><span>'+n+'</span></div>').join('')+
+      '<div class="line-panel-section">บริการ</div><div class="line-panel-services">'+
+      ['ธีม','สติกเกอร์','LINE GIFT','บัญชีทางการ'].map(n=>'<div class="line-panel-service"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M8 12h8M12 8v8"/></svg>'+n+'</div>').join('')+'</div>';
+  } else if(tab==='today'){
+    extra.innerHTML='<div class="line-panel-section">TOP　　ดูดวง　　Eats　　ท่องเที่ยวไทย　　ข่าว</div><div class="line-panel-search">#กิน ออมพลัง　　#ช่อง ดูดี　　#ราคาทอง</div><div style="height:210px;background:#f3f3f3;border-radius:12px"></div><p class="line-panel-muted">พื้นที่ LINE TODAY จำลอง — ยังไม่มีฟีดข่าวออนไลน์</p>';
+  } else {
+    extra.innerHTML='<div style="border-radius:16px;background:#06c755;color:#fff;padding:22px 17px;font-size:20px;font-weight:700;margin-top:12px">Wallet <div style="font-size:14px;margin-top:14px">฿ ***,***</div></div><div class="line-panel-section">บริการจาก LINE</div><div class="line-panel-services">'+
+      ['LINE POINTS','LINE Pay','ยืมเงิน','LINE BK','สติกเกอร์','LINE MAN','LINE GIFT','ช้อปปิ้ง'].map(n=>'<div class="line-panel-service"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>'+n+'</div>').join('')+'</div><p class="line-panel-muted">Wallet จำลอง ไม่เชื่อมต่อบัญชีหรือการชำระเงินจริง</p>';
+  }
+}
+document.querySelectorAll('[data-line-tab]').forEach(b=>b.onclick=()=>setLineTab(b.dataset.lineTab));
 
 let navTimer=null;
 function hideNav(){document.querySelector('.app-nav').classList.remove('nav-visible');clearTimeout(navTimer)}
