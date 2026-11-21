@@ -1303,8 +1303,6 @@ $('chatSticker').onclick=()=>{};
 restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();setInterval(syncTime,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTime()});openPage('home');$('lineToast').classList.remove('show');
 
 (function(){
-
-(function(){
   const card = document.getElementById('homeWeather');
   const temp = document.getElementById('weatherTemp');
   const desc = document.getElementById('weatherDesc');
