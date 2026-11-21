@@ -553,8 +553,15 @@ button{
   font-weight:100 900;
   font-display:swap;
 }
+@font-face{
+  font-family:"Srinakharinwirot";
+  src:url("photo/Srinakharinwirot-Regular.ttf") format("truetype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
 body,button,input,textarea,select{
-  font-family:"Noto Sans Thai","Roboto",Arial,sans-serif!important;
+  font-family:"Srinakharinwirot","Noto Sans Thai",Arial,sans-serif!important;
 }
 .clock-area{top:23%!important}
 .clock-area .time{
@@ -563,16 +570,47 @@ body,button,input,textarea,select{
   letter-spacing:-2px!important;
   line-height:1.01!important;
   -webkit-text-stroke:1.45px currentColor;
-  color:#FFE6A4!important;
+  color:#BBDCF9!important;
   text-shadow:0 1px 5px rgba(30,24,35,.28)!important;
 }
 .lock-icon{width:17px!important;height:21px!important;top:5.4%!important}
 /* The bottom-left handset should be compact, thick and rounded */
 .shortcut-phone svg{width:39px!important;height:39px!important;overflow:visible}
 .shortcut-phone{display:flex;align-items:center;justify-content:center}
-.clock-area .date{color:#FFE8BD!important;text-shadow:0 1px 4px rgba(25,22,28,.52)!important}
+.clock-area .date{color:#D2E7FA!important;text-shadow:0 1px 4px rgba(25,22,28,.52)!important}
 /* Alarm setup and ringing are temporarily disabled */
 .home-app[data-open="clock"],#page-clock,#alarmModal,#alarmFull{display:none!important}
+
+/* PIN uses the same wallpaper as the lock screen, blurred behind controls */
+.pin-screen{
+  background:rgba(23,37,58,.20)!important;
+  isolation:isolate;
+}
+.pin-screen::before{
+  content:"";
+  position:absolute;
+  inset:-24px;
+  background:url("photo/wallpaper01.jpg") center center / cover no-repeat;
+  filter:blur(17px) brightness(.62) saturate(.85);
+  z-index:-2;
+  pointer-events:none;
+}
+.pin-screen::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(13,24,42,.20),rgba(16,30,53,.36));
+  z-index:-1;
+  clip-path:none;
+  width:auto;height:auto;right:0;bottom:0;
+  opacity:1;
+  pointer-events:none;
+}
+.pin-key{background:rgba(225,237,250,.25)}
+.pin-key:active{background:rgba(225,237,250,.45)}
+.pin-emergency{background:rgba(208,228,248,.24)}
+/* No automatic nanny banner on the lock screen or after unlocking */
+#lineToast{display:none!important}
 </style>
 </head>
 
@@ -673,8 +711,8 @@ body,button,input,textarea,select{
 
 <!-- LOCK ICON: filled cream padlock like reference -->
 <svg class="lock-icon" viewBox="0 0 32 38" aria-hidden="true">
-  <path d="M9 17V12a7 7 0 0 1 14 0v5" fill="none" stroke="#FFF1B5" stroke-width="4" stroke-linecap="round"/>
-  <rect x="5" y="16" width="22" height="20" rx="4" fill="#FFF1B5"/>
+  <path d="M9 17V12a7 7 0 0 1 14 0v5" fill="none" stroke="#D1E8FF" stroke-width="4" stroke-linecap="round"/>
+  <rect x="5" y="16" width="22" height="20" rx="4" fill="#D1E8FF"/>
   <circle cx="16" cy="24" r="2.4" fill="#8294B3"/>
   <path d="M16 25v4" stroke="#8294B3" stroke-width="2.5" stroke-linecap="round"/>
 </svg>
@@ -800,8 +838,8 @@ function soundAlarm(){try{const C=window.AudioContext||window.webkitAudioContext
 function stopAlarm(){if(alarmTone){alarmTone.close().catch(()=>{});alarmTone=null}}
 function showAlarm(){alarmOpen=true;$('ringTime').textContent=timeStr();$('alarmFull').classList.add('show');soundAlarm()}
 function dismissAlarm(){stopAlarm();alarmOpen=false;$('alarmFull').classList.remove('show');breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();persist();setTimeout(sendMorningNotification,450)}
-function sendMorningNotification(){if(notificationSent||!breakfastStarted)return;notificationSent=true;$('lineToast').classList.add('show');renderChats();persist()}
-function unlock(){ $('pinScreen').classList.remove('show');phone.classList.remove('off');phone.classList.add('unlocked');openPage('home');if(notificationSent&&!chatRead)$('lineToast').classList.add('show')}
+function sendMorningNotification(){/* Notifications disabled; LINE conversations remain accessible. */}
+function unlock(){ $('pinScreen').classList.remove('show');phone.classList.remove('off');phone.classList.add('unlocked');openPage('home');}
 let enteredPin='';
 function updatePinDots(){ $('pinDots').innerHTML=Array.from({length:6},(_,i)=>'<i class="'+(i<enteredPin.length?'filled':'')+'"></i>').join(''); }
 function showPin(){if(alarmOpen||phone.classList.contains('unlocked'))return;enteredPin='';$('pinError').textContent='';updatePinDots();$('pinScreen').classList.add('show');}
@@ -893,7 +931,7 @@ $('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm()
 $('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
 $('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
 document.querySelectorAll('[data-line-tab]').forEach(b=>b.onclick=()=>{if(b.dataset.lineTab==='chats')renderChats();else if(b.dataset.lineTab==='friends')alert('เพื่อน: แม่นมนิว, ปะป๊าเต, พ่อพ่อนิววี่');else alert('แท็บนี้จะเปิดในภารกิจถัดไป')});
-restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();openPage('home');if(!notificationSent){sendMorningNotification()}else if(!chatRead){$('lineToast').classList.add('show')}
+restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();openPage('home');$('lineToast').classList.remove('show')
 </script>
 
 </body>
