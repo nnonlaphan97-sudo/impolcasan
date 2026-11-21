@@ -240,15 +240,33 @@ button{
 
 .side-button{
   position:absolute;
-  right:-5px;
+  right:0;
   top:26%;
-  width:4px;
+  width:44px;
   height:70px;
-  background:linear-gradient(90deg,#75697f,#b3a6bc);
-  border-radius:0 3px 3px 0;
+  background:transparent;
   border:0;
   padding:0;
-  z-index:40;
+  border-radius:0;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  z-index:100;
+}
+/* Wide invisible touch target; only the metallic edge is visible. */
+.side-button::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:0;
+  width:4px;
+  height:100%;
+  background:linear-gradient(90deg,#75697f,#b3a6bc);
+  border-radius:2px 0 0 2px;
+  pointer-events:none;
+}
+.side-button:active::after{
+  background:linear-gradient(90deg,#a9e8bd,#80cba3);
 }
 
 .volume-button{
@@ -320,7 +338,7 @@ button{
   height:28px;
 }
 
-.phone.scanning .side-button{
+.phone.scanning .side-button::after{
   background:#b9f1ce;
   box-shadow:0 0 12px #8ee7b2;
 }
@@ -463,7 +481,7 @@ button{
     <button
       class="side-button"
       id="power"
-      aria-label="เปิดปิดหน้าจอ">
+      aria-label="ปุ่มด้านข้าง: สแกนลายนิ้วมือเพื่อปลดล็อก">
     </button>
 
     <div class="bezel">
