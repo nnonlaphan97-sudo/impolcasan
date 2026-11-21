@@ -664,6 +664,52 @@ body,button,input,textarea,select{
 .chat-compose #sendChat{background:#06c755;width:36px;height:36px;display:grid;place-items:center}
 .chat-compose #sendChat svg{width:19px;height:19px}
 .food-symbol svg{width:36px;height:36px;color:#aa7542}
+
+/* Corrected Home viewport and status: reuse exact lock-screen SVG bar */
+.app-shell{isolation:isolate}
+.app-shell>.app-status{
+  position:absolute!important;top:0!important;left:0!important;right:0!important;
+  height:38px!important;padding:0 17px!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  background:transparent!important;color:white!important;z-index:35!important;
+  font-size:clamp(11px,3.1vw,15px)!important;
+  box-sizing:border-box!important;
+}
+.app-shell>.app-status .status-right{display:flex;align-items:center;gap:5px}
+.app-shell>.app-status svg{display:block;flex-shrink:0}
+.app-shell>.app-status .home-carrier{font-weight:600}
+#page-home.home-wall{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  min-height:0!important;padding:0!important;margin:0!important;
+  background-image:url("photo/20697.jpg")!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  overflow:hidden!important;
+}
+#page-home.home-wall.active{display:flex!important;flex-direction:column!important}
+#page-home .home-grid{margin-top:auto!important;margin-bottom:43px!important}
+.app-nav{display:flex!important}
+
+/* LINE vector icon and interface polish */
+.home-app .line-icon{background:#06C755!important;border-radius:16px!important;box-shadow:0 3px 10px rgba(0,0,0,.15)!important}
+.home-app .line-icon svg{width:49px!important;height:49px!important}
+.line-page{background:#fff!important;color:#151515!important}
+.line-header{height:58px!important;min-height:58px!important;padding:9px 17px!important;border-bottom:0!important}
+.line-header h2{font-size:24px!important;letter-spacing:-.7px!important;font-weight:750!important}
+.line-actions{gap:7px!important}
+.line-actions .icon-btn{width:35px;height:35px;color:#202124}
+.line-actions svg{width:24px!important;height:24px!important}
+.line-search{height:37px!important;border-radius:9px!important;margin:2px 16px 9px!important;padding:0 11px!important}
+.chat-item{min-height:77px!important;border-bottom:0!important}
+.chat-item .avatar{flex-shrink:0}
+.line-bottom{height:65px!important;background:#fff!important;border-top:1px solid #ececec!important;align-items:center!important}
+.line-bottom button{color:#888!important;font-size:10px!important;font-weight:500!important;gap:4px!important}
+.line-bottom button.active{color:#171717!important;font-weight:650!important}
+.line-bottom svg{width:25px!important;height:25px!important;stroke-width:1.8!important}
+.chat-header{border-bottom:1px solid #f1f1f1!important}
+.chat-header .icon-btn svg{width:23px!important;height:23px!important}
+.chat-compose{background:#fff!important;border-top:1px solid #e7e7e7!important}
 </style>
 </head>
 
@@ -819,8 +865,79 @@ body,button,input,textarea,select{
 
 <!-- App surfaces (original wallpaper and lock screen preserved) -->
 <div class="app-shell" id="appShell">
-  <div class="app-status"><span id="appTime">07:00</span><span class="app-status-icons"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9h4l5-4v14l-5-4H4V9Z" fill="currentColor"/><path d="m3 3 18 18" stroke="currentColor" stroke-width="2.6"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="16" width="4" height="6" rx="1"/><rect x="8" y="12" width="4" height="10" rx="1"/><rect x="14" y="8" width="4" height="14" rx="1"/><rect x="20" y="4" width="3" height="18" rx="1"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"><path d="M2 9Q12 0 22 9M6 13Q12 8 18 13M10 17Q12 15 14 17"/></svg><svg class="status-battery" viewBox="0 0 35 18"><rect x="1" y="2" width="33" height="14" rx="7" fill="currentColor" opacity=".35"/><path d="M8 2h19a7 7 0 0 1 0 14H8a7 7 0 0 1 0-14" fill="currentColor"/><text x="17" y="12.2" text-anchor="middle" font-size="10" font-weight="700" fill="#20252c">85</text></svg></span></div>
-  <section class="app-page home-wall" id="page-home"><div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C17 7 6 17 6 30c0 12 10 21 23 23l-2 6 12-7c12-2 19-11 19-22C58 17 47 7 32 7Z" fill="white"/><path d="M16 30h5v8h-5zm0 8h9M28 30v8m4-8v8l5-8v8m4-8h7m-7 4h6m-6 4h7" fill="none" stroke="#06c755" stroke-width="2.3" stroke-linejoin="round"/></svg></span><span>LINE</span></button><button class="home-app" data-open="food"><span class="app-icon kitchen-icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v8m4-8v8M5 8h4m-2 3v10M17 3v18m0-18c6 3 6 9 0 10"/></svg></span><span>ครัวของซัง</span></button></div></section>
+        <div class="app-status">
+
+          <span class="home-carrier">polcasan</span>
+
+          <div class="status-right">
+
+            <!-- Muted speaker: compact solid Samsung-style glyph with diagonal slash -->
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-label="ปิดเสียง" role="img">
+              <path d="M4 9h4l5-4v14l-5-4H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2Z" fill="white"/>
+              <path d="M16 9c1.4 1.1 2.1 2.5 2.1 4s-.7 2.9-2.1 4" stroke="white" stroke-width="2.3" stroke-linecap="round"/>
+              <path d="M2.5 2.5 21.5 21.5" stroke="#161821" stroke-width="4" stroke-linecap="round"/>
+              <path d="M2.5 2.5 21.5 21.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+
+            <!-- Mobile signal -->
+            <svg
+              width="17"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="white">
+              <rect x="2" y="15" width="4" height="7" rx="1"/>
+              <rect x="8" y="11" width="4" height="11" rx="1"/>
+              <rect x="14" y="7" width="4" height="15" rx="1"/>
+              <rect x="20" y="3" width="3" height="19" rx="1"/>
+            </svg>
+
+            <!-- Wi-Fi -->
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2.5"
+              stroke-linecap="round">
+              <path d="M2 9Q12 0 22 9"/>
+              <path d="M6 13Q12 8 18 13"/>
+              <path d="M10 17Q12 15 14 17"/>
+              <circle
+                cx="12"
+                cy="20"
+                r="1"
+                fill="white"
+                stroke="none"/>
+            </svg>
+
+            <!-- Samsung-style battery -->
+            <svg
+              width="31"
+              height="16"
+              viewBox="0 0 31 16"
+              aria-label="Battery 85 percent">
+
+              <defs><clipPath id="batteryClip"><rect x="0.5" y="1.5" width="30" height="13" rx="6.5"/></clipPath></defs>
+              <g clip-path="url(#batteryClip)">
+                <rect x="0.5" y="1.5" width="30" height="13" fill="#FFFFFF" opacity=".42"/>
+                <rect x="0.5" y="1.5" width="25.5" height="13" fill="#FFFFFF"/>
+              </g>
+
+              <text
+                x="15.5"
+                y="10.9"
+                text-anchor="middle"
+                font-family="Arial,sans-serif"
+                font-size="9.2"
+                font-weight="600"
+                fill="#202127">85</text>
+
+            </svg>
+
+          </div>
+        </div>
+  <section class="app-page home-wall" id="page-home"><div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C17 7 6 17 6 29.5c0 11.4 9.6 20.8 22.5 22.8l-1.7 6.3c-.3 1.2.9 1.8 2 1.2l12.3-7.3C51.2 49.6 58 41 58 29.5 58 17 47 7 32 7Z" fill="#fff"/><g fill="none" stroke="#06C755" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 25v13h8"/><path d="M27 25v13"/><path d="M32 38V25l8 13V25"/><path d="M49 25h-6v13h6M43 31.5h5.3"/></g></svg></span><span>LINE</span></button><button class="home-app" data-open="food"><span class="app-icon kitchen-icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v8m4-8v8M5 8h4m-2 3v10M17 3v18m0-18c6 3 6 9 0 10"/></svg></span><span>ครัวของซัง</span></button></div></section>
   <section class="app-page clock-page" id="page-clock">
     <div class="app-header"><h2>นาฬิกา</h2><button class="icon-btn" id="clockMore" aria-label="ตัวเลือกเพิ่มเติม">⋮</button></div>
     <div class="clock-tabs"><button data-clocktab="alarms" class="active">นาฬิกาปลุก</button><button data-clocktab="world">นาฬิกาโลก</button><button data-clocktab="stopwatch">จับเวลา</button><button data-clocktab="timer">ตั้งเวลา</button></div>
@@ -828,10 +945,10 @@ body,button,input,textarea,select{
     <button class="add-alarm" id="addAlarm" aria-label="เพิ่มนาฬิกาปลุก">+</button>
   </section>
   <section class="app-page line-page" id="page-line">
-    <div class="app-header line-header"><h2>แชท</h2><div class="line-actions"><button class="icon-btn" aria-label="ค้นหา" id="lineSearch"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.7" cy="10.7" r="6.8"/><path d="m16 16 5 5"/></svg></button><button class="icon-btn" aria-label="เพิ่มแชท" id="lineAdd"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16"/></svg></button></div></div>
+    <div class="app-header line-header"><h2>แชท</h2><div class="line-actions"><button class="icon-btn" aria-label="ค้นหา" id="lineSearch"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.7" cy="10.7" r="6.8"/><path d="m16 16 5 5"/></svg></button><button class="icon-btn" aria-label="เพิ่มแชท" id="lineAdd"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h10a3 3 0 0 1 3 3v2M5 5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M11 14l9-9 2 2-9 9-4 1z"/></svg></button></div></div>
     <div class="line-search"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.7" cy="10.7" r="6.8"/><path d="m16 16 5 5"/></svg><span>ค้นหา</span></div>
     <div id="chatList" class="chat-list"></div>
-    <div class="line-bottom"><button data-line-tab="home"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8v10H3z"/></svg>หน้าหลัก</button><button class="active" data-line-tab="chats"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H9l-5 4V5Z"/></svg>แชท</button><button data-line-tab="friends"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-8 16-8 16 0"/></svg>เพื่อน</button><button data-line-tab="openchat"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-5 6-5 12 0 18M12 3c5 6 5 12 0 18"/></svg>OpenChat</button></div>
+    <div class="line-bottom"><button data-line-tab="home"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>หน้าหลัก</button><button class="active" data-line-tab="chats"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10l-6 3v-3a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2Z"/><path d="M7 10h10M7 14h7"/></svg>แชท</button><button data-line-tab="friends"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-7 13-7 13 0"/><path d="M16 5a3 3 0 0 1 0 6M18 14c2.4.7 3.5 2.5 3.5 6"/></svg>เพื่อน</button><button data-line-tab="openchat"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="5"/><path d="m10 8 6 4-6 4z"/></svg>VOOM</button></div>
   </section>
   <section class="app-page chat-room" id="page-chat">
     <div class="app-header chat-header"><button class="icon-btn" data-back="line" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button><h3 id="chatTitle">แม่นมนิว</h3><button class="icon-btn" id="chatCall" aria-label="โทร"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3c-2 0-4 3-3 7 2 7 7 12 14 14 4 1 7-1 7-3l-1-4-6-3-3 3c-3-1-5-3-6-6l3-3-3-6Z"/></svg></button><button class="icon-btn" id="chatMenu" aria-label="เมนู"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
@@ -882,7 +999,7 @@ function syncTime(){
  const t=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
  const d=now.toLocaleDateString('th-TH',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
  $('time').textContent=t;
- $('appTime').textContent=t;
+
 
  $('date').textContent=d;
 }
