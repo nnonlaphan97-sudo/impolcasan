@@ -1090,7 +1090,7 @@ body,button,input,textarea,select{
       แตะเพื่อดูสภาพอากาศ
     </span>
     <span class="weather-location" id="weatherLocation">
-      กำลังรอตำแหน่ง
+      อ้อมน้อย
     </span>
   </span>
 </button>
@@ -1306,110 +1306,48 @@ restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,4
   const card = document.getElementById('homeWeather');
   const temp = document.getElementById('weatherTemp');
   const desc = document.getElementById('weatherDesc');
-  const locationText =
-    document.getElementById('weatherLocation');
+  const locationText = document.getElementById('weatherLocation');
+  if (!card || !temp || !desc || !locationText) return;
 
-  if (!card) return;
+  // Fixed location: Om Noi, Samut Sakhon. No GPS or location permission.
+  const lat = 13.705;
+  const lon = 100.303;
+  let loading = false;
 
   function weatherName(code) {
     if (code === 0) return 'ท้องฟ้าแจ่มใส';
     if ([1, 2, 3].includes(code)) return 'มีเมฆบางส่วน';
     if ([45, 48].includes(code)) return 'มีหมอก';
-    if ([51, 53, 55, 56, 57].includes(code))
-      return 'ฝนปรอย';
-    if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code))
-      return 'มีฝน';
-    if ([95, 96, 99].includes(code))
-      return 'ฝนฟ้าคะนอง';
+    if ([51, 53, 55, 56, 57].includes(code)) return 'ฝนปรอย';
+    if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return 'มีฝน';
+    if ([95, 96, 99].includes(code)) return 'ฝนฟ้าคะนอง';
     return 'สภาพอากาศปัจจุบัน';
   }
 
-  function getWeather() {
-    if (!navigator.geolocation) {
-      desc.textContent = 'ไม่รองรับการระบุตำแหน่ง';
-      return;
-    }
-
+  async function getWeather() {
+    if (loading) return;
+    loading = true;
     desc.textContent = 'กำลังโหลดสภาพอากาศ';
-
-    navigator.geolocation.getCurrentPosition(
-      async function(position) {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-
-        try {
-          const url =
-            'https://api.open-meteo.com/v1/forecast' +
-            '?latitude=' + encodeURIComponent(lat) +
-            '&longitude=' + encodeURIComponent(lon) +
-            '&current=temperature_2m,weather_code' +
-            '&daily=sunset' +
-            '&timezone=auto';
-
-          const response = await fetch(url);
-          if (!response.ok) throw new Error('Weather error');
-
-          const data = await response.json();
-
-          temp.textContent =
-            Math.round(data.current.temperature_2m) + '°';
-
-          const sunset = data.daily?.sunset?.[0];
-
-          if (sunset) {
-            const sunsetTime = sunset.split('T')[1];
-            desc.textContent =
-              'อาทิตย์ตกเวลา ' + sunsetTime;
-          } else {
-            desc.textContent =
-              weatherName(data.current.weather_code);
-          }
-
-          locationText.textContent =
-            'ตำแหน่งปัจจุบัน';
-
-          // ชื่อสถานที่จาก OpenStreetMap
-          try {
-            const geoUrl =
-              'https://nominatim.openstreetmap.org/reverse' +
-              '?format=jsonv2&lat=' +
-              encodeURIComponent(lat) +
-              '&lon=' + encodeURIComponent(lon) +
-              '&accept-language=th,en';
-
-            const geoResponse = await fetch(geoUrl);
-
-            if (geoResponse.ok) {
-              const geo = await geoResponse.json();
-              const a = geo.address || {};
-
-              locationText.textContent =
-                a.suburb ||
-                a.town ||
-                a.city ||
-                a.county ||
-                a.state ||
-                'ตำแหน่งปัจจุบัน';
-            }
-          } catch (e) {
-            // ยังแสดงอุณหภูมิได้ แม้ชื่อพื้นที่โหลดไม่ได้
-          }
-
-        } catch (e) {
-          desc.textContent =
-            'โหลดข้อมูลไม่สำเร็จ แตะเพื่อลองใหม่';
-        }
-      },
-      function() {
-        desc.textContent =
-          'แตะและอนุญาตตำแหน่งเพื่อดูอากาศ';
-      },
-      {
-        enableHighAccuracy: false,
-        timeout: 12000,
-        maximumAge: 600000
+    locationText.textContent = 'อ้อมน้อย';
+    try {
+      const url = 'https://api.open-meteo.com/v1/forecast' +
+        '?latitude=' + lat + '&longitude=' + lon +
+        '&current=temperature_2m,weather_code' +
+        '&timezone=Asia%2FBangkok';
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Weather unavailable');
+      const data = await response.json();
+      if (!data.current || !Number.isFinite(data.current.temperature_2m)) {
+        throw new Error('Missing current weather');
       }
-    );
+      temp.textContent = Math.round(data.current.temperature_2m) + '°';
+      desc.textContent = weatherName(data.current.weather_code);
+    } catch (error) {
+      temp.textContent = '--°';
+      desc.textContent = 'โหลดข้อมูลไม่สำเร็จ แตะเพื่อลองใหม่';
+    } finally {
+      loading = false;
+    }
   }
 
   card.addEventListener('click', getWeather);
