@@ -921,7 +921,45 @@ body,button,input,textarea,select{
 .line-dir-footer button{border:0;background:none;color:white;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;padding:4px 13px}
 .line-dir-footer button.active{background:#171717;border-radius:999px}
 .line-dir-footer svg{width:23px;height:23px;stroke:white;fill:none;stroke-width:2}
-#friendProfileChat svg{fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;width:30px!important;height:30px!important}
+#friendProfileChat svg{width:32px!important;height:32px!important;fill:none!important;stroke:none!important}
+
+/* LINE directory light theme */
+#page-line-directory{background:#fff!important;color:#111!important}
+#page-line-directory .line-dir-head{color:#111}
+#page-line-directory .line-dir-back{background:#f5f5f5;border-color:#e8e8e8;color:#111}
+#page-line-directory .line-dir-search{background:#f5f5f5;color:#999}
+#page-line-directory .line-dir-search input{color:#111}
+#page-line-directory .line-dir-tabs{border-bottom-color:#ededed}
+#page-line-directory .line-dir-tabs button{color:#999}
+#page-line-directory .line-dir-tabs button.active{color:#111;border-bottom-color:#111}
+#page-line-directory .line-dir-row{color:#111}
+#page-line-directory .line-dir-row .line-dir-face{background:#e8edf2;color:#555}
+#page-line-directory .line-mosaic{background:#e5e5e5}
+#page-line-directory .line-mosaic span{border-color:#fff;background:#e8edf2;color:#555}
+#page-line-directory .line-dir-footer{background:#ffffffed;border:1px solid #e0e0e0;box-shadow:0 5px 25px #00000013}
+#page-line-directory .line-dir-footer button{color:#111}
+#page-line-directory .line-dir-footer button.active{background:#efefef}
+#page-line-directory .line-dir-footer svg{stroke:#111}
+#page-line-directory .line-dir-row .line-dir-face img{border-radius:50%}
+#page-line .line-profile-avatar{border:0;cursor:pointer}
+#page-line .line-profile-name{cursor:pointer}
+/* Full-screen own profile */
+#page-line-own-profile{background:#222333!important;color:white!important;position:relative;overflow:hidden;padding:0!important}
+.line-own-cover{position:absolute;inset:0;background:linear-gradient(155deg,#293247,#171825 65%,#38334b);background-position:center;background-size:cover}
+.line-own-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,#0005,transparent 30%,#0008)}
+.line-own-top{position:absolute;z-index:2;top:15px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center}
+.line-own-top button{border:0;background:none;color:#fff;width:38px;height:40px;display:grid;place-items:center;padding:6px}
+.line-own-top svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.line-own-center{position:absolute;z-index:2;top:48%;left:0;right:0;transform:translateY(-3%);display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 16px;text-shadow:0 1px 5px #0008}
+.line-own-avatar{width:105px;height:105px;border-radius:50%;background:#dde1e8;color:#526078;overflow:hidden;display:grid;place-items:center;font-size:24px;font-weight:700}
+.line-own-avatar img{width:100%;height:100%;object-fit:cover}
+.line-own-name{font-size:25px;font-weight:700;margin-top:9px}
+.line-own-birthday{font-size:14px;margin-top:5px}
+.line-own-status{font-size:14px;margin-top:6px;max-width:95%}
+.line-own-actions{position:absolute;z-index:2;bottom:17%;left:10px;right:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.line-own-actions button{border:0;background:none;color:#fff;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12px;text-shadow:0 1px 4px #0008}
+.line-own-actions svg{width:29px;height:29px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.line-own-premium{position:absolute;z-index:2;bottom:5%;left:0;right:0;text-align:center;border-top:1px solid #ffffff40;padding:18px 8px;font-size:14px}
 </style>
 </head>
 
@@ -1216,6 +1254,29 @@ body,button,input,textarea,select{
  <div class="line-dir-content" id="lineDirectoryContent"></div>
  <div class="line-dir-footer"><button data-dir-bottom="home" class="active"><svg viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v11H3z"/></svg>หน้าหลัก</button><button data-dir-bottom="chats"><svg viewBox="0 0 24 24"><path d="M12 3c-6 0-10 4-10 9 0 3 2 5 4 7l-1 3 5-2c6 1 12-3 12-8S18 3 12 3z"/></svg>แชท</button><button data-dir-bottom="today"><svg viewBox="0 0 24 24"><path d="M19 5a9 9 0 1 0 0 14A8 8 0 0 1 11 9a8 8 0 0 1 8-4z"/></svg>TODAY</button><button data-dir-bottom="wallet"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>Wallet</button></div>
 </section>
+  <section class="app-page" id="page-line-own-profile" aria-label="โปรไฟล์ LINE ของซัง">
+    <div class="line-own-cover" id="lineOwnCover"></div>
+    <div class="line-own-top">
+      <button id="lineOwnClose" aria-label="ปิด"><svg viewBox="0 0 24 24"><path d="M4 4 20 20M20 4 4 20"/></svg></button>
+      <div style="display:flex;gap:8px">
+        <button id="lineOwnGallery" aria-label="รูปภาพ"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m4 18 6-6 4 4 3-3 4 4"/></svg></button>
+        <button id="lineOwnQR" aria-label="คิวอาร์โค้ด"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM19 19h2v2h-2z"/></svg></button>
+        <button id="lineOwnSettings" aria-label="ตั้งค่า"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg></button>
+      </div>
+    </div>
+    <div class="line-own-center">
+      <div class="line-own-avatar" id="lineOwnAvatar">P</div>
+      <div class="line-own-name" id="lineOwnName">P.Pond</div>
+      <div class="line-own-birthday" id="lineOwnBirthday">♟ 8 เม.ย.</div>
+      <div class="line-own-status" id="lineOwnStatus">毎回、会話はだんだん雨に消えていく。</div>
+    </div>
+    <div class="line-own-actions">
+      <button id="lineOwnExtra"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-7 16-7 16 0"/></svg><span>โปรไฟล์เสริม</span></button>
+      <button id="lineOwnEdit"><svg viewBox="0 0 24 24"><path d="m4 17 12-12 4 4L8 21H4zM14 7l4 4"/></svg><span>แต่งโปรไฟล์</span></button>
+      <button id="lineOwnMemo"><svg viewBox="0 0 24 24"><path d="M5 3h14v19l-7-5-7 5z"/></svg><span>Keep Memo</span></button>
+    </div>
+    <div class="line-own-premium">สิทธิประโยชน์พรีเมียม ›</div>
+  </section>
   <section class="app-page" id="page-line-profile" aria-label="โปรไฟล์เพื่อน LINE">
     <div class="line-profile-cover" id="friendCover"></div>
     <div class="line-profile-top">
@@ -1436,7 +1497,7 @@ function closeLineFriendProfile(){
  lineRequestedTab=lineProfileReturnTab;openPage('line');
 }
 $('friendProfileClose').onclick=closeLineFriendProfile;
-$('friendProfileChat').querySelector('svg').innerHTML='<path d="M12 3.5c-5.6 0-10 3.7-10 8.2 0 2.7 1.4 4.9 3.8 6.3L5 22l4.8-2.5c.7.2 1.4.2 2.2.2 5.6 0 10-3.6 10-8S17.6 3.5 12 3.5Z"/><circle cx="8" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="16" cy="12" r="1"/>';
+$('friendProfileChat').querySelector('svg').innerHTML='<path d="M12 3C6.5 3 2 6.8 2 11.5c0 3.3 2.1 6.1 5.2 7.6L6.5 22l4.4-2.2c.4.1.8.1 1.1.1 5.5 0 10-3.8 10-8.4S17.5 3 12 3Z" fill="currentColor" stroke="none"/><g fill="#222"><circle cx="8" cy="11.5" r="1.1"/><circle cx="12" cy="11.5" r="1.1"/><circle cx="16" cy="11.5" r="1.1"/></g>';
 $('friendProfileChat').onclick=()=>{
  const id=Object.keys(chats).find(k=>({nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'})[k]===currentLineFriend);
  if(id){openChat(id);return;}
@@ -1464,7 +1525,7 @@ function lineTopActions(tab){
  const buttons=tab==='home'?['bookmark','bell','plus','settings']:tab==='chats'?['bag','plus']:tab==='today'?['search','bell','user']:['bell'];
  return '<div class="line-top-actions">'+buttons.map((name,i)=>'<button type="button" class="line-top-action" data-action="'+name+'" aria-label="'+name+'">'+lineIcon(name)+(name==='bell'?'<i class="line-dot"></i>':'')+'</button>').join('')+'</div>';
 }
-function lineFriendGroup(title, subtitle, icon, count, onclick){const previews={favorites:['ปะป๊าเต','พ่อพ่อนิววี่','จัมโม่'],friends:['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน'],groups:['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']};const preview=previews[onclick]?lineMosaic(previews[onclick]):'<span class="line-group-avatar">'+lineIcon(icon)+'</span>';return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'">'+preview+'<span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
+function lineFriendGroup(title, subtitle, icon, count, onclick){const previews={favorites:['ปะป๊าเต','พ่อพ่อนิววี่','จัมโม่'],friends:['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน'],groups:['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']};const preview=onclick==='groups'?'<span class="line-group-avatar">ก</span>':previews[onclick]?lineMosaic(previews[onclick]):'<span class="line-group-avatar">'+lineIcon(icon)+'</span>';return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'">'+preview+'<span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
 function lineServices(){return '<div class="line-service-grid">'+[['stamp','ธีม'],['smile','สติกเกอร์'],['bag','LINE SHOPPING'],['gift','LINE GIFT'],['wallet','บัญชีทางการ']].map(([ico,name])=>'<div class="line-service">'+lineIcon(ico)+'<span>'+name+'</span></div>').join('')+'</div>'}
 function setLineTab(tab){
  lineRequestedTab=tab;
@@ -1492,6 +1553,7 @@ function setLineTab(tab){
    lineFriendGroup('เพื่อน','จัมโม่, น้องนุ่ง, เบบี๋, คิงแมน','user',String(lineFriends.length),'friends')+
    lineFriendGroup('กลุ่ม','ดิส, ซีฟู้ด, เสาตึก, ลูกเพื่อนพ่อ, แฟมิลี่','user','5', 'groups')+
    '<div class="line-section-heading line-services-heading"><strong>บริการ</strong><span>ดูทั้งหมด</span></div>'+lineServices()+'<div id="lineFriendsResults" hidden></div>';
+  extra.querySelector('.line-profile').addEventListener('click',showLineOwnProfile);
   const inp=$('lineFriendSearch'),results=$('lineFriendsResults');
   const showFriends=(q='')=>{results.hidden=false;results.innerHTML='';renderLineFriends(q);extra.classList.add('show-friends');};
   inp.addEventListener('input',()=>{if(inp.value.trim())showFriends(inp.value);else{results.hidden=true;extra.classList.remove('show-friends')}});
@@ -1504,9 +1566,28 @@ function setLineTab(tab){
  }
 }
 
+
+// Editable own LINE profile. Supply image files in photo/ when ready.
+const lineOwnProfile={name:'P.Pond',avatar:'',cover:'',birthday:'8 เม.ย.',status:'毎回、会話はだんだん雨に消えていく。'};
+function showLineOwnProfile(){
+  $('lineOwnName').textContent=lineOwnProfile.name;
+  $('lineOwnBirthday').textContent=lineOwnProfile.birthday?'♧ '+lineOwnProfile.birthday:'';
+  $('lineOwnBirthday').hidden=!lineOwnProfile.birthday;
+  $('lineOwnStatus').textContent=lineOwnProfile.status||'';
+  $('lineOwnStatus').hidden=!lineOwnProfile.status;
+  $('lineOwnAvatar').innerHTML=lineOwnProfile.avatar?'<img src="'+escapeHtml(lineOwnProfile.avatar)+'" alt="">':escapeHtml(lineOwnProfile.name.slice(0,1));
+  $('lineOwnCover').style.backgroundImage=lineOwnProfile.cover?'url("'+encodeURI(lineOwnProfile.cover).replace(/"/g,'%22')+'")':'';
+  lineRequestedTab='home';openPage('line-own-profile');
+}
+$('lineOwnClose').onclick=()=>{lineRequestedTab='home';openPage('line');};
+['lineOwnGallery','lineOwnQR','lineOwnSettings','lineOwnExtra','lineOwnEdit','lineOwnMemo'].forEach(id=>{
+  $(id).onclick=()=>{ /* UI reserved; no fake completed action */ };
+});
+
 const lineDirectoryFavorites=['ปะป๊าเต','พ่อพ่อนิววี่','จัมโม่'];
 const lineDirectoryFeatured=['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน'];
 const lineDirectoryGroups=['ดิส','ซีฟู้ด','เสาตึก','ลูกเพื่อนพ่อ','แฟมิลี่'];
+const lineGroupPhotos={'ดิส':'','ซีฟู้ด':'','เสาตึก':'','ลูกเพื่อนพ่อ':'','แฟมิลี่':''};
 const lineAlias={'จัมโม่':'JUMMO','น้องนุ่ง':'NONG NOOONG','เบบี๋':'BABII','คิงแมน':'KING MAN'};
 function lineMosaic(names){return '<span class="line-mosaic '+(names.length===3?'three':'')+'">'+names.map(n=>'<span>'+lineFriendImage(lineAlias[n]||n)+'</span>').join('')+'</span>'}
 function openLineDirectory(tab='friends'){
@@ -1519,7 +1600,7 @@ function renderLineDirectory(){
  let items=lineDirectoryTab==='favorites'?lineDirectoryFavorites:lineDirectoryTab==='groups'?lineDirectoryGroups:lineDirectoryTab==='official'?[]:[...lineDirectoryFeatured,...lineFriends.filter(n=>!lineDirectoryFeatured.includes(n)&&!Object.values(lineAlias).includes(n))];
  items=items.filter(n=>n.toLocaleLowerCase().includes(q));
  const heading=lineDirectoryTab==='favorites'?'รายการโปรด':lineDirectoryTab==='groups'?'กลุ่ม':lineDirectoryTab==='official'?'บัญชีทางการ':'เพื่อน';
- $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?lineMosaic(['จัมโม่','น้องนุ่ง','เบบี๋','คิงแมน']):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+'</span></button>').join('');
+ $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?(lineGroupPhotos[n]?'<img src="'+escapeHtml(lineGroupPhotos[n])+'" alt="">':escapeHtml(n.slice(0,1))):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+'</span></button>').join('');
  $('lineDirectoryContent').querySelectorAll('[data-dir-person]').forEach(b=>b.onclick=()=>{
   if(lineDirectoryTab==='groups'){return;}
   showLineFriendProfile(b.dataset.dirPerson,'line-directory');
