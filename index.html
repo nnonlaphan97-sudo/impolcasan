@@ -292,6 +292,69 @@ button{
     border-radius:12px;
   }
 }
+  
+/* Fingerprint authentication */
+.fingerprint-hint{
+  position:absolute;
+  right:12px;
+  top:34%;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:white;
+  font-size:11px;
+  opacity:0;
+  transform:translateX(8px);
+  transition:opacity .2s,transform .2s;
+  pointer-events:none;
+  z-index:20;
+}
+
+.fingerprint-hint.show{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.fingerprint-hint svg{
+  width:28px;
+  height:28px;
+}
+
+.phone.scanning .side-button{
+  background:#b9f1ce;
+  box-shadow:0 0 12px #8ee7b2;
+}
+
+.unlock-home{
+  position:absolute;
+  inset:0;
+  z-index:25;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+  color:white;
+  background:rgba(20,17,29,.55);
+  backdrop-filter:blur(18px);
+  text-align:center;
+}
+
+.phone.unlocked .unlock-home{
+  display:flex;
+}
+
+.unlock-home h2{
+  margin:0;
+  font-size:22px;
+}
+
+.unlock-home p{
+  margin:0;
+  font-size:13px;
+  opacity:.8;
+}
+
 </style>
 </head>
 
@@ -470,8 +533,30 @@ button{
 
         </div>
         <!-- END SHORTCUTS -->
+        
+<!-- Side fingerprint feedback -->
+<div class="fingerprint-hint" id="fingerprintHint">
 
-        <div class="gesture"></div>
+  <svg viewBox="0 0 32 32" fill="none"
+       stroke="white" stroke-width="1.7"
+       stroke-linecap="round">
+    <path d="M8 13c0-11 16-11 16 0"/>
+    <path d="M5 15c0-16 22-16 22 0"/>
+    <path d="M11 16v3c0 5-1 8-3 10"/>
+    <path d="M16 12c-3 0-5 2-5 5"/>
+    <path d="M21 17c0 7-1 10-3 13"/>
+    <path d="M16 16v5c0 4-1 7-2 9"/>
+    <path d="M25 18c0 5-1 8-2 10"/>
+  </svg>
+
+  <span id="fingerprintText">กำลังตรวจสอบลายนิ้วมือ</span>
+</div>
+
+<!-- Temporary home screen -->
+<div class="unlock-home" id="unlockHome">
+  <h2>POLCASAN'S PHONE</h2>
+  <p>ปลดล็อกสำเร็จ</p>
+</div>
 
         <div
           class="screen-off"
@@ -486,9 +571,64 @@ button{
 </div>
 
 <script>
+
 const phone = document.getElementById("phone");
 const power = document.getElementById("power");
 const screenOff = document.getElementById("screenOff");
+const fingerprintHint =
+  document.getElementById("fingerprintHint");
+const fingerprintText =
+  document.getElementById("fingerprintText");
+
+let scanning = false;
+let scanTimer = null;
+
+function resetFingerprint(){
+  clearTimeout(scanTimer);
+  scanning = false;
+  phone.classList.remove("scanning");
+  fingerprintHint.classList.remove("show");
+}
+
+function scanFingerprint(){
+  if(scanning || phone.classList.contains("unlocked")){
+    return;
+  }
+
+  scanning = true;
+  phone.classList.add("scanning");
+  fingerprintHint.classList.add("show");
+
+  fingerprintText.textContent =
+    "กำลังตรวจสอบลายนิ้วมือ";
+
+  scanTimer = setTimeout(()=>{
+    fingerprintText.textContent =
+      "ปลดล็อกสำเร็จ";
+
+    phone.classList.remove("scanning");
+
+    scanTimer = setTimeout(()=>{
+      fingerprintHint.classList.remove("show");
+      phone.classList.add("unlocked");
+      scanning = false;
+    },450);
+
+  },750);
+}
+
+power.addEventListener("click",()=>{
+  if(phone.classList.contains("off")){
+    phone.classList.remove("off");
+    return;
+  }
+
+  scanFingerprint();
+});
+
+screenOff.addEventListener("click",()=>{
+  phone.classList.remove("off");
+});
 
 function toggleScreen(){
   phone.classList.toggle("off");
