@@ -878,6 +878,26 @@ body,button,input,textarea,select{
 #page-line .line-sticker-skeleton{height:135px;border-radius:12px;background:linear-gradient(90deg,#f2e4e4,#f0eef6,#e5f1e8)}
 #page-line .line-extra.show-friends>.line-profile,#page-line .line-extra.show-friends>.line-home-search,#page-line .line-extra.show-friends>.line-section-heading,#page-line .line-extra.show-friends>.line-group-item,#page-line .line-extra.show-friends>.line-service-grid{display:none!important}
 #page-line .line-friend-count{padding-top:12px}
+
+/* Full-screen LINE friend profile */
+#page-line-profile{position:relative!important;overflow:hidden!important;padding:0!important;background:#242531!important;color:#fff!important}
+.line-profile-cover{position:absolute;inset:0;background:linear-gradient(150deg,#373b54,#171a29);background-position:center;background-size:cover}
+.line-profile-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.23) 0%,rgba(0,0,0,.03) 36%,rgba(0,0,0,.46) 100%)}
+.line-profile-top{position:absolute;z-index:2;top:15px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center}
+.line-profile-tools{display:flex;gap:8px}.line-profile-tool{border:0;background:transparent;color:#fff;width:40px;height:42px;display:grid;place-items:center;padding:7px;filter:drop-shadow(0 1px 3px #0007)}
+.line-profile-tool svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.line-profile-center{position:absolute;z-index:2;top:48%;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 18px;transform:translateY(-10%);text-shadow:0 1px 5px #0007}
+.line-profile-picture{width:105px;height:105px;border-radius:50%;background:#d8dbe3;display:grid;place-items:center;overflow:hidden;color:#5e667a;font-size:35px;font-weight:700;box-shadow:0 2px 10px #0003}
+.line-profile-picture img,.line-profile-mini img{width:100%;height:100%;object-fit:cover}
+.line-profile-person-name{font-size:25px;font-weight:750;margin-top:10px}
+.line-profile-birthday{font-size:14px;margin-top:5px}.line-profile-status{font-size:13px;margin-top:7px;max-width:95%;white-space:pre-wrap}
+.line-profile-actions{position:absolute;z-index:2;left:10px;right:10px;bottom:15%;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.line-profile-actions button{display:flex;flex-direction:column;align-items:center;gap:8px;border:0;background:transparent;color:#fff;font-size:12px;text-shadow:0 1px 4px #0009;min-width:0}
+.line-profile-actions svg{width:28px;height:28px;fill:currentColor;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.line-profile-mini{width:30px;height:30px;border-radius:50%;overflow:hidden;background:#eee;color:#444;display:grid;place-items:center}
+#page-line-profile .line-profile-cover{background-position:center center}
+#page-line-profile .line-profile-top{top:max(12px,env(safe-area-inset-top))}
+#page-line .line-friend-avatar img,#page-line .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
 </style>
 </head>
 
@@ -1165,6 +1185,29 @@ body,button,input,textarea,select{
       <button data-line-tab="wallet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="15" rx="2"/><path d="M2 10h20"/><circle cx="18" cy="15" r="1" fill="currentColor"/></svg><span>Wallet</span></button>
     </div>
   </section>
+  <section class="app-page" id="page-line-profile" aria-label="โปรไฟล์เพื่อน LINE">
+    <div class="line-profile-cover" id="friendCover"></div>
+    <div class="line-profile-top">
+      <button class="line-profile-tool" id="friendProfileClose" aria-label="ปิดโปรไฟล์"><svg viewBox="0 0 24 24"><path d="M4 4 20 20M20 4 4 20"/></svg></button>
+      <div class="line-profile-tools">
+        <button class="line-profile-tool" id="friendProfileTopCall" aria-label="โทร"><svg viewBox="0 0 24 24"><path d="M6 3c-3 0-3 5-1 9 2 4 5 7 9 9 4 2 9 2 9-1l-1-4-5-2-3 3c-3-1-5-3-6-6l3-3-2-5z"/></svg></button>
+        <button class="line-profile-tool" id="friendProfileStar" aria-label="รายการโปรด"><svg viewBox="0 0 24 24"><path d="m12 2 3.2 6.6 7.3 1-5.3 5.2 1.3 7.2-6.5-3.5-6.5 3.5 1.3-7.2-5.3-5.2 7.3-1z"/></svg></button>
+        <button class="line-profile-tool" id="friendProfileMore" aria-label="เพิ่มเติม"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+    <div class="line-profile-center">
+      <div class="line-profile-picture" id="friendProfileAvatar"></div>
+      <div class="line-profile-person-name" id="friendProfileName"></div>
+      <div class="line-profile-birthday" id="friendProfileBirthday" hidden></div>
+      <div class="line-profile-status" id="friendProfileStatus" hidden></div>
+    </div>
+    <div class="line-profile-actions">
+      <button id="friendProfileChat"><svg viewBox="0 0 24 24"><path d="M3 5h18v13H9l-5 3v-3H3z"/></svg><span>แชท</span></button>
+      <button id="friendProfileCall"><svg viewBox="0 0 24 24"><path d="M6 3c-3 0-3 5-1 9 2 4 5 7 9 9 4 2 9 2 9-1l-1-4-5-2-3 3c-3-1-5-3-6-6l3-3-2-5z"/></svg><span>โทร</span></button>
+      <button id="friendProfileVideo"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="15" height="14" rx="2" fill="currentColor" stroke="none"/><path d="m17 9 5-3v12l-5-3"/></svg><span>วิดีโอคอล</span></button>
+      <button id="friendProfileShown"><span class="line-profile-mini" id="friendProfileMini"></span><span>โปรไฟล์ที่แสดง</span></button>
+    </div>
+  </section>
   <section class="app-page chat-room" id="page-chat">
     <div class="app-header chat-header"><button class="icon-btn" data-back="line" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button><h3 id="chatTitle">แม่นมนิว</h3><button class="icon-btn" id="chatCall" aria-label="โทร"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3c-2 0-4 3-3 7 2 7 7 12 14 14 4 1 7-1 7-3l-1-4-6-3-3 3c-3-1-5-3-6-6l3-3-3-6Z"/></svg></button><button class="icon-btn" id="chatMenu" aria-label="เมนู"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
     <div class="chat-messages" id="chatMessages"></div>
@@ -1307,6 +1350,8 @@ function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':
 function avatarSVG(id){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-8 16-8 16 0"/></svg>'}
 function renderChats(){const order=['nanny','tay','new'];$('chatList').innerHTML=order.map(id=>{const last=chats[id][chats[id].length-1];return '<button class="chat-item" data-chat="'+id+'"><span class="avatar">'+avatars[id]+'</span><span class="chat-copy"><div class="chat-name">'+names[id]+'</div><div class="chat-last">'+escapeHtml(last?.text||'')+'</div></span><span class="chat-meta">'+(id==='nanny'&&notificationSent?'07:01':'เมื่อวาน')+(id==='nanny'&&notificationSent&&!chatRead?'<br><span class="unread">2</span>':'')+'</span></button>'}).join('');$('chatList').querySelectorAll('[data-chat]').forEach(b=>b.onclick=()=>openChat(b.dataset.chat))}
 function openChat(id){selectedChat=id;if(id==='nanny'){chatRead=true;$('lineToast').classList.remove('show');persist()}$('chatTitle').textContent=names[id];openPage('chat');renderMessages()}
+$('chatTitle').style.cursor='pointer';
+$('chatTitle').onclick=()=>{const n=({nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'})[selectedChat];if(n)showLineFriendProfile(n,'chat')};
 function renderMessages(){const wrap=$('chatMessages');wrap.innerHTML='<div class="chat-date">'+(selectedChat==='nanny'?'วันนี้':'เมื่อวาน')+'</div>'+chats[selectedChat].map(m=>'<div class="bubble '+(m.from==='out'?'out':'in')+'">'+escapeHtml(m.text)+'</div>').join('');wrap.scrollTop=wrap.scrollHeight;const choices=$('chatChoices');if(selectedChat==='nanny'&&!foodOrdered){choices.style.display='flex';choices.innerHTML='<button id="breakfastReply">ซังอยากกินของอร่อย ๆ ค้าบบบ</button><button id="breakfastMenu">เลือกเมนูอาหารเช้า</button>';$('breakfastReply').onclick=()=>{sendMessage('ซังอยากกินของอร่อย ๆ ค้าบบบ');addReply('ได้เลยค่ะคุณหนู เลือกเมนูที่อยากทานได้เลยนะคะ')};$('breakfastMenu').onclick=()=>openPage('food')}else{choices.style.display='none'}}
 function sendMessage(text){if(!text.trim())return;chats[selectedChat].push({from:'out',text:text.trim(),time:timeStr()});$('chatInput').value='';persist();renderMessages()}
 function addReply(text){chats[selectedChat].push({from:'in',text,time:timeStr()});persist();renderMessages()}
@@ -1318,26 +1363,65 @@ function renderFood(){document.querySelectorAll('[data-foodcat]').forEach(b=>b.c
 document.querySelectorAll('[data-foodcat]').forEach(b=>b.onclick=()=>{foodCat=b.dataset.foodcat;foodChoice=foods[foodCat][0][0];renderFood()});
 $('chooseFood').onclick=()=>{foodOrdered=true;selectedChat='nanny';chats.nanny.push({from:'out',text:'ซังอยากกิน'+foodChoice+'ค้าบบบ',time:timeStr()});chats.nanny.push({from:'in',text:'ได้เลยค่ะคุณหนู แม่นมจะเตรียม'+foodChoice+'ให้นะคะ',time:timeStr()});persist();openChat('nanny')};
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openPage(b.dataset.open));document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>openPage(b.dataset.back));
-$('navHome').onclick=()=>{openPage('home');hideNav()};$('navBack').onclick=()=>openPage(page==='chat'?'line':page==='food'?'chat':'home');$('navRecent').onclick=()=>openPage('home');
+$('navHome').onclick=()=>{openPage('home');hideNav()};$('navBack').onclick=()=>openPage(page==='chat'?'line':page==='food'?'chat':page==='line-profile'?lineProfileReturnPage:'home');$('navRecent').onclick=()=>openPage('home');
 $('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm();$('alarmFull').classList.remove('show');gameMinute+=5;syncTime();persist();setTimeout(showAlarm,900)};
 $('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
 $('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
 const lineFriendPeople = ["ปะป๊าเต", "พ่อพ่อนิววี่", "พี่เหมียวเร้ก", "พี่ฉกาย", "พี่พุพุ", "พี่เจมีไนน์", "แม่นมนิว", "คุณตาถา"];
 const lineFriendMascots = ["BABII", "JAIDEE", "AVOCEAN", "KING MAN", "TOMAFOX", "YUZU MUMU", "SAMRUAY", "PERMPOON", "METAA", "LUNAR", "ANY", "MUVMUV", "WESLEY", "LYKYOU", "MR. SATURNWORLD", "LOOK KHUNNOO", "JUMMO", "MOMO", "DOMIIA", "PAODY", "GUINZLY", "NEONA", "SMYLE", "NONG NOOONG", "NILKNHAKE", "REXXA", "CERI", "VIMMY", "JEWEL", "FLAREY", "PONPON"];
 const lineFriends = [...lineFriendPeople, ...lineFriendMascots];
+// Fill in each friend's photo, cover, birthday and status here when the images are ready.
+// Blank birthdays are intentionally hidden; no birth dates are guessed.
+const lineFriendProfiles = {
+  "ปะป๊าเต": {avatar:"",cover:"",birthday:"",status:""},
+  "พ่อพ่อนิววี่": {avatar:"",cover:"",birthday:"",status:""},
+  "พี่เหมียวเร้ก": {avatar:"",cover:"",birthday:"",status:""},
+  "พี่ฉกาย": {avatar:"",cover:"",birthday:"",status:""},
+  "พี่พุพุ": {avatar:"",cover:"",birthday:"",status:""},
+  "พี่เจมีไนน์": {avatar:"",cover:"",birthday:"",status:""},
+  "แม่นมนิว": {avatar:"",cover:"",birthday:"",status:""},
+  "คุณตาถา": {avatar:"",cover:"",birthday:"",status:""}
+};
+let currentLineFriend="", lineProfileReturnPage="line", lineProfileReturnTab="home";
+function lineFriendImage(name){const d=lineFriendProfiles[name];return d&&d.avatar?'<img src="'+escapeHtml(d.avatar)+'" alt="">':escapeHtml(name.slice(0,1));}
+function showLineFriendProfile(name,returnPage='line'){
+ currentLineFriend=name;lineProfileReturnPage=returnPage;
+ if(returnPage==='line')lineProfileReturnTab=document.querySelector('[data-line-tab].active')?.dataset.lineTab||'home';
+ const d=lineFriendProfiles[name]||{};
+ $('friendCover').style.backgroundImage=d.cover?'url("'+encodeURI(d.cover).replace(/"/g,'%22')+'")':'';
+ $('friendProfileAvatar').innerHTML=lineFriendImage(name);
+ $('friendProfileMini').innerHTML=lineFriendImage(name);
+ $('friendProfileName').textContent=name;
+ $('friendProfileBirthday').textContent=d.birthday?'♧ '+d.birthday:'';
+ $('friendProfileBirthday').hidden=!d.birthday;
+ $('friendProfileStatus').textContent=d.status||'';
+ $('friendProfileStatus').hidden=!d.status;
+ openPage('line-profile');
+}
+function closeLineFriendProfile(){
+ if(lineProfileReturnPage==='chat'){openPage('chat');return;}
+ openPage('line');setLineTab(lineProfileReturnTab);
+ if(lineProfileReturnTab==='home'){$('lineSeeAll')?.click();}
+}
+$('friendProfileClose').onclick=closeLineFriendProfile;
+$('friendProfileChat').onclick=()=>{
+ const id=Object.keys(chats).find(k=>({nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'})[k]===currentLineFriend);
+ if(id){openChat(id);return;}
+ alert('ยังไม่มีประวัติแชทของ '+currentLineFriend);
+};
+function friendCallNotice(kind){alert('ระบบ'+kind+'ของ '+currentLineFriend+' ยังไม่เปิดใช้งาน');}
+$('friendProfileCall').onclick=()=>friendCallNotice('โทร');
+$('friendProfileTopCall').onclick=()=>friendCallNotice('โทร');
+$('friendProfileVideo').onclick=()=>friendCallNotice('วิดีโอคอล');
+$('friendProfileStar').onclick=()=>{$('friendProfileStar').classList.toggle('is-favorite');$('friendProfileStar').style.color=$('friendProfileStar').classList.contains('is-favorite')?'#ffe69a':'#fff';};
+$('friendProfileMore').onclick=()=>alert('โปรไฟล์ '+currentLineFriend);
+$('friendProfileShown').onclick=()=>{};
 function renderLineFriends(filter=''){
   const target=document.getElementById('lineFriendsResults');if(!target)return;
   const matched=lineFriends.filter(n=>n.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const safe=n=>n.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   target.innerHTML='<div class="line-friend-count">เพื่อน '+matched.length+' คน</div>'+matched.map(n=>'<button class="line-friend-item" type="button" data-friend="'+safe(n)+'"><span class="line-friend-avatar">'+safe(n.slice(0,1))+'</span><span>'+safe(n)+'</span></button>').join('');
-  target.querySelectorAll('[data-friend]').forEach(b=>b.onclick=()=>{
-    const n=b.dataset.friend;
-    const chatId=Object.keys(chats).find(k=>({nanny:"แม่นมนิว",tay:"ปะป๊าเต",new:"พ่อพ่อนิววี่"})[k]===n);
-    if(chatId){openChat(chatId);return;}
-    const extra=document.getElementById('lineExtra');
-    extra.innerHTML='<button class="line-friend-back" id="backFriends">‹ รายชื่อเพื่อน</button><div class="line-friend-profile"><div class="line-friend-avatar">'+safe(n.slice(0,1))+'</div><h2>'+safe(n)+'</h2><p class="line-panel-muted">เพื่อนใน LINE ของซัง</p></div>';
-    document.getElementById('backFriends').onclick=()=>setLineTab('home');
-  });
+  target.querySelectorAll('[data-friend]').forEach(b=>b.onclick=()=>showLineFriendProfile(b.dataset.friend));
 }
 function lineIcon(name){
  const paths={bookmark:'<path d="M6 3h12v18l-6-4-6 4z"/>',bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 9h18c0-1-3-2-3-9ZM10 21h4"/>',plus:'<path d="M12 3v18M3 12h18"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M10 2h4l1 3 3 1 3-1 2 4-3 2v3l3 2-2 4-3-1-3 1-1 3h-4l-1-3-3-1-3 1-2-4 3-2v-3L1 9l2-4 3 1 3-1z"/>',search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',scan:'<path d="M8 3H4v5m12-5h4v5M4 16v5h4m12-5v5h-4M5 12h14"/>',chevron:'<path d="m9 5 7 7-7 7"/>',smile:'<circle cx="12" cy="12" r="9"/><path d="M8 14q4 5 8 0M8 9h.01M16 9h.01"/>',gift:'<rect x="3" y="9" width="18" height="12"/><path d="M3 13h18M12 9v12M12 9C3 9 6 1 10 5l2 4Zm0 0c9 0 6-8 2-4l-2 4Z"/>',bag:'<path d="M4 8h16l1 13H3L4 8Zm5 0V6a3 3 0 0 1 6 0v2"/>',stamp:'<path d="M9 3a3 3 0 0 1 6 0v5l3 5v3H6v-3l3-5V3ZM4 20h16"/>',wallet:'<rect x="2" y="6" width="20" height="15" rx="2"/><path d="M2 10h20"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-8 16-8 16 0"/>'};
