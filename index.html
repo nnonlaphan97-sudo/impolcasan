@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -26,23 +25,41 @@ button{font:inherit;cursor:pointer}
   height:min(100dvh,900px);
   aspect-ratio:0.57;
   max-width:100vw;
-  background:#a99ab5;
-  border:2px solid #81758e;
-  border-radius:20px;
-  padding:5px;
+
+  /* Samsung Lavender Metallic */
+  background:linear-gradient(
+    90deg,
+    #94899F 0%,
+    #C4B9CE 3%,
+    #B7AAC4 50%,
+    #D0C5D6 97%,
+    #91859B 100%
+  );
+
+  border:1px solid #8E839B;
+  border-radius:12px;
+  padding:3px;
+
   box-shadow:
-    inset 1px 0 2px #e4d9e8,
-    0 0 0 1px #5b5266,
-    0 18px 50px #0007;
+    inset 1px 0 1px #E9E1EC,
+    inset -1px 0 1px #81758C,
+    0 8px 25px rgba(0,0,0,.25);
 }
 .bezel{
-  position:relative;width:100%;height:100%;
-  padding:4px;background:#101014;
-  border-radius:15px;overflow:hidden;
+  position:relative;
+  width:100%;
+  height:100%;
+  padding:3px;
+  background:#0B0B0F;
+  border-radius:9px;
+  overflow:hidden;
 }
 .screen{
-  position:relative;width:100%;height:100%;
-  overflow:hidden;border-radius:11px;
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:6px;
   background:#18151c;
 }
 .wallpaper{
@@ -225,26 +242,7 @@ button{font:inherit;cursor:pointer}
         <div class="date" id="date">วันเสาร์ที่ 21 พฤศจิกายน</div>
         <div class="time" id="time">09:24</div>
       </div>
-
-      <div class="notification" id="notification">
-        <div class="notif-head">
-          <div class="notif-icon">
-            <svg width="27" height="27" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="8" y="3" width="12" height="22" rx="3"/>
-              <path d="M12 7h4M11 12h6M11 16h6M13 21h2"/>
-            </svg>
-          </div>
-          <div class="notif-name">POLCASAN'S PHONE</div>
-          <div class="notif-now">ตอนนี้</div>
-        </div>
-        <div class="notif-title">ยินดีต้อนรับสู่โทรศัพท์ของซัง</div>
-        <div class="notif-body">
-          ตอนนี้เรากำลังเตรียมโทรศัพท์ของซังให้พร้อมใช้งาน
-          ระบบและเรื่องราวจะค่อย ๆ เพิ่มเข้ามาภายหลัง
-        </div>
-        <div class="notif-footer">POLCASAN'S PHONE</div>
-      </div>
-
+      
       <div class="bottom">
 
         <!-- Phone shortcut -->
