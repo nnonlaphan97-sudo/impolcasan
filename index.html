@@ -533,7 +533,7 @@ button{
   color:#FFF3C8;
   text-shadow:0 1px 3px rgba(0,0,0,.3);
 }
-.lock-icon{top:5.4%;width:26px;height:31px;filter:none}
+.lock-icon{top:5.4%;width:17px;height:21px;filter:none}
 .bottom{bottom:6.6%;padding:0 9%;z-index:14}
 .shortcut,.shortcut:active{
   width:51px;height:51px;
@@ -544,6 +544,23 @@ button{
 .shortcut svg{width:100%;height:100%;display:block}
 .shortcut:active{transform:scale(.92)}
 .swipe-unlock-hint{bottom:1.2%;color:#fff8db;font-size:clamp(11px,3vw,14px)}
+
+/* Requested custom font: upload font to photo/ in the same website */
+@font-face{
+  font-family:"PK Nakhon Sawan Demo";
+  src:url("photo/PK%20Nakhon%20Sawan%20Demo.ttf") format("truetype");
+  font-style:normal;font-weight:normal;font-display:swap;
+}
+.clock-area{top:18.5%!important}
+.clock-area .time{
+  font-family:"PK Nakhon Sawan Demo", "SamsungOne",sans-serif!important;
+  font-weight:normal!important;
+  letter-spacing:0!important;
+  line-height:1.05!important;
+}
+.lock-icon{width:17px!important;height:21px!important;top:5.4%!important}
+/* Alarm setup and ringing are temporarily disabled */
+.home-app[data-open="clock"],#page-clock,#alarmModal,#alarmFull{display:none!important}
 </style>
 </head>
 
@@ -625,13 +642,11 @@ button{
               viewBox="0 0 31 16"
               aria-label="Battery 85 percent">
 
-              <rect
-                x="0.5"
-                y="1.5"
-                width="30"
-                height="13"
-                rx="6.5"
-                fill="#FFFFFF"/>
+              <defs><clipPath id="batteryClip"><rect x="0.5" y="1.5" width="30" height="13" rx="6.5"/></clipPath></defs>
+              <g clip-path="url(#batteryClip)">
+                <rect x="0.5" y="1.5" width="30" height="13" fill="#FFFFFF" opacity=".42"/>
+                <rect x="0.5" y="1.5" width="25.5" height="13" fill="#FFFFFF"/>
+              </g>
 
               <text
                 x="15.5"
@@ -667,7 +682,8 @@ button{
         <div class="bottom">
           <button class="shortcut shortcut-phone" aria-label="โทรศัพท์">
             <svg viewBox="0 0 64 64" aria-hidden="true">
-              <path d="M15.8 6.5c-4.2-1.7-9.1.7-10.3 5.5-2.4 10.1 4.5 23.8 15.1 34.3C31.2 56.8 44.9 63.7 55 61.3c4.8-1.2 7.2-6.1 5.5-10.3-1.4-3.5-8.2-9.7-12.5-11.5-2.8-1.2-5.5-.5-7.7 1.6l-5.3 5.1c-7.5-4.4-13.3-10.2-17.7-17.7l5.1-5.3c2.1-2.2 2.8-4.9 1.6-7.7C22.2 11.2 19.3 7.9 15.8 6.5Z" fill="#FFBBA7"/>
+              <path d="M14 7c-3-2-7-1-9 2-4 6-2 16 4 26 6 10 16 19 26 24 10 5 20 6 25 1 3-3 4-7 1-10l-11-10c-3-3-7-3-10 0l-6 6C25 42 19 35 16 27l6-6c3-3 3-7 0-10L14 7Z" fill="#FFBBA7"/>
+              <path d="M14 7c-3-2-7-1-9 2-4 6-2 16 4 26 6 10 16 19 26 24 10 5 20 6 25 1 3-3 4-7 1-10l-11-10c-3-3-7-3-10 0l-6 6C25 42 19 35 16 27l6-6c3-3 3-7 0-10L14 7Z" fill="none" stroke="#FFD2C1" stroke-width="1.5"/>
             </svg>
           </button>
           <button class="shortcut shortcut-camera" aria-label="กล้อง">
@@ -708,7 +724,7 @@ button{
   <section class="app-page home-wall" id="page-home">
     <div class="home-head"><div class="bigtime" id="homeTime">07:00</div><div>วันจันทร์ · สวัสดีตอนเช้า ซัง</div></div>
     <div class="home-grid">
-      <button class="home-app" data-open="clock"><span class="app-icon" style="background:#f6f7fc;color:#29304b"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="16" cy="16" r="12"/><path d="M16 7v9l6 4"/></svg></span>นาฬิกา</button>
+      <button class="home-app" data-open="clock" hidden aria-hidden="true"><span class="app-icon" style="background:#f6f7fc;color:#29304b"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="16" cy="16" r="12"/><path d="M16 7v9l6 4"/></svg></span>นาฬิกา</button>
       <button class="home-app" data-open="line"><span class="app-icon" style="background:#06c755;color:#fff"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C8 3 2 8 2 15c0 6 5 11 12 12l-1 4 7-4c6-1 10-6 10-12C30 8 24 3 16 3Z"/><text x="16" y="19" text-anchor="middle" font-size="8" fill="#06c755" font-weight="900">LINE</text></svg></span>LINE</button>
       <button class="home-app" data-open="food"><span class="app-icon" style="background:#f9d9aa;color:#9a5a20;font-size:29px">♨</span>ครัวของซัง</button>
     </div>
@@ -761,7 +777,7 @@ button{
 const $=id=>document.getElementById(id);
 const phone=$('phone'), screenOff=$('screenOff');
 let page='home', scanning=false, scanTimer=null, clockTab='alarms', foodCat='thai', foodChoice='ข้าวผัดไข่';
-let gameMinute=420, alarmOpen=true, breakfastStarted=false, notificationSent=false, chatRead=false, selectedChat='nanny', foodOrdered=false;
+let gameMinute=421, alarmOpen=false, breakfastStarted=true, notificationSent=false, chatRead=false, selectedChat='nanny', foodOrdered=false;
 let alarmTone=null;
 const saveKey='polcasan-phone-week-v1';
 let alarms=[{time:'07:00',label:'ตื่นไปโรงเรียน',days:[1,2,3,4,5],on:true},{time:'09:00',label:'ตื่นวันหยุด',days:[0,6],on:true}];
@@ -818,17 +834,31 @@ lockScreen.addEventListener('touchcancel',()=>{swipeStart=null},{passive:true});
 lockScreen.addEventListener('mousedown',e=>{if(e.button===0)startSwipe(e.clientY,e.target)});
 window.addEventListener('mouseup',e=>finishSwipe(e.clientY));
 screenOff.addEventListener('click',()=>phone.classList.remove('off'));
-// Reset game progress from the carrier label, with confirmation.
-$('carrier').setAttribute('title','แตะเพื่อรีเซ็ตเกม');
-$('carrier').setAttribute('role','button');
-$('carrier').setAttribute('tabindex','0');
+// Hold the carrier name for 1.2 seconds to reset; short taps do nothing.
+const carrier=$('carrier');
+carrier.setAttribute('title','กดค้างเพื่อรีเซ็ตเกม');
+carrier.setAttribute('role','button');
+carrier.setAttribute('tabindex','0');
+carrier.style.touchAction='none';
+carrier.style.userSelect='none';
+carrier.style.webkitUserSelect='none';
 function resetGame(){
-  if(!window.confirm('รีเซ็ต POLCASAN’S PHONE? ข้อมูลภารกิจ แชท และนาฬิกาปลุกที่บันทึกไว้จะเริ่มใหม่ทั้งหมด'))return;
+  if(!window.confirm('รีเซ็ต POLCASAN’S PHONE และเริ่มเกมใหม่ทั้งหมดใช่ไหม?'))return;
   try{localStorage.removeItem(saveKey)}catch(e){}
   window.location.reload();
 }
-$('carrier').addEventListener('click',resetGame);
-$('carrier').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();resetGame()}});
+let resetHoldTimer=null;
+function beginResetHold(e){
+  if(e.type==='pointerdown' && e.button!==undefined && e.button!==0)return;
+  clearTimeout(resetHoldTimer);
+  resetHoldTimer=setTimeout(()=>{resetHoldTimer=null;resetGame()},1200);
+}
+function cancelResetHold(){clearTimeout(resetHoldTimer);resetHoldTimer=null}
+carrier.addEventListener('pointerdown',beginResetHold);
+['pointerup','pointercancel','pointerleave'].forEach(ev=>carrier.addEventListener(ev,cancelResetHold));
+carrier.addEventListener('contextmenu',e=>e.preventDefault());
+carrier.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();beginResetHold({type:'keyboard'})}});
+carrier.addEventListener('keyup',cancelResetHold);
 function openPage(next){page=next;document.querySelectorAll('.app-page').forEach(el=>el.classList.toggle('active',el.id==='page-'+next));if(next==='clock')renderClock();if(next==='line')renderChats();if(next==='food')renderFood();}
 function renderClock(){document.querySelectorAll('[data-clocktab]').forEach(b=>b.classList.toggle('active',b.dataset.clocktab===clockTab));$('addAlarm').style.display=clockTab==='alarms'?'block':'none';const c=$('clockContent');if(clockTab!=='alarms'){const text={world:'กรุงเทพมหานคร · '+timeStr(),stopwatch:'00:00.00',timer:'00:00:00'};c.innerHTML='<div class="clock-extra"><div style="font-size:42px;margin-bottom:16px">'+text[clockTab]+'</div><button class="primary-action" id="clockToolBtn">'+(clockTab==='world'?'เพิ่มเมือง':'เริ่ม')+'</button><div id="clockToolResult" style="margin-top:15px"></div></div>';const b=$('clockToolBtn');b.onclick=()=>{if(clockTab==='world'){$('clockToolResult').textContent='กรุงเทพมหานคร · ประเทศไทย'}else{$('clockToolResult').textContent='เริ่มใช้งาน '+(clockTab==='timer'?'ตั้งเวลา':'จับเวลา');}};return}
  c.innerHTML=alarms.map((a,i)=>'<div class="alarm-card"><div class="alarm-top"><div role="button" tabindex="0" data-edit-alarm="'+i+'"><div class="alarm-time">'+a.time+'</div><div class="alarm-label">'+escapeHtml(a.label)+'</div></div><button class="switch '+(a.on?'on':'')+'" data-toggle-alarm="'+i+'" aria-label="เปิดปิดนาฬิกาปลุก" aria-pressed="'+a.on+'"></button></div><div class="alarm-days">'+['อา','จ','อ','พ','พฤ','ศ','ส'].map((d,n)=>'<span class="'+(a.days.includes(n)?'on':'')+'">'+d+'</span>').join('')+'</div></div>').join('');
@@ -855,7 +885,7 @@ $('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm()
 $('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
 $('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
 document.querySelectorAll('[data-line-tab]').forEach(b=>b.onclick=()=>{if(b.dataset.lineTab==='chats')renderChats();else if(b.dataset.lineTab==='friends')alert('เพื่อน: แม่นมนิว, ปะป๊าเต, พ่อพ่อนิววี่');else alert('แท็บนี้จะเปิดในภารกิจถัดไป')});
-restore();syncTime();openPage('home');if(!breakfastStarted){showAlarm()}else if(notificationSent&&!chatRead){$('lineToast').classList.add('show')}
+restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();openPage('home');if(!notificationSent){sendMorningNotification()}else if(!chatRead){$('lineToast').classList.add('show')}
 </script>
 
 </body>
