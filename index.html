@@ -357,13 +357,13 @@ button{
 
 
 /* Swipe-to-unlock hint */
-.swipe-unlock{position:absolute;bottom:17%;left:0;right:0;z-index:19;display:flex;align-items:center;flex-direction:column;gap:9px;color:white;text-shadow:0 2px 8px #0009;pointer-events:none;transition:opacity .2s}
+.swipe-unlock{position:absolute;bottom:2.5%;left:0;right:0;z-index:19;display:flex;align-items:center;flex-direction:column;gap:9px;color:white;text-shadow:0 2px 8px #0009;pointer-events:none;transition:opacity .2s}
 .swipe-unlock span{font-size:14px;font-weight:500;letter-spacing:.2px}
-.swipe-unlock svg{width:24px;height:24px;animation:swipeFloat 1.7s ease-in-out infinite}
+.swipe-unlock svg{display:none}
 @keyframes swipeFloat{0%,100%{transform:translateY(5px);opacity:.65}50%{transform:translateY(-5px);opacity:1}}
 .phone.unlocked .swipe-unlock,.phone.off .swipe-unlock{display:none}
 .fingerprint-hint{display:none!important}
-.screen{touch-action:pan-y}
+.screen{touch-action:none} .phone.unlocked .screen{touch-action:pan-y} .bottom{bottom:8.5%}
 /* POLCASAN applications: isolated from the original lock-screen layout */
 .gesture{display:none!important}
 .phone.off .status{visibility:hidden}
@@ -636,7 +636,6 @@ button{
         
 <!-- Swipe up to unlock -->
 <div class="swipe-unlock" id="swipeUnlock" aria-label="ปัดขึ้นเพื่อปลดล็อก">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 15 7-7 7 7"/></svg>
   <span>ปัดขึ้นเพื่อปลดล็อก</span>
 </div>
 <!-- Side fingerprint feedback -->
@@ -734,21 +733,46 @@ function showAlarm(){alarmOpen=true;$('ringTime').textContent=timeStr();$('alarm
 function dismissAlarm(){stopAlarm();alarmOpen=false;$('alarmFull').classList.remove('show');breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();persist();setTimeout(sendMorningNotification,450)}
 function sendMorningNotification(){if(notificationSent||!breakfastStarted)return;notificationSent=true;$('lineToast').classList.add('show');renderChats();persist()}
 function unlock(){phone.classList.remove('off');phone.classList.add('unlocked');openPage('home');if(notificationSent&&!chatRead)$('lineToast').classList.add('show')}
-// Unlock only after an upward gesture, never from a tap.
+// Capture swipe gestures on the lock screen (touch and mouse).
+// Prevent the browser from taking over vertical touch scrolling.
 let swipeStart=null;
 const lockSurface=document.querySelector('.screen');
+function canSwipe(target){
+  return !alarmOpen && !phone.classList.contains('unlocked') &&
+    !phone.classList.contains('off') && !target.closest('button');
+}
+function finishSwipe(x,y){
+  if(!swipeStart)return;
+  const dx=x-swipeStart.x,dy=y-swipeStart.y;
+  swipeStart=null;
+  if(dy < -45 && Math.abs(dx) < 160 && !alarmOpen)unlock();
+}
+lockSurface.addEventListener('touchstart',e=>{
+  if(!canSwipe(e.target))return;
+  const t=e.changedTouches[0];
+  swipeStart={x:t.clientX,y:t.clientY};
+},{passive:true});
+lockSurface.addEventListener('touchmove',e=>{
+  if(swipeStart)e.preventDefault();
+},{passive:false});
+lockSurface.addEventListener('touchend',e=>{
+  if(!swipeStart)return;
+  const t=e.changedTouches[0];
+  finishSwipe(t.clientX,t.clientY);
+},{passive:true});
+lockSurface.addEventListener('touchcancel',()=>{swipeStart=null});
 lockSurface.addEventListener('pointerdown',e=>{
-  if(alarmOpen||phone.classList.contains('unlocked')||phone.classList.contains('off'))return;
-  if(e.target.closest('button'))return;
-  swipeStart={x:e.clientX,y:e.clientY,id:e.pointerId};
+  if(e.pointerType==='touch'||!canSwipe(e.target))return;
+  swipeStart={x:e.clientX,y:e.clientY};
+  try{lockSurface.setPointerCapture(e.pointerId)}catch(_){}
 });
 lockSurface.addEventListener('pointerup',e=>{
-  if(!swipeStart||swipeStart.id!==e.pointerId)return;
-  const dx=e.clientX-swipeStart.x,dy=e.clientY-swipeStart.y;
-  swipeStart=null;
-  if(dy < -65 && Math.abs(dx)<120 && !alarmOpen && !phone.classList.contains('unlocked'))unlock();
+  if(e.pointerType==='touch')return;
+  finishSwipe(e.clientX,e.clientY);
 });
-lockSurface.addEventListener('pointercancel',()=>{swipeStart=null});
+lockSurface.addEventListener('pointercancel',e=>{
+  if(e.pointerType!=='touch')swipeStart=null;
+});
 power.addEventListener('click',()=>{
   if(alarmOpen)return;
   if(phone.classList.contains('off'))phone.classList.remove('off');
