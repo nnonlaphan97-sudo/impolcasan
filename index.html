@@ -356,17 +356,11 @@ button{
 }
 
 
-/* Swipe-to-unlock hint */
-.swipe-unlock{position:absolute;bottom:2.5%;left:0;right:0;z-index:19;display:flex;align-items:center;flex-direction:column;gap:9px;color:white;text-shadow:0 2px 8px #0009;pointer-events:none;transition:opacity .2s}
-.swipe-unlock span{font-size:14px;font-weight:500;letter-spacing:.2px}
-.swipe-unlock svg{display:none}
-@keyframes swipeFloat{0%,100%{transform:translateY(5px);opacity:.65}50%{transform:translateY(-5px);opacity:1}}
-.phone.unlocked .swipe-unlock,.phone.off .swipe-unlock{display:none}
-.fingerprint-hint{display:none!important}
-.screen{touch-action:none} .phone.unlocked .screen{touch-action:pan-y} .bottom{bottom:8.5%}
-/* POLCASAN applications: isolated from the original lock-screen layout */
+/* Lock screen: tap power button to simulate side fingerprint */
 .gesture{display:none!important}
-.phone.off .status{visibility:hidden}
+#carrier{cursor:pointer;position:relative;z-index:15;user-select:none}
+#carrier:active{opacity:.65}
+.phone.unlocked .fingerprint-hint{display:none}
 .phone.unlocked .unlock-home{display:none}
 .app-shell{position:absolute;inset:0;background:#f7f7fb;color:#202127;z-index:22;display:none;overflow:hidden}
 .phone.unlocked .app-shell{display:flex;flex-direction:column}
@@ -634,10 +628,6 @@ button{
         </div>
         <!-- END SHORTCUTS -->
         
-<!-- Swipe up to unlock -->
-<div class="swipe-unlock" id="swipeUnlock" aria-label="ปัดขึ้นเพื่อปลดล็อก">
-  <span>ปัดขึ้นเพื่อปลดล็อก</span>
-</div>
 <!-- Side fingerprint feedback -->
 <div class="fingerprint-hint" id="fingerprintHint">
 
@@ -733,52 +723,41 @@ function showAlarm(){alarmOpen=true;$('ringTime').textContent=timeStr();$('alarm
 function dismissAlarm(){stopAlarm();alarmOpen=false;$('alarmFull').classList.remove('show');breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();persist();setTimeout(sendMorningNotification,450)}
 function sendMorningNotification(){if(notificationSent||!breakfastStarted)return;notificationSent=true;$('lineToast').classList.add('show');renderChats();persist()}
 function unlock(){phone.classList.remove('off');phone.classList.add('unlocked');openPage('home');if(notificationSent&&!chatRead)$('lineToast').classList.add('show')}
-// Capture swipe gestures on the lock screen (touch and mouse).
-// Prevent the browser from taking over vertical touch scrolling.
-let swipeStart=null;
-const lockSurface=document.querySelector('.screen');
-function canSwipe(target){
-  return !alarmOpen && !phone.classList.contains('unlocked') &&
-    !phone.classList.contains('off') && !target.closest('button');
+// Power button: wake screen, fingerprint unlock, or turn screen off.
+function scanFingerprint(){
+  if(alarmOpen || scanning || phone.classList.contains('unlocked'))return;
+  scanning=true;
+  phone.classList.add('scanning');
+  fingerprintText.textContent='กำลังตรวจสอบลายนิ้วมือ';
+  fingerprintHint.classList.add('show');
+  scanTimer=setTimeout(()=>{
+    fingerprintText.textContent='ปลดล็อกสำเร็จ';
+    phone.classList.remove('scanning');
+    scanTimer=setTimeout(()=>{
+      fingerprintHint.classList.remove('show');
+      scanning=false;
+      unlock();
+    },350);
+  },550);
 }
-function finishSwipe(x,y){
-  if(!swipeStart)return;
-  const dx=x-swipeStart.x,dy=y-swipeStart.y;
-  swipeStart=null;
-  if(dy < -45 && Math.abs(dx) < 160 && !alarmOpen)unlock();
-}
-lockSurface.addEventListener('touchstart',e=>{
-  if(!canSwipe(e.target))return;
-  const t=e.changedTouches[0];
-  swipeStart={x:t.clientX,y:t.clientY};
-},{passive:true});
-lockSurface.addEventListener('touchmove',e=>{
-  if(swipeStart)e.preventDefault();
-},{passive:false});
-lockSurface.addEventListener('touchend',e=>{
-  if(!swipeStart)return;
-  const t=e.changedTouches[0];
-  finishSwipe(t.clientX,t.clientY);
-},{passive:true});
-lockSurface.addEventListener('touchcancel',()=>{swipeStart=null});
-lockSurface.addEventListener('pointerdown',e=>{
-  if(e.pointerType==='touch'||!canSwipe(e.target))return;
-  swipeStart={x:e.clientX,y:e.clientY};
-  try{lockSurface.setPointerCapture(e.pointerId)}catch(_){}
-});
-lockSurface.addEventListener('pointerup',e=>{
-  if(e.pointerType==='touch')return;
-  finishSwipe(e.clientX,e.clientY);
-});
-lockSurface.addEventListener('pointercancel',e=>{
-  if(e.pointerType!=='touch')swipeStart=null;
-});
 power.addEventListener('click',()=>{
   if(alarmOpen)return;
-  if(phone.classList.contains('off'))phone.classList.remove('off');
-  else phone.classList.add('off');
+  if(phone.classList.contains('off')){phone.classList.remove('off');return;}
+  if(phone.classList.contains('unlocked')){phone.classList.add('off');return;}
+  scanFingerprint();
 });
 screenOff.addEventListener('click',()=>phone.classList.remove('off'));
+// Reset game progress from the carrier label, with confirmation.
+$('carrier').setAttribute('title','แตะเพื่อรีเซ็ตเกม');
+$('carrier').setAttribute('role','button');
+$('carrier').setAttribute('tabindex','0');
+function resetGame(){
+  if(!window.confirm('รีเซ็ต POLCASAN’S PHONE? ข้อมูลภารกิจ แชท และนาฬิกาปลุกที่บันทึกไว้จะเริ่มใหม่ทั้งหมด'))return;
+  try{localStorage.removeItem(saveKey)}catch(e){}
+  window.location.reload();
+}
+$('carrier').addEventListener('click',resetGame);
+$('carrier').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();resetGame()}});
 function openPage(next){page=next;document.querySelectorAll('.app-page').forEach(el=>el.classList.toggle('active',el.id==='page-'+next));if(next==='clock')renderClock();if(next==='line')renderChats();if(next==='food')renderFood();}
 function renderClock(){document.querySelectorAll('[data-clocktab]').forEach(b=>b.classList.toggle('active',b.dataset.clocktab===clockTab));$('addAlarm').style.display=clockTab==='alarms'?'block':'none';const c=$('clockContent');if(clockTab!=='alarms'){const text={world:'กรุงเทพมหานคร · '+timeStr(),stopwatch:'00:00.00',timer:'00:00:00'};c.innerHTML='<div class="clock-extra"><div style="font-size:42px;margin-bottom:16px">'+text[clockTab]+'</div><button class="primary-action" id="clockToolBtn">'+(clockTab==='world'?'เพิ่มเมือง':'เริ่ม')+'</button><div id="clockToolResult" style="margin-top:15px"></div></div>';const b=$('clockToolBtn');b.onclick=()=>{if(clockTab==='world'){$('clockToolResult').textContent='กรุงเทพมหานคร · ประเทศไทย'}else{$('clockToolResult').textContent='เริ่มใช้งาน '+(clockTab==='timer'?'ตั้งเวลา':'จับเวลา');}};return}
  c.innerHTML=alarms.map((a,i)=>'<div class="alarm-card"><div class="alarm-top"><div role="button" tabindex="0" data-edit-alarm="'+i+'"><div class="alarm-time">'+a.time+'</div><div class="alarm-label">'+escapeHtml(a.label)+'</div></div><button class="switch '+(a.on?'on':'')+'" data-toggle-alarm="'+i+'" aria-label="เปิดปิดนาฬิกาปลุก" aria-pressed="'+a.on+'"></button></div><div class="alarm-days">'+['อา','จ','อ','พ','พฤ','ศ','ส'].map((d,n)=>'<span class="'+(a.days.includes(n)?'on':'')+'">'+d+'</span>').join('')+'</div></div>').join('');
