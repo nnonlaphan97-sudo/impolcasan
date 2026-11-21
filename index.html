@@ -1,19 +1,308 @@
-<!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>POLCASAN'S PHONE — Fold 8 Lock Screen</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#e8e9ed;font-family:Arial,'Noto Sans Thai',sans-serif}.stage{width:min(96vw,460px);padding:16px}.device{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 20px #3335)}button{font:inherit;cursor:pointer}.actions{text-align:center;margin-top:14px}.actions button{border:1px solid #bbb;background:white;border-radius:9px;padding:9px 17px;color:#344}.hint{text-align:center;color:#657080;font-size:12px;margin-top:10px}</style></head><body><main class="stage"><svg class="device" viewBox="0 0 420 740" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="หน้าจอล็อกโทรศัพท์พับ Samsung Galaxy Z Fold 8 ต้นแบบสัดส่วนกว้าง"><defs><linearGradient id="frame" x1="0" x2="1"><stop stop-color="#8d819c"/><stop offset=".15" stop-color="#d8cde2"/><stop offset=".8" stop-color="#b8adc8"/><stop offset="1" stop-color="#777084"/></linearGradient><linearGradient id="wall" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#f7dcd5"/><stop offset=".5" stop-color="#e9dbea"/><stop offset="1" stop-color="#c8b7e5"/></linearGradient><linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5c5cc"/><stop offset=".55" stop-color="#b6a0e1"/><stop offset="1" stop-color="#8067c4"/></linearGradient><clipPath id="displayClip"><rect x="19" y="19" width="382" height="702" rx="7"/></clipPath></defs>
-<!-- Wide cover-display proportion: 400 × 720, ratio .556 -->
-<rect x="8" y="7" width="404" height="726" rx="12" fill="url(#frame)" stroke="#786d85" stroke-width="2"/><rect x="13" y="12" width="394" height="716" rx="9" fill="#111116"/><rect x="19" y="19" width="382" height="702" rx="7" fill="url(#wall)"/>
-<g clip-path="url(#displayClip)"><path d="M225 90 C345 67 372 180 304 268 C239 350 169 412 187 506 C204 603 329 667 367 591 C334 694 175 683 133 561 C88 432 212 342 255 251 C294 172 267 118 225 90Z" fill="url(#ribbon)" opacity=".76"/><path d="M215 97 C135 140 148 229 226 294 C301 359 372 447 331 534 C322 553 307 573 289 589 C388 554 394 446 345 366 C292 281 190 229 210 148Z" fill="#d8b5e6" opacity=".49"/><path d="M20 21 H400 V721 H20Z" fill="#fff" opacity=".045"/></g>
-<!-- physical side keys -->
-<rect x="411" y="155" width="4" height="69" rx="2" fill="#92879d"/><rect x="411" y="251" width="4" height="49" rx="2" fill="#8b8197"/>
-<!-- front camera -->
-<circle cx="210" cy="34" r="7.2" fill="#12131a"/><circle cx="210" cy="34" r="3.3" fill="#252638"/>
-<!-- status bar: all icons drawn in SVG -->
-<g fill="#3f3b4d"><text x="39" y="49" font-size="16" font-weight="600">09:19</text><path d="M320 45 l6 -5 v10 h-6z M329 42 l6 -7 v15 h-6z M338 38 l6 -9 v21 h-6z"/><path d="M351 38 Q362 27 373 38 M355 42 Q362 35 369 42 M360 46 Q362 44 364 46" fill="none" stroke="#3f3b4d" stroke-width="2.5" stroke-linecap="round"/><rect x="380" y="34" width="19" height="12" rx="3" fill="none" stroke="#3f3b4d" stroke-width="2"/><rect x="382.5" y="36.5" width="12" height="7" rx="1"/><rect x="400" y="38" width="2.5" height="5" rx="1"/></g>
-<!-- lock icon -->
-<g transform="translate(210 112)" stroke="#fff" fill="none" stroke-width="2.5" stroke-linecap="round"><rect x="-9" y="-1" width="18" height="15" rx="3"/><path d="M-5 -1 V-6 A5 5 0 0 1 5 -6 V-1"/></g>
-<text x="210" y="199" fill="#fff" font-size="82" font-weight="300" text-anchor="middle" letter-spacing="-3">09:19</text><text x="210" y="233" fill="#fff" font-size="20" text-anchor="middle">เสาร์ 21 พฤศจิกายน</text>
-<!-- shortcuts -->
-<g transform="translate(75 653)" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle r="27" fill="#ffffff" fill-opacity=".2" stroke="none"/><path d="M-11 -12 Q-15 -10 -13 -4 Q-6 12 9 14 Q14 13 14 8 L7 3 L2 8 Q-4 5 -8 -3 L-3 -8 L-8 -14Z"/></g>
-<g transform="translate(345 653)" stroke="#fff" stroke-width="2.7" stroke-linejoin="round" fill="none"><circle r="27" fill="#ffffff" fill-opacity=".2" stroke="none"/><path d="M-17 -10 H-9 L-5 -15 H7 L11 -10 H17 V13 H-17Z"/><circle r="8"/></g>
-<path d="M183 704 H237" stroke="#fff" stroke-opacity=".9" stroke-width="4" stroke-linecap="round"/>
-</svg><div class="actions"><button id="power" type="button">ปิดหน้าจอ</button></div><p class="hint">ต้นแบบหน้าจอนอกเท่านั้น • SVG ทุกองค์ประกอบ • สัดส่วนกว้างขึ้น</p></main><script>const b=document.getElementById('power'),svg=document.querySelector('.device');let off=false;b.onclick=()=>{off=!off;svg.style.opacity=off?'.12':'1';svg.style.filter=off?'brightness(0)':'none';b.textContent=off?'เปิดหน้าจอ':'ปิดหน้าจอ'};</script></body></html>
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111116">
+<title>POLCASAN'S PHONE</title>
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  background:#0e0e12;
+  font-family:"SamsungOne","Noto Sans Thai",Arial,sans-serif;
+  display:flex;align-items:center;justify-content:center;
+}
+button{font:inherit;cursor:pointer}
+#stage{
+  width:100%;height:100dvh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.phone{
+  position:relative;
+  height:min(100dvh,900px);
+  aspect-ratio:0.57;
+  max-width:100vw;
+  background:#a99ab5;
+  border:2px solid #81758e;
+  border-radius:20px;
+  padding:5px;
+  box-shadow:
+    inset 1px 0 2px #e4d9e8,
+    0 0 0 1px #5b5266,
+    0 18px 50px #0007;
+}
+.bezel{
+  position:relative;width:100%;height:100%;
+  padding:4px;background:#101014;
+  border-radius:15px;overflow:hidden;
+}
+.screen{
+  position:relative;width:100%;height:100%;
+  overflow:hidden;border-radius:11px;
+  background:#18151c;
+}
+.wallpaper{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  user-select:none;pointer-events:none;
+}
+.tint{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.20) 0%,
+    rgba(0,0,0,.03) 29%,
+    transparent 55%,
+    rgba(0,0,0,.18) 100%
+  );
+  pointer-events:none;
+}
+.camera-hole{
+  position:absolute;top:13px;left:50%;
+  transform:translateX(-50%);
+  width:12px;height:12px;
+  border-radius:50%;background:#0a0c12;
+  border:2px solid #303644;
+  box-shadow:0 0 0 1px #101219;
+  z-index:10;
+}
+.status{
+  position:absolute;top:14px;left:0;right:0;
+  padding:0 19px;display:flex;
+  justify-content:space-between;align-items:center;
+  color:#fff;z-index:9;
+  font-size:clamp(11px,3.1vw,15px);
+  font-weight:600;
+  text-shadow:0 1px 3px #0005;
+}
+.status-right{display:flex;align-items:center;gap:6px}
+.status svg{display:block}
+.clock-area{
+  position:absolute;top:12.5%;left:0;right:0;
+  text-align:center;color:white;
+  text-shadow:0 2px 12px #0003;
+}
+.lock-icon{width:19px;height:23px;margin:0 auto 16px}
+.date{font-size:clamp(14px,4vw,22px);font-weight:400}
+.time{
+  font-size:clamp(64px,18vw,105px);
+  font-weight:800;letter-spacing:-5px;
+  line-height:1.16;font-variant-numeric:tabular-nums;
+}
+.notification{
+  position:absolute;left:5%;right:5%;top:43%;
+  background:rgba(248,247,252,.94);
+  color:#232333;border-radius:25px;
+  padding:18px 18px 17px;
+  box-shadow:0 5px 24px #0002;
+  backdrop-filter:blur(18px);
+}
+.notif-head{display:flex;align-items:center;gap:12px}
+.notif-icon{
+  width:43px;height:43px;border-radius:14px;
+  background:linear-gradient(145deg,#a9a0e7,#7479c9);
+  display:grid;place-items:center;flex-shrink:0;
+}
+.notif-name{font-size:15px;font-weight:750;flex:1}
+.notif-now{font-size:12px;color:#858394}
+.notif-title{font-size:17px;font-weight:700;margin-top:16px}
+.notif-body{font-size:14px;line-height:1.65;margin-top:5px;color:#525266}
+.notif-footer{font-size:13px;color:#7779b1;font-weight:600;margin-top:14px}
+.bottom{
+  position:absolute;bottom:6.5%;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 8%;
+}
+.shortcut{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(255,255,255,.20);
+  border:1px solid rgba(255,255,255,.18);
+  display:grid;place-items:center;
+  backdrop-filter:blur(8px);
+  transition:transform .15s,background .15s;
+}
+.shortcut:active{transform:scale(.9);background:#ffffff55}
+.gesture{
+  position:absolute;bottom:13px;left:50%;
+  transform:translateX(-50%);
+  width:30%;height:5px;background:#fff;
+  border-radius:10px;opacity:.9;
+}
+.side-button{
+  position:absolute;right:-5px;top:26%;
+  width:4px;height:70px;
+  background:linear-gradient(90deg,#75697f,#b3a6bc);
+  border-radius:0 3px 3px 0;
+  border:0;padding:0;
+}
+.volume-button{
+  position:absolute;right:-5px;top:17%;
+  width:4px;height:48px;
+  background:#a395ae;border-radius:0 3px 3px 0;
+}
+.screen-off{
+  position:absolute;inset:0;
+  background:#000;z-index:30;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s;
+}
+.phone.off .screen-off{opacity:1;pointer-events:auto}
+.phone.off .camera-hole{z-index:31}
+.phone.off .status{visibility:hidden}
+.phone.off .gesture{visibility:hidden}
+@media(max-width:500px){
+  .phone{
+    height:min(100dvh,calc(100vw / .57));
+    border-radius:17px;
+  }
+  .notification{padding:15px}
+  .notif-title{font-size:15px}
+  .notif-body{font-size:13px}
+}
+</style>
+</head>
+
+<body>
+<div id="stage">
+<div class="phone" id="phone">
+  <div class="volume-button"></div>
+  <button class="side-button" id="power" aria-label="เปิดปิดหน้าจอ"></button>
+  <div class="bezel">
+    <div class="screen">
+
+      <img class="wallpaper" src="photo/wallpaper01.jpg" alt="">
+
+      <div class="tint"></div>
+      <div class="camera-hole"></div>
+
+      <div class="status">
+        <span id="carrier">polcasan</span>
+        <div class="status-right">
+
+          <!-- Silent mode -->
+          <svg id="silentIcon" width="17" height="19" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M9 9v3H5v4h4l5 4V8"/>
+            <path d="M3 3l18 18"/>
+          </svg>
+
+          <!-- Mobile network -->
+          <svg width="17" height="19" viewBox="0 0 24 24" fill="white">
+            <rect x="2" y="15" width="4" height="7" rx="1"/>
+            <rect x="8" y="11" width="4" height="11" rx="1"/>
+            <rect x="14" y="7" width="4" height="15" rx="1"/>
+            <rect x="20" y="3" width="3" height="19" rx="1"/>
+          </svg>
+
+          <!-- Wi-Fi -->
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+            <path d="M2 9Q12 0 22 9"/>
+            <path d="M6 13Q12 8 18 13"/>
+            <path d="M10 17Q12 15 14 17"/>
+            <circle cx="12" cy="20" r="1" fill="white" stroke="none"/>
+          </svg>
+
+          <!-- Battery -->
+          <svg width="36" height="19" viewBox="0 0 42 22">
+            <rect x="1" y="2" width="36" height="18" rx="7" fill="#FFFFFF" opacity=".9"/>
+            <rect x="37" y="8" width="3" height="6" rx="1" fill="white"/>
+            <rect x="3" y="4" width="29" height="14" rx="5" fill="#82BA90"/>
+            <text x="18" y="15" text-anchor="middle" font-size="12" font-family="Arial" font-weight="bold" fill="#FFFFFF">85</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="clock-area">
+
+        <svg class="lock-icon" viewBox="0 0 24 28" fill="none">
+          <rect x="3" y="12" width="18" height="14" rx="3" stroke="white" stroke-width="2.5"/>
+          <path d="M7 12V8a5 5 0 0 1 10 0v4" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <div class="date" id="date">วันเสาร์ที่ 21 พฤศจิกายน</div>
+        <div class="time" id="time">09:24</div>
+      </div>
+
+      <div class="notification" id="notification">
+        <div class="notif-head">
+          <div class="notif-icon">
+            <svg width="27" height="27" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="3" width="12" height="22" rx="3"/>
+              <path d="M12 7h4M11 12h6M11 16h6M13 21h2"/>
+            </svg>
+          </div>
+          <div class="notif-name">POLCASAN'S PHONE</div>
+          <div class="notif-now">ตอนนี้</div>
+        </div>
+        <div class="notif-title">ยินดีต้อนรับสู่โทรศัพท์ของซัง</div>
+        <div class="notif-body">
+          ตอนนี้เรากำลังเตรียมโทรศัพท์ของซังให้พร้อมใช้งาน
+          ระบบและเรื่องราวจะค่อย ๆ เพิ่มเข้ามาภายหลัง
+        </div>
+        <div class="notif-footer">POLCASAN'S PHONE</div>
+      </div>
+
+      <div class="bottom">
+
+        <!-- Phone shortcut -->
+        <button class="shortcut" aria-label="โทรศัพท์">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3L14 10L10.5 14C13 19 17 22 20 23L24 19L30 25L26 30C15 30 3 18 3 7Z"/>
+          </svg>
+        </button>
+
+        <!-- Camera shortcut -->
+        <button class="shortcut" aria-label="กล้อง">
+          <svg width="33" height="33" viewBox="0 0 36 36" fill="none" stroke="white" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M4 11H11L14 7H23L26 11H32V30H4Z"/>
+            <circle cx="18" cy="20" r="7"/>
+          </svg>
+        </button>
+
+      </div>
+
+      <div class="gesture"></div>
+      <div class="screen-off" id="screenOff"></div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const phone=document.getElementById("phone");
+const power=document.getElementById("power");
+const screenOff=document.getElementById("screenOff");
+
+function toggleScreen(){
+  phone.classList.toggle("off");
+}
+power.addEventListener("click",toggleScreen);
+screenOff.addEventListener("click",toggleScreen);
+
+function updateClock(){
+  const now=new Date();
+  const hh=String(now.getHours()).padStart(2,"0");
+  const mm=String(now.getMinutes()).padStart(2,"0");
+
+  document.getElementById("time").textContent=hh+":"+mm;
+
+  const weekdays=["วันอาทิตย์","วันจันทร์","วันอังคาร",
+  "วันพุธ","วันพฤหัสบดี","วันศุกร์","วันเสาร์"];
+
+  const months=["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน",
+  "พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม",
+  "กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+
+  document.getElementById("date").textContent=
+    weekdays[now.getDay()]+"ที่ "+now.getDate()+" "+months[now.getMonth()];
+}
+
+updateClock();
+setInterval(updateClock,1000);
+</script>
+</body>
+</html>
