@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -692,8 +691,16 @@ body,button,input,textarea,select{
 .app-nav{display:flex!important}
 
 /* LINE vector icon and interface polish */
-.home-app .line-icon{background:#06C755!important;border-radius:16px!important;box-shadow:0 3px 10px rgba(0,0,0,.15)!important}
-.home-app .line-icon svg{width:49px!important;height:49px!important}
+.home-app .line-icon{
+  background:#06C755!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+}
+.home-app .line-icon svg{
+  width:48px!important;
+  height:48px!important;
+  display:block;
+}
 .line-page{background:#fff!important;color:#151515!important}
 .line-header{height:58px!important;min-height:58px!important;padding:9px 17px!important;border-bottom:0!important}
 .line-header h2{font-size:24px!important;letter-spacing:-.7px!important;font-weight:750!important}
@@ -724,7 +731,10 @@ body,button,input,textarea,select{
 .status-right>svg:nth-child(3){width:16px!important;height:16px!important}
 .status-right>svg:nth-child(4){width:29px!important;height:15px!important}
 .status,.status *,.app-shell>.app-status,.app-shell>.app-status *{text-shadow:none!important;filter:none!important}
-#page-home .home-grid{margin-bottom:235px!important}
+#page-home .home-grid{
+  margin-top:auto!important;
+  margin-bottom:310px!important;
+}
 /* Weather card is a separate overlay; the wallpaper still fills the home. */
 #page-home .home-weather{
   position:absolute;top:65px;left:20px;right:20px;
@@ -974,7 +984,20 @@ body,button,input,textarea,select{
       </svg>
       <span class="weather-info"><span class="weather-temp" id="weatherTemp">สภาพอากาศ</span><span class="weather-desc" id="weatherDesc">แตะเพื่อดูอากาศปัจจุบัน</span></span>
     </button>
-    <div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C17 7 6 17 6 29.5c0 11.4 9.6 20.8 22.5 22.8l-1.7 6.3c-.3 1.2.9 1.8 2 1.2l12.3-7.3C51.2 49.6 58 41 58 29.5 58 17 47 7 32 7Z" fill="#fff"/><g fill="none" stroke="#06C755" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 25v13h8"/><path d="M27 25v13"/><path d="M32 38V25l8 13V25"/><path d="M49 25h-6v13h6M43 31.5h5.3"/></g></svg></span><span>LINE</span></button></div></section>
+    <div class="home-grid"><button class="home-app" data-open="line"><span class="app-icon line-icon">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+  <path
+    d="M32 8C17.1 8 5 17.5 5 29.3c0 10.6 9.5 19.4 22.4 21.1l-1.5 7.2c-.2 1.1.8 1.7 1.8 1.1l12.1-7.2C51.1 48.8 59 40.2 59 29.3 59 17.5 46.9 8 32 8Z"
+    fill="#FFFFFF"
+  />
+  <g fill="#06C755">
+    <path d="M14 23h4v14h7v3H14Z"/>
+    <rect x="27" y="23" width="4" height="17" rx="1"/>
+    <path d="M34 40V23h3.7l7.2 10.1V23h3.7v17h-3.7l-7.2-10V40Z"/>
+    <path d="M51 23h9v3h-5v4h4.5v3H55v4h5v3h-9Z"/>
+  </g>
+</svg>
+</span><span>LINE</span></button></div></section>
   <section class="app-page clock-page" id="page-clock">
     <div class="app-header"><h2>นาฬิกา</h2><button class="icon-btn" id="clockMore" aria-label="ตัวเลือกเพิ่มเติม">⋮</button></div>
     <div class="clock-tabs"><button data-clocktab="alarms" class="active">นาฬิกาปลุก</button><button data-clocktab="world">นาฬิกาโลก</button><button data-clocktab="stopwatch">จับเวลา</button><button data-clocktab="timer">ตั้งเวลา</button></div>
@@ -1034,7 +1057,11 @@ function timeStr(){return String(Math.floor(gameMinute/60)%24).padStart(2,'0')+'
 function syncTime(){
  const now=new Date();
  const t=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
- const d=now.toLocaleDateString('th-TH',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+ const d=now.toLocaleDateString('th-TH',{
+  weekday:'long',
+  day:'numeric',
+  month:'long'
+});
  $('time').textContent=t;
 
 
