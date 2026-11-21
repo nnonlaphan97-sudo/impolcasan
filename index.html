@@ -355,6 +355,98 @@ button{
   opacity:.8;
 }
 
+
+/* POLCASAN applications: isolated from the original lock-screen layout */
+.gesture{display:none!important}
+.phone.off .status{visibility:hidden}
+.phone.unlocked .unlock-home{display:none}
+.app-shell{position:absolute;inset:0;background:#f7f7fb;color:#202127;z-index:22;display:none;overflow:hidden}
+.phone.unlocked .app-shell{display:flex;flex-direction:column}
+.app-status{height:38px;flex-shrink:0;padding:10px 17px 4px;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:700;color:#1e2025}
+.app-status-icons{display:flex;align-items:center;gap:5px;font-size:11px}
+.app-status-icons svg{width:15px;height:15px}
+.app-page{display:none;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.app-page.active{display:flex;flex-direction:column}
+.app-header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 18px 12px;min-height:61px;flex-shrink:0}
+.app-header h2{font-size:25px;letter-spacing:-.8px;margin:0;font-weight:750}
+.app-header h3{font-size:18px;margin:0;font-weight:700}
+.icon-btn{width:38px;height:38px;display:grid;place-items:center;border:0;background:transparent;color:inherit;border-radius:50%;font-size:22px;padding:0}
+.icon-btn:active{background:#e6e6ee}
+.app-nav{height:48px;flex-shrink:0;display:flex;justify-content:space-around;align-items:center;border-top:1px solid #e6e6ec;background:#fafafd}
+.app-nav button{border:0;background:transparent;color:#85858c;font-size:10px;display:flex;align-items:center;flex-direction:column;gap:2px;padding:4px 8px}
+.app-nav button.active{color:#31343c;font-weight:750}
+.app-nav svg{width:20px;height:20px}
+.home-wall{background:linear-gradient(#dcd4e6a8,#a69bbbc2),url('photo/wallpaper01.jpg') center/cover}
+.home-head{padding:28px 20px 10px;color:#fff;text-shadow:0 2px 8px #0006}
+.home-head .bigtime{font-size:44px;font-weight:650;letter-spacing:-2px}
+.home-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 6px;padding:25px 12px;margin-top:auto;margin-bottom:55px}
+.home-app{display:flex;flex-direction:column;align-items:center;gap:7px;color:white;font-size:11px;text-shadow:0 1px 4px #0007;background:none;border:0}
+.home-app .app-icon{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;box-shadow:0 5px 12px #0002}
+.home-app svg{width:30px;height:30px}
+.clock-page{background:#f7f7fb}
+.alarm-card{margin:10px 16px;background:white;border-radius:24px;padding:20px 20px 18px;box-shadow:0 2px 12px #2221}
+.alarm-top{display:flex;justify-content:space-between;align-items:center}
+.alarm-time{font-size:47px;letter-spacing:-2px;font-weight:450}
+.alarm-label{font-size:13px;color:#666873;margin-top:5px}
+.alarm-days{display:flex;gap:7px;margin-top:18px}
+.alarm-days span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#f1f0f5;color:#777;font-size:12px}
+.alarm-days span.on{background:#dfe9ff;color:#416cc3;font-weight:700}
+.switch{border:0;width:46px;height:27px;border-radius:20px;background:#c8c8d0;padding:3px;display:flex;align-items:center;transition:background .2s}
+.switch:before{content:'';width:21px;height:21px;background:white;border-radius:50%;box-shadow:0 1px 3px #0002;transition:transform .2s}
+.switch.on{background:#5379d6}.switch.on:before{transform:translateX(19px)}
+.clock-tabs{display:flex;justify-content:space-around;padding:8px 8px 10px;gap:4px}
+.clock-tabs button{border:0;background:transparent;color:#777;font-size:12px;padding:9px 5px;border-radius:20px}
+.clock-tabs button.active{background:#e1e8fb;color:#365bc4;font-weight:700}
+.clock-extra{padding:40px 25px;text-align:center;color:#666}
+.add-alarm{position:sticky;bottom:18px;align-self:center;width:56px;height:56px;border:0;border-radius:50%;background:#dbe6ff;color:#315ac0;font-size:30px;box-shadow:0 5px 15px #0002}
+.line-page{background:#fff}
+.line-green{color:#06ba59}
+.line-search{margin:0 17px 14px;padding:10px 14px;border-radius:11px;background:#f2f3f5;color:#8c8e93;font-size:13px}
+.chat-item{width:100%;border:0;background:white;text-align:left;display:flex;gap:12px;padding:12px 17px;align-items:center}
+.chat-item:active{background:#f4f5f6}
+.avatar{width:52px;height:52px;flex-shrink:0;border-radius:18px;background:#e7dce8;display:grid;place-items:center;color:#735f84;font-size:24px;font-weight:700}
+.chat-copy{min-width:0;flex:1}
+.chat-name{font-size:15px;font-weight:700;margin-bottom:5px}
+.chat-last{font-size:12px;color:#888;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat-meta{font-size:10px;color:#a1a1a7;align-self:flex-start;white-space:nowrap}
+.unread{background:#05bf5d;color:white;font-size:11px;border-radius:14px;padding:2px 6px;margin-top:7px;display:inline-block}
+.line-bottom{display:flex;justify-content:space-around;border-top:1px solid #f1f1f2;padding:9px 0 11px;background:#fff}
+.line-bottom button{border:0;background:transparent;color:#858585;font-size:11px;display:flex;align-items:center;gap:3px;flex-direction:column}
+.line-bottom button.active{color:#06b957;font-weight:700}
+.line-bottom svg{width:23px;height:23px}
+.chat-room{background:#b7c8d8}
+.chat-messages{padding:12px 12px 18px;display:flex;flex-direction:column;gap:13px;flex:1;overflow-y:auto}
+.bubble{padding:11px 13px;border-radius:15px;max-width:82%;font-size:13px;line-height:1.55;box-shadow:0 1px 1px #0001}
+.bubble.in{align-self:flex-start;background:#fff;border-top-left-radius:5px}
+.bubble.out{align-self:flex-end;background:#b8ed89;border-top-right-radius:5px}
+.chat-date{text-align:center;color:#fff;font-size:11px;background:#6d81947a;border-radius:15px;align-self:center;padding:3px 11px}
+.chat-compose{display:flex;gap:8px;align-items:center;padding:9px;background:#fff;flex-shrink:0}
+.chat-compose input{min-width:0;flex:1;border:1px solid #e4e4e6;border-radius:20px;padding:10px 13px;font:inherit;font-size:12px;outline:none}
+.chat-compose button{border:0;background:#07bd5e;color:#fff;border-radius:50%;width:36px;height:36px;font-size:19px}
+.choice-box{background:#fff;padding:12px;display:flex;flex-direction:column;gap:8px}
+.choice-box button{background:#f4f8f4;border:1px solid #cce6cf;border-radius:12px;padding:12px;text-align:left;color:#24522e;font-size:13px}
+.food-page{background:#faf9f7}
+.food-tabs{display:flex;gap:8px;padding:0 16px 14px}
+.food-tabs button{flex:1;border:0;background:#e9e9ed;padding:12px;border-radius:14px;font-weight:650}
+.food-tabs button.active{background:#d9f3df;color:#16823a}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 20px}
+.food-tile{background:white;border:1px solid #e7e7e7;border-radius:18px;padding:15px 10px;min-height:132px;text-align:center;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.food-tile .food-symbol{font-size:35px}.food-tile strong{font-size:13px}.food-tile small{font-size:10px;color:#888}
+.food-tile.selected{border:2px solid #18ad59;background:#f1fff5}
+.primary-action{margin:10px 16px 18px;padding:14px;border:0;border-radius:15px;background:#08ba58;color:#fff;font-weight:700}
+.toast{position:absolute;z-index:35;left:10px;right:10px;top:43px;border:0;text-align:left;background:#fff;color:#202127;border-radius:20px;box-shadow:0 8px 35px #0003;padding:13px 15px;display:none;align-items:center;gap:12px}
+.toast.show{display:flex}.toast .avatar{width:40px;height:40px;font-size:18px;border-radius:13px}.toast strong{font-size:13px}.toast small{font-size:11px;color:#777}
+.alarm-full{position:absolute;inset:0;z-index:36;background:linear-gradient(160deg,#e6e9f8,#bdcbe9);color:#232c49;display:none;flex-direction:column;align-items:center;justify-content:space-between;padding:18% 15px 14%}
+.alarm-full.show{display:flex}
+.alarm-full .ring-time{font-size:76px;letter-spacing:-4px;font-weight:350}
+.alarm-full .ring-label{font-size:18px;margin-top:12px}
+.alarm-full .ring-actions{display:flex;gap:22px;align-items:center}
+.alarm-full .ring-actions button{border:0;border-radius:30px;padding:15px 25px;font-weight:700}
+.alarm-full .dismiss{background:#5076cf;color:#fff}.alarm-full .snooze{background:#fff;color:#4e66a0}
+.modal-back{position:absolute;inset:0;z-index:34;background:#0007;display:none;align-items:center;justify-content:center;padding:22px}
+.modal-back.show{display:flex}.modal{background:#fff;border-radius:24px;width:100%;padding:22px;color:#222}.modal h3{margin:0 0 14px}.modal label{display:block;margin:10px 0;font-size:13px}.modal input{font:inherit;width:100%;padding:12px;border:1px solid #ddd;border-radius:10px}.modal button{border:0;background:#5379d6;color:#fff;padding:12px 20px;border-radius:12px;margin-top:12px}
+@media(max-height:680px){.home-grid{margin-bottom:20px}.home-app .app-icon{width:46px;height:46px}.alarm-card{padding:13px}.alarm-time{font-size:39px}}
+
 </style>
 </head>
 
@@ -552,11 +644,47 @@ button{
   <span id="fingerprintText">กำลังตรวจสอบลายนิ้วมือ</span>
 </div>
 
-<!-- Temporary home screen -->
-<div class="unlock-home" id="unlockHome">
-  <h2>POLCASAN'S PHONE</h2>
-  <p>ปลดล็อกสำเร็จ</p>
+<!-- App surfaces (original wallpaper and lock screen preserved) -->
+<div class="app-shell" id="appShell">
+  <div class="app-status"><span id="appTime">07:00</span><span class="app-status-icons">◕ ▰ ▰ <span style="background:#23252a;color:#fff;border-radius:7px;padding:1px 5px">85</span></span></div>
+  <section class="app-page home-wall" id="page-home">
+    <div class="home-head"><div class="bigtime" id="homeTime">07:00</div><div>วันจันทร์ · สวัสดีตอนเช้า ซัง</div></div>
+    <div class="home-grid">
+      <button class="home-app" data-open="clock"><span class="app-icon" style="background:#f6f7fc;color:#29304b"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="16" cy="16" r="12"/><path d="M16 7v9l6 4"/></svg></span>นาฬิกา</button>
+      <button class="home-app" data-open="line"><span class="app-icon" style="background:#06c755;color:#fff"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C8 3 2 8 2 15c0 6 5 11 12 12l-1 4 7-4c6-1 10-6 10-12C30 8 24 3 16 3Z"/><text x="16" y="19" text-anchor="middle" font-size="8" fill="#06c755" font-weight="900">LINE</text></svg></span>LINE</button>
+      <button class="home-app" data-open="food"><span class="app-icon" style="background:#f9d9aa;color:#9a5a20;font-size:29px">♨</span>ครัวของซัง</button>
+    </div>
+  </section>
+  <section class="app-page clock-page" id="page-clock">
+    <div class="app-header"><h2>นาฬิกา</h2><button class="icon-btn" id="clockMore" aria-label="ตัวเลือกเพิ่มเติม">⋮</button></div>
+    <div class="clock-tabs"><button data-clocktab="alarms" class="active">นาฬิกาปลุก</button><button data-clocktab="world">นาฬิกาโลก</button><button data-clocktab="stopwatch">จับเวลา</button><button data-clocktab="timer">ตั้งเวลา</button></div>
+    <div id="clockContent" style="flex:1;overflow-y:auto"></div>
+    <button class="add-alarm" id="addAlarm" aria-label="เพิ่มนาฬิกาปลุก">+</button>
+  </section>
+  <section class="app-page line-page" id="page-line">
+    <div class="app-header"><h2>แชท</h2><div style="display:flex"><button class="icon-btn" aria-label="ค้นหา" id="lineSearch">⌕</button><button class="icon-btn" aria-label="เพิ่มแชท" id="lineAdd">＋</button></div></div>
+    <div class="line-search">⌕ &nbsp; ค้นหาแชท</div>
+    <div id="chatList" style="flex:1;overflow-y:auto"></div>
+    <div class="line-bottom"><button class="active" data-line-tab="chats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18v12H9l-5 4V17H3z"/></svg>แชท</button><button data-line-tab="friends"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-8 16-8 16 0"/></svg>เพื่อน</button><button data-line-tab="openchat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 12h12M12 3c-5 6-5 12 0 18M12 3c5 6 5 12 0 18"/></svg>OpenChat</button><button data-line-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10H3z"/></svg>หน้าหลัก</button></div>
+  </section>
+  <section class="app-page chat-room" id="page-chat">
+    <div class="app-header" style="background:#fff"><button class="icon-btn" data-back="line" aria-label="ย้อนกลับ">‹</button><h3 id="chatTitle" style="flex:1">แม่นมนิว</h3><button class="icon-btn" id="chatCall" aria-label="โทร">♧</button><button class="icon-btn" id="chatMenu" aria-label="เมนู">☰</button></div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="choice-box" id="chatChoices" style="display:none"></div>
+    <div class="chat-compose"><button class="icon-btn" id="chatPlus" style="color:#777;background:transparent">＋</button><input id="chatInput" placeholder="ข้อความ"/><button id="sendChat" aria-label="ส่งข้อความ">➤</button></div>
+  </section>
+  <section class="app-page food-page" id="page-food">
+    <div class="app-header"><button class="icon-btn" data-back="chat" aria-label="ย้อนกลับ">‹</button><h3 style="flex:1">ครัวของแม่นมนิว</h3><span>♨</span></div>
+    <p style="margin:4px 17px 16px;color:#777;font-size:13px">เช้านี้คุณหนูซังอยากทานอะไรคะ?</p>
+    <div class="food-tabs"><button data-foodcat="thai" class="active">อาหารไทย</button><button data-foodcat="world">อาหารต่างชาติ</button></div>
+    <div class="food-grid" id="foodGrid"></div>
+    <button class="primary-action" id="chooseFood">เลือกเมนูนี้</button>
+  </section>
+  <div class="app-nav"><button class="icon-btn" id="navBack" aria-label="ย้อนกลับ">‹</button><button class="icon-btn" id="navHome" aria-label="หน้าหลัก">○</button><button class="icon-btn" id="navRecent" aria-label="แอปล่าสุด">▢</button></div>
 </div>
+<button class="toast" id="lineToast"><span class="avatar">น</span><span><strong>LINE · แม่นมนิว</strong><br><small>คุณหนูซัง เช้านี้อยากทานอะไรดีคะ?</small></span></button>
+<div class="alarm-full" id="alarmFull"><div style="text-align:center"><div style="font-size:14px">นาฬิกาปลุก</div><div class="ring-time" id="ringTime">07:00</div><div class="ring-label">ตื่นไปโรงเรียน</div><div style="margin-top:15px;font-size:13px;opacity:.7">จันทร์–ศุกร์</div></div><div style="font-size:52px">◷</div><div class="ring-actions"><button class="snooze" id="snoozeAlarm">เลื่อน 5 นาที</button><button class="dismiss" id="dismissAlarm">ปิด</button></div></div>
+<div class="modal-back" id="alarmModal"><div class="modal"><h3>เพิ่มนาฬิกาปลุก</h3><label>เวลา <input id="newAlarmTime" type="time" value="08:00"/></label><label>ชื่อ <input id="newAlarmName" value="นาฬิกาปลุก"/></label><button id="saveAlarm">บันทึก</button><button id="cancelAlarm" style="background:#e9e9ef;color:#555">ยกเลิก</button></div></div>
 
         <div
           class="screen-off"
@@ -571,116 +699,60 @@ button{
 </div>
 
 <script>
-
-const phone = document.getElementById("phone");
-const power = document.getElementById("power");
-const screenOff = document.getElementById("screenOff");
-const fingerprintHint =
-  document.getElementById("fingerprintHint");
-const fingerprintText =
-  document.getElementById("fingerprintText");
-
-let scanning = false;
-let scanTimer = null;
-
-function resetFingerprint(){
-  clearTimeout(scanTimer);
-  scanning = false;
-  phone.classList.remove("scanning");
-  fingerprintHint.classList.remove("show");
-}
-
-function scanFingerprint(){
-  if(scanning || phone.classList.contains("unlocked")){
-    return;
-  }
-
-  scanning = true;
-  phone.classList.add("scanning");
-  fingerprintHint.classList.add("show");
-
-  fingerprintText.textContent =
-    "กำลังตรวจสอบลายนิ้วมือ";
-
-  scanTimer = setTimeout(()=>{
-    fingerprintText.textContent =
-      "ปลดล็อกสำเร็จ";
-
-    phone.classList.remove("scanning");
-
-    scanTimer = setTimeout(()=>{
-      fingerprintHint.classList.remove("show");
-      phone.classList.add("unlocked");
-      scanning = false;
-    },450);
-
-  },750);
-}
-
-power.addEventListener("click",()=>{
-  if(phone.classList.contains("off")){
-    phone.classList.remove("off");
-    return;
-  }
-
-  scanFingerprint();
-});
-
-screenOff.addEventListener("click",()=>{
-  phone.classList.remove("off");
-});
-
-function toggleScreen(){
-  phone.classList.toggle("off");
-}
-
-power.addEventListener("click", toggleScreen);
-screenOff.addEventListener("click", toggleScreen);
-
-function updateClock(){
-  const now = new Date();
-
-  const hh = String(now.getHours()).padStart(2,"0");
-  const mm = String(now.getMinutes()).padStart(2,"0");
-
-  document.getElementById("time").textContent =
-    hh + ":" + mm;
-
-  const weekdays = [
-    "วันอาทิตย์",
-    "วันจันทร์",
-    "วันอังคาร",
-    "วันพุธ",
-    "วันพฤหัสบดี",
-    "วันศุกร์",
-    "วันเสาร์"
-  ];
-
-  const months = [
-    "มกราคม",
-    "กุมภาพันธ์",
-    "มีนาคม",
-    "เมษายน",
-    "พฤษภาคม",
-    "มิถุนายน",
-    "กรกฎาคม",
-    "สิงหาคม",
-    "กันยายน",
-    "ตุลาคม",
-    "พฤศจิกายน",
-    "ธันวาคม"
-  ];
-
-  document.getElementById("date").textContent =
-    weekdays[now.getDay()] +
-    "ที่ " +
-    now.getDate() +
-    " " +
-    months[now.getMonth()];
-}
-
-updateClock();
-setInterval(updateClock,1000);
+'use strict';
+const $=id=>document.getElementById(id);
+const phone=$('phone'), power=$('power'), screenOff=$('screenOff');
+const fingerprintHint=$('fingerprintHint'), fingerprintText=$('fingerprintText');
+let page='home', scanning=false, scanTimer=null, clockTab='alarms', foodCat='thai', foodChoice='ข้าวผัดไข่';
+let gameMinute=420, alarmOpen=true, breakfastStarted=false, notificationSent=false, chatRead=false, selectedChat='nanny', foodOrdered=false;
+let alarmTone=null;
+const saveKey='polcasan-phone-week-v1';
+let alarms=[{time:'07:00',label:'ตื่นไปโรงเรียน',days:[1,2,3,4,5],on:true},{time:'09:00',label:'ตื่นวันหยุด',days:[0,6],on:true}];
+const names={nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'};
+const avatars={nanny:'น',tay:'ต',new:'น'};
+let chats={nanny:[{from:'in',text:'อรุณสวัสดิ์ค่ะคุณหนูซัง ตื่นหรือยังคะ',time:'07:01'},{from:'in',text:'เช้านี้คุณหนูอยากทานอะไรดีคะ แม่นมจะเตรียมให้ค่ะ',time:'07:01'}],tay:[{from:'in',text:'ซังครับ วันนี้ไปโรงเรียนอย่าดื้อนะครับ',time:'เมื่อวาน'}],new:[{from:'in',text:'ฝันดีนะค้าบลูกซัง พรุ่งนี้เจอกันนะ',time:'เมื่อวาน'}]};
+function timeStr(){return String(Math.floor(gameMinute/60)%24).padStart(2,'0')+':'+String(gameMinute%60).padStart(2,'0')}
+function syncTime(){const t=timeStr();$('time').textContent=t;$('appTime').textContent=t;$('homeTime').textContent=t;$('date').textContent='วันจันทร์ที่ 1 มิถุนายน';}
+function persist(){try{localStorage.setItem(saveKey,JSON.stringify({gameMinute,breakfastStarted,notificationSent,chatRead,foodOrdered,alarms,chats}))}catch(e){}}
+function restore(){try{const x=JSON.parse(localStorage.getItem(saveKey)||'null');if(!x)return;gameMinute=x.gameMinute??420;breakfastStarted=!!x.breakfastStarted;notificationSent=!!x.notificationSent;chatRead=!!x.chatRead;foodOrdered=!!x.foodOrdered;if(Array.isArray(x.alarms))alarms=x.alarms;if(x.chats)chats=x.chats;}catch(e){}}
+function soundAlarm(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;alarmTone=new C();const osc=alarmTone.createOscillator(),gain=alarmTone.createGain();osc.type='sine';osc.frequency.value=790;gain.gain.value=.07;osc.connect(gain);gain.connect(alarmTone.destination);osc.start();setTimeout(()=>{try{osc.stop()}catch(e){}},500)}catch(e){}}
+function stopAlarm(){if(alarmTone){alarmTone.close().catch(()=>{});alarmTone=null}}
+function showAlarm(){alarmOpen=true;$('ringTime').textContent=timeStr();$('alarmFull').classList.add('show');soundAlarm()}
+function dismissAlarm(){stopAlarm();alarmOpen=false;$('alarmFull').classList.remove('show');breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();persist();setTimeout(sendMorningNotification,450)}
+function sendMorningNotification(){if(notificationSent||!breakfastStarted)return;notificationSent=true;$('lineToast').classList.add('show');renderChats();persist()}
+function resetFingerprint(){clearTimeout(scanTimer);scanning=false;phone.classList.remove('scanning');fingerprintHint.classList.remove('show')}
+function unlock(){phone.classList.remove('off');phone.classList.add('unlocked');resetFingerprint();openPage('home');if(notificationSent&&!chatRead)$('lineToast').classList.add('show')}
+function scanFingerprint(){if(scanning||phone.classList.contains('unlocked')||alarmOpen)return;scanning=true;phone.classList.add('scanning');fingerprintHint.classList.add('show');fingerprintText.textContent='กำลังตรวจสอบลายนิ้วมือ';scanTimer=setTimeout(()=>{fingerprintText.textContent='ปลดล็อกสำเร็จ';phone.classList.remove('scanning');scanTimer=setTimeout(unlock,400)},600)}
+document.querySelector('.clock-area').addEventListener('click',()=>{if(!alarmOpen&&!phone.classList.contains('unlocked'))scanFingerprint()});
+power.addEventListener('click',()=>{if(alarmOpen)return;if(phone.classList.contains('off')){phone.classList.remove('off');return}if(!phone.classList.contains('unlocked')){scanFingerprint();return}phone.classList.toggle('off')});
+screenOff.addEventListener('click',()=>phone.classList.remove('off'));
+function openPage(next){page=next;document.querySelectorAll('.app-page').forEach(el=>el.classList.toggle('active',el.id==='page-'+next));if(next==='clock')renderClock();if(next==='line')renderChats();if(next==='food')renderFood();}
+function renderClock(){document.querySelectorAll('[data-clocktab]').forEach(b=>b.classList.toggle('active',b.dataset.clocktab===clockTab));$('addAlarm').style.display=clockTab==='alarms'?'block':'none';const c=$('clockContent');if(clockTab!=='alarms'){const text={world:'กรุงเทพมหานคร · '+timeStr(),stopwatch:'00:00.00',timer:'00:00:00'};c.innerHTML='<div class="clock-extra"><div style="font-size:42px;margin-bottom:16px">'+text[clockTab]+'</div><button class="primary-action" id="clockToolBtn">'+(clockTab==='world'?'เพิ่มเมือง':'เริ่ม')+'</button><div id="clockToolResult" style="margin-top:15px"></div></div>';const b=$('clockToolBtn');b.onclick=()=>{if(clockTab==='world'){$('clockToolResult').textContent='กรุงเทพมหานคร · ประเทศไทย'}else{$('clockToolResult').textContent='เริ่มใช้งาน '+(clockTab==='timer'?'ตั้งเวลา':'จับเวลา');}};return}
+ c.innerHTML=alarms.map((a,i)=>'<div class="alarm-card"><div class="alarm-top"><div role="button" tabindex="0" data-edit-alarm="'+i+'"><div class="alarm-time">'+a.time+'</div><div class="alarm-label">'+escapeHtml(a.label)+'</div></div><button class="switch '+(a.on?'on':'')+'" data-toggle-alarm="'+i+'" aria-label="เปิดปิดนาฬิกาปลุก" aria-pressed="'+a.on+'"></button></div><div class="alarm-days">'+['อา','จ','อ','พ','พฤ','ศ','ส'].map((d,n)=>'<span class="'+(a.days.includes(n)?'on':'')+'">'+d+'</span>').join('')+'</div></div>').join('');
+ c.querySelectorAll('[data-toggle-alarm]').forEach(b=>b.onclick=()=>{const a=alarms[+b.dataset.toggleAlarm];a.on=!a.on;persist();renderClock()});c.querySelectorAll('[data-edit-alarm]').forEach(b=>b.onclick=()=>editAlarm(+b.dataset.editAlarm));}
+let editAlarmIndex=-1;
+function editAlarm(i){editAlarmIndex=i;const a=alarms[i];$('newAlarmTime').value=a?.time||'08:00';$('newAlarmName').value=a?.label||'นาฬิกาปลุก';$('alarmModal').classList.add('show')}
+$('addAlarm').onclick=()=>editAlarm(-1);$('cancelAlarm').onclick=()=>$('alarmModal').classList.remove('show');$('saveAlarm').onclick=()=>{const a={time:$('newAlarmTime').value||'08:00',label:$('newAlarmName').value||'นาฬิกาปลุก',days:[0,1,2,3,4,5,6],on:true};if(editAlarmIndex<0)alarms.push(a);else alarms[editAlarmIndex]={...alarms[editAlarmIndex],time:a.time,label:a.label};$('alarmModal').classList.remove('show');persist();renderClock()};
+document.querySelectorAll('[data-clocktab]').forEach(b=>b.onclick=()=>{clockTab=b.dataset.clocktab;renderClock()});
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderChats(){const order=['nanny','tay','new'];$('chatList').innerHTML=order.map(id=>{const last=chats[id][chats[id].length-1];return '<button class="chat-item" data-chat="'+id+'"><span class="avatar">'+avatars[id]+'</span><span class="chat-copy"><div class="chat-name">'+names[id]+'</div><div class="chat-last">'+escapeHtml(last?.text||'')+'</div></span><span class="chat-meta">'+(id==='nanny'&&notificationSent?'07:01':'เมื่อวาน')+(id==='nanny'&&notificationSent&&!chatRead?'<br><span class="unread">2</span>':'')+'</span></button>'}).join('');$('chatList').querySelectorAll('[data-chat]').forEach(b=>b.onclick=()=>openChat(b.dataset.chat))}
+function openChat(id){selectedChat=id;if(id==='nanny'){chatRead=true;$('lineToast').classList.remove('show');persist()}$('chatTitle').textContent=names[id];openPage('chat');renderMessages()}
+function renderMessages(){const wrap=$('chatMessages');wrap.innerHTML='<div class="chat-date">'+(selectedChat==='nanny'?'วันนี้':'เมื่อวาน')+'</div>'+chats[selectedChat].map(m=>'<div class="bubble '+(m.from==='out'?'out':'in')+'">'+escapeHtml(m.text)+'</div>').join('');wrap.scrollTop=wrap.scrollHeight;const choices=$('chatChoices');if(selectedChat==='nanny'&&!foodOrdered){choices.style.display='flex';choices.innerHTML='<button id="breakfastReply">ซังอยากกินของอร่อย ๆ ค้าบบบ 🍽️</button><button id="breakfastMenu">เลือกเมนูอาหารเช้า</button>';$('breakfastReply').onclick=()=>{sendMessage('ซังอยากกินของอร่อย ๆ ค้าบบบ');addReply('ได้เลยค่ะคุณหนู เลือกเมนูที่อยากทานได้เลยนะคะ')};$('breakfastMenu').onclick=()=>openPage('food')}else{choices.style.display='none'}}
+function sendMessage(text){if(!text.trim())return;chats[selectedChat].push({from:'out',text:text.trim(),time:timeStr()});$('chatInput').value='';persist();renderMessages()}
+function addReply(text){chats[selectedChat].push({from:'in',text,time:timeStr()});persist();renderMessages()}
+$('sendChat').onclick=()=>sendMessage($('chatInput').value);$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage(e.target.value)});
+$('lineToast').onclick=()=>{if(alarmOpen)return;if(!phone.classList.contains('unlocked'))unlock();openChat('nanny')};
+const foods={thai:[['ข้าวผัดไข่','🍳','ผัดข้าวและไข่'],['ข้าวต้มหมู','🍲','ต้มข้าวกับหมู'],['ไข่เจียวหมูสับ','🥚','ตีไข่แล้วทอด'],['ผัดกะเพราหมู','🍚','ผัดหมูและกะเพรา']],world:[['แพนเค้ก','🥞','ผสมแป้งและทอด'],['สปาเกตตี','🍝','ต้มเส้นและทำซอส'],['แซนด์วิช','🥪','ประกอบขนมปัง'],['ออมเล็ต','🍳','ตีไข่และพับไข่']]};
+function renderFood(){document.querySelectorAll('[data-foodcat]').forEach(b=>b.classList.toggle('active',b.dataset.foodcat===foodCat));$('foodGrid').innerHTML=foods[foodCat].map(([name,symbol,desc])=>'<button class="food-tile '+(foodChoice===name?'selected':'')+'" data-food="'+name+'"><span class="food-symbol">'+symbol+'</span><strong>'+name+'</strong><small>'+desc+'</small></button>').join('');$('foodGrid').querySelectorAll('[data-food]').forEach(b=>b.onclick=()=>{foodChoice=b.dataset.food;renderFood()})}
+document.querySelectorAll('[data-foodcat]').forEach(b=>b.onclick=()=>{foodCat=b.dataset.foodcat;foodChoice=foods[foodCat][0][0];renderFood()});
+$('chooseFood').onclick=()=>{foodOrdered=true;selectedChat='nanny';chats.nanny.push({from:'out',text:'ซังอยากกิน'+foodChoice+'ค้าบบบ',time:timeStr()});chats.nanny.push({from:'in',text:'ได้เลยค่ะคุณหนู แม่นมจะเตรียม'+foodChoice+'ให้นะคะ',time:timeStr()});persist();openChat('nanny')};
+document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openPage(b.dataset.open));document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>openPage(b.dataset.back));
+$('navHome').onclick=()=>openPage('home');$('navBack').onclick=()=>openPage(page==='chat'?'line':page==='food'?'chat':'home');$('navRecent').onclick=()=>openPage('home');
+$('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm();$('alarmFull').classList.remove('show');gameMinute+=5;syncTime();persist();setTimeout(showAlarm,900)};
+$('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
+$('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
+document.querySelectorAll('[data-line-tab]').forEach(b=>b.onclick=()=>{if(b.dataset.lineTab==='chats')renderChats();else if(b.dataset.lineTab==='friends')alert('เพื่อน: แม่นมนิว, ปะป๊าเต, พ่อพ่อนิววี่');else alert('แท็บนี้จะเปิดในภารกิจถัดไป')});
+restore();syncTime();openPage('home');if(!breakfastStarted){showAlarm()}else if(notificationSent&&!chatRead){$('lineToast').classList.add('show')}
 </script>
 
 </body>
