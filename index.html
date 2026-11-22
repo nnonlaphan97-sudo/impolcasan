@@ -974,6 +974,14 @@ body,button,input,textarea,select{
 #page-line .line-group-mosaic svg{width:80%;height:80%;stroke:#626b78}
 #page-line-directory .line-dir-face svg{width:65%;height:65%;stroke:#687182}
 #page-line-directory .line-dir-face{display:grid;place-items:center}
+#page-line .line-profile-avatar{overflow:hidden;flex-shrink:0}
+#page-line .line-profile-avatar img{width:100%;height:100%;display:block;object-fit:cover;border-radius:50%}
+#page-line .line-group-mosaic,#page-line .line-group-mosaic>span{background:#fff!important}
+#page-line .line-group-mosaic>span{border-color:#fff!important;color:#687182!important}
+#page-line .line-birthday-face{overflow:hidden}
+#page-line .line-birthday-face img{width:100%;height:100%;object-fit:cover}
+#page-line-directory .line-birthday-empty{color:#888;padding:28px 12px;text-align:center;font-size:14px}
+#page-line-directory .line-dir-birthday-date{display:block;margin-top:4px;color:#999;font-size:12px}
 </style>
 </head>
 
@@ -1474,7 +1482,7 @@ $('dismissAlarm').onclick=dismissAlarm;$('snoozeAlarm').onclick=()=>{stopAlarm()
 $('clockMore').onclick=()=>alert('ตั้งค่านาฬิกา · POLCASAN’S PHONE');$('lineSearch').onclick=()=>{const q=prompt('ค้นหาแชท');if(q){openPage('line');document.querySelectorAll('.chat-item').forEach(el=>el.style.display=el.textContent.includes(q)?'flex':'none')}};
 $('lineAdd').onclick=()=>alert('รายชื่อเพื่อนจะปลดล็อกเพิ่มเติมตามตารางของซัง');$('chatCall').onclick=()=>alert('ระบบโทร LINE จะเปิดในภารกิจถัดไป');$('chatMenu').onclick=()=>alert('ข้อมูลห้องสนทนา');$('chatPlus').onclick=()=>alert('รูปภาพและสติกเกอร์จะปลดล็อกในภารกิจถัดไป');
 const lineFriendPeople = ["ปะป๊าเต", "พ่อพ่อนิววี่", "พี่เหมียวเร้ก", "พี่ฉกาย", "พี่พุพุ", "พี่เจมีไนน์", "แม่นมนิว", "คุณตาถา"];
-const lineFriendMascots = ["BABII", "JAIDEE", "AVOCEAN", "KING MAN", "TOMAFOX", "YUZU MUMU", "SAMRUAY", "PERMPOON", "METAA", "LUNAR", "ANY", "MUVMUV", "WESLEY", "LYKYOU", "MR. SATURNWORLD", "LOOK KHUNNOO", "JUMMO", "MOMO", "DOMIIA", "PAODY", "GUINZLY", "NEONA", "SMYLE", "NONG NOOONG", "NILKNHAKE", "REXXA", "CERI", "VIMMY", "JEWEL", "FLAREY", "PONPON", "SOL CUTE", "ANGELO", "RENJIN"];
+const lineFriendMascots = ["BABII", "JAIDEE", "AVOCEAN", "KING MAN", "TOMAFOX", "YUZU MUMU", "SAMRUAY", "PERMPOON", "METAA", "LUNAR", "ANY", "MUVMUV", "WESLEY", "LYKYOU", "MR. SATURNWORLD", "LOOK KHUNNOO", "JUMMO", "MOMO", "DOMIIA", "PAODY", "GUINZLY", "NEONA", "SMYLE", "NONG NOOONG", "NILKNHAKE", "REXXA", "CERI", "VIMMY", "JEWEL", "FLAREY", "PONPON", "RENJIN", "TING TING"];
 const lineFriends = [...lineFriendPeople, ...lineFriendMascots];
 // Fill in each friend's photo, cover, birthday and status here when the images are ready.
 // Blank birthdays are intentionally hidden; no birth dates are guessed.
@@ -1507,7 +1515,6 @@ const lineBirthdays = {
   "JUMMO": "16 มี.ค.",
   "SAMRUAY": "27 มี.ค.",
   "LOOK KHUNNOO": "27 มี.ค.",
-  "SOL CUTE": "27 มี.ค.",
   "REXXA": "6 เม.ย.",
   "KING MAN": "1 พ.ค.",
   "VIMMY": "18 พ.ค.",
@@ -1519,7 +1526,6 @@ const lineBirthdays = {
   "FLAREY": "18 มิ.ย.",
   "CERI": "27 มิ.ย.",
   "NILKNHAKE": "28 มิ.ย.",
-  "ANGELO": "20 ก.ค.",
   "MR. SATURNWORLD": "14 ส.ค.",
   "PERMPOON": "15 ส.ค.",
   "YUZU MUMU": "16 ส.ค.",
@@ -1663,7 +1669,19 @@ function lineTopActions(tab){
  const buttons=tab==='home'?['bookmark','bell','plus','settings']:tab==='chats'?['bag','plus']:tab==='today'?['search','bell','user']:['bell'];
  return '<div class="line-top-actions">'+buttons.map((name,i)=>'<button type="button" class="line-top-action" data-action="'+name+'" aria-label="'+name+'">'+lineIcon(name)+(name==='bell'?'<i class="line-dot"></i>':'')+'</button>').join('')+'</div>';
 }
-function lineFriendGroup(title, subtitle, icon, count, onclick){const previews={favorites:['ปะป๊าเต','พ่อพ่อนิววี่','JUMMO'],friends:['JUMMO','NONG NOOONG','BABII','KING MAN'],groups:['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']};const preview=onclick==='groups'?lineGroupMosaic(['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']):previews[onclick]?lineMosaic(previews[onclick]):'<span class="line-group-avatar">'+lineIcon(icon)+'</span>';return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'">'+preview+'<span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
+const lineThaiMonths=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+function lineCurrentBirthdayFriends(){
+ const month=lineThaiMonths[new Date().getMonth()];
+ return lineFriends.filter(name=>lineFriendProfiles[name]?.birthday?.trim().endsWith(month))
+   .sort((a,b)=>parseInt(lineFriendProfiles[a].birthday,10)-parseInt(lineFriendProfiles[b].birthday,10));
+}
+function lineBirthdayPreview(){
+ const names=lineCurrentBirthdayFriends();
+ if(!names.length)return '<span class="line-group-avatar">'+lineIcon('gift')+'</span>';
+ if(names.length===1)return '<span class="line-group-avatar line-birthday-face">'+lineFriendImage(names[0])+'</span>';
+ return lineMosaic(names.slice(0,4));
+}
+function lineFriendGroup(title, subtitle, icon, count, onclick){const previews={favorites:['ปะป๊าเต','พ่อพ่อนิววี่','JUMMO'],friends:['JUMMO','NONG NOOONG','BABII','KING MAN'],groups:['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']};const preview=onclick==='birthday'?lineBirthdayPreview():onclick==='groups'?lineGroupMosaic(['ดิส','ซีฟู้ด','เสาตึก','แฟมิลี่']):previews[onclick]?lineMosaic(previews[onclick]):'<span class="line-group-avatar">'+lineIcon(icon)+'</span>';return '<button type="button" class="line-group-item" data-fgroup="'+onclick+'">'+preview+'<span class="line-group-copy"><strong>'+title+'</strong><small>'+subtitle+'</small></span><span class="line-group-count">'+count+'</span>'+lineIcon('chevron')+'</button>'}
 function lineServices(){return '<div class="line-service-grid">'+[['stamp','ธีม'],['smile','สติกเกอร์'],['bag','LINE SHOPPING'],['gift','LINE GIFT'],['wallet','บัญชีทางการ']].map(([ico,name])=>'<div class="line-service">'+lineIcon(ico)+'<span>'+name+'</span></div>').join('')+'</div>'}
 function setLineTab(tab){
  lineRequestedTab=tab;
@@ -1683,10 +1701,10 @@ function setLineTab(tab){
  });
  if(isChats){renderChats();return;}
  if(tab==='home'){
-  extra.innerHTML='<div class="line-profile"><div class="line-profile-name"><strong>POLCASAN</strong><small>ซังและครอบครัวของซัง</small></div><span class="line-profile-avatar">ซัง</span></div>'+
+  extra.innerHTML='<div class="line-profile"><div class="line-profile-name"><strong>'+escapeHtml(lineOwnProfile.name)+'</strong><small>ซังและครอบครัวของซัง</small></div><span class="line-profile-avatar">'+(lineOwnProfile.avatar?'<img src="'+escapeHtml(lineOwnProfile.avatar)+'" alt="POLCASAN">':escapeHtml(lineOwnProfile.name.slice(0,1)))+'</span></div>'+
    '<div class="line-home-search">'+lineIcon('search')+'<input id="lineFriendSearch" placeholder="ค้นหา" aria-label="ค้นหาเพื่อน">'+lineIcon('scan')+'</div>'+
    '<div class="line-section-heading"><strong>รายชื่อเพื่อน</strong><button id="lineSeeAll">ดูทั้งหมด</button></div>'+
-   lineFriendGroup('วันเกิดเพื่อนในช่วงนี้','เพื่อนที่มีวันเกิดเร็ว ๆ นี้','gift','', 'birthday')+
+   lineFriendGroup('วันเกิดเดือน'+lineThaiMonths[new Date().getMonth()],lineCurrentBirthdayFriends().length?'เพื่อนเกิดเดือนนี้ '+lineCurrentBirthdayFriends().length+' คน':'ไม่มีเพื่อนที่ระบุวันเกิดในเดือนนี้','gift',String(lineCurrentBirthdayFriends().length), 'birthday')+
    lineFriendGroup('รายการโปรด','ปะป๊าเต, พ่อพ่อนิววี่, จัมโม่','bookmark','3','favorites')+
    lineFriendGroup('เพื่อน','จัมโม่, น้องนุ่ง, เบบี๋, คิงแมน','user',String(lineFriends.length),'friends')+
    lineFriendGroup('กลุ่ม','ดิส, ซีฟู้ด, เสาตึก, ลูกเพื่อนพ่อ, แฟมิลี่','user','5', 'groups')+
@@ -1722,6 +1740,14 @@ $('lineOwnClose').onclick=()=>{lineRequestedTab='home';openPage('line');};
   $(id).onclick=()=>{ /* UI reserved; no fake completed action */ };
 });
 
+// Updated profile photos (user-supplied paths).
+lineFriendProfiles['NEONA'].avatar='photo/IMG_5956.jpeg';
+lineFriendProfiles['BABII'].avatar='photo/IMG_5957.jpeg';
+lineFriendProfiles['คุณตาถา'].avatar='photo/IMG_5958.jpeg';
+lineFriendProfiles['คุณตาถา'].cover='photo/IMG_5959.jpeg';
+lineFriendProfiles['NONG NOOONG'].cover='photo/IMG_5960.jpeg';
+lineFriendProfiles['TING TING']={avatar:'photo/IMG_5961.jpeg',cover:'',birthday:'',status:''};
+lineFriendProfiles['JEWEL'].avatar='photo/IMG_5962.jpeg';
 const lineDirectoryFavorites=['ปะป๊าเต','พ่อพ่อนิววี่','JUMMO'];
 const lineDirectoryFeatured=['JUMMO','NONG NOOONG','BABII','KING MAN'];
 const lineDirectoryGroups=['ดิส','ซีฟู้ด','เสาตึก','ลูกเพื่อนพ่อ','แฟมิลี่'];
@@ -1731,16 +1757,16 @@ function lineGroupAvatar(name){const url=lineGroupPhotos[name];return url?'<img 
 function lineGroupMosaic(names){return '<span class="line-mosaic line-group-mosaic">'+names.map(n=>'<span>'+lineGroupAvatar(n)+'</span>').join('')+'</span>';}
 function lineMosaic(names){return '<span class="line-mosaic '+(names.length===3?'three':'')+'">'+names.map(n=>'<span>'+lineFriendImage(lineAlias[n]||n)+'</span>').join('')+'</span>'}
 function openLineDirectory(tab='friends'){
- lineDirectoryTab=tab==='all'?'friends':tab==='birthday'?'friends':tab;
+ lineDirectoryTab=tab==='all'?'friends':tab;
  openPage('line-directory');$('lineDirectorySearch').value='';renderLineDirectory();
 }
 function renderLineDirectory(){
  document.querySelectorAll('[data-dir-tab]').forEach(b=>b.classList.toggle('active',b.dataset.dirTab===lineDirectoryTab));
  const q=$('lineDirectorySearch').value.trim().toLocaleLowerCase();
- let items=lineDirectoryTab==='favorites'?lineDirectoryFavorites:lineDirectoryTab==='groups'?lineDirectoryGroups:lineDirectoryTab==='official'?[]:[...lineDirectoryFeatured,...lineFriends.filter(n=>!lineDirectoryFeatured.includes(n)&&!Object.values(lineAlias).includes(n))];
+ let items=lineDirectoryTab==='birthday'?lineCurrentBirthdayFriends():lineDirectoryTab==='favorites'?lineDirectoryFavorites:lineDirectoryTab==='groups'?lineDirectoryGroups:lineDirectoryTab==='official'?[]:[...lineDirectoryFeatured,...lineFriends.filter(n=>!lineDirectoryFeatured.includes(n)&&!Object.values(lineAlias).includes(n))];
  items=items.filter(n=>n.toLocaleLowerCase().includes(q));
- const heading=lineDirectoryTab==='favorites'?'รายการโปรด':lineDirectoryTab==='groups'?'กลุ่ม':lineDirectoryTab==='official'?'บัญชีทางการ':'เพื่อน';
- $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?lineGroupAvatar(n):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+'</span></button>').join('');
+ const heading=lineDirectoryTab==='birthday'?'วันเกิดเดือน'+lineThaiMonths[new Date().getMonth()]:lineDirectoryTab==='favorites'?'รายการโปรด':lineDirectoryTab==='groups'?'กลุ่ม':lineDirectoryTab==='official'?'บัญชีทางการ':'เพื่อน';
+ $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+(lineDirectoryTab==='birthday'&&!items.length?'<p class="line-birthday-empty">ไม่มีเพื่อนที่ระบุวันเกิดในเดือนนี้</p>':'')+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?lineGroupAvatar(n):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+(lineDirectoryTab==='birthday'?'<small class="line-dir-birthday-date">'+escapeHtml(lineFriendProfiles[n]?.birthday||'')+'</small>':'')+'</span></button>').join('');
  $('lineDirectoryContent').querySelectorAll('[data-dir-person]').forEach(b=>b.onclick=()=>{
   if(lineDirectoryTab==='groups'){return;}
   showLineFriendProfile(b.dataset.dirPerson,'line-directory');
