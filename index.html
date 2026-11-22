@@ -1111,6 +1111,54 @@ body,button,input,textarea,select{
 #page-chat #chatInput[readonly]{pointer-events:none!important;caret-color:transparent!important;user-select:none!important;}
 #page-chat #sendChat[hidden]{display:none!important;}
 
+
+/* === Swipe-up app drawer + expanded home apps === */
+#page-home.home-wall{position:relative!important;overflow:hidden!important;padding-top:0!important;background:url('photo/20697.jpg') center center/cover no-repeat!important;}
+#page-home .home-layer{position:absolute;inset:0;z-index:1}
+#page-home .home-main-grid{position:absolute;left:0;right:0;top:44%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 10px;padding:0 22px;align-content:start}
+#page-home .home-dock,#page-home .drawer-dock{position:absolute;left:18px;right:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:14px 12px;border-radius:30px;background:rgba(198,209,226,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1.4px rgba(255,255,255,.35)}
+#page-home .home-dock{bottom:34px;z-index:3}
+#page-home .drawer-dock{bottom:18px}
+#page-home .home-page-dots,#page-home .drawer-page-dots{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:7px;align-items:center}
+#page-home .home-page-dots{bottom:118px}
+#page-home .drawer-page-dots{bottom:118px}
+#page-home .home-page-dots span,#page-home .drawer-page-dots span{width:9px;height:9px;border-radius:50%;background:#f2e9be;opacity:.6}
+#page-home .home-page-dots span:nth-child(1),#page-home .home-page-dots span:nth-child(3),#page-home .drawer-page-dots span:nth-child(1),#page-home .drawer-page-dots span:nth-child(3){background:#c6eadf}
+#page-home .home-page-dots span:nth-child(4),#page-home .drawer-page-dots span:nth-child(4){background:#d8c8d0}
+#page-home .home-page-dots .active,#page-home .drawer-page-dots .active{opacity:1;background:#f7f0b2}
+#page-home .home-swipe-up,#page-home .drawer-close-zone{position:absolute;left:50%;transform:translateX(-50%);background:none;border:0;display:grid;place-items:center;z-index:4;padding:0}
+#page-home .home-swipe-up{bottom:6px;width:90px;height:28px}
+#page-home .drawer-close-zone{top:6px;width:90px;height:26px;left:50%}
+#page-home .home-swipe-bar{display:block;width:54px;height:5px;border-radius:999px;background:rgba(255,255,255,.78);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+#page-home .home-app-btn{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:9px;color:#fff;font-size:10px;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,.22)}
+#page-home .home-app-btn .icon-shell{width:54px;height:54px;display:grid;place-items:center}
+#page-home .home-dock .home-app-btn .icon-shell,#page-home .drawer-dock .home-app-btn .icon-shell{width:48px;height:48px}
+#page-home .home-app-btn .icon-label{width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-home .home-app-btn svg{display:block;width:100%;height:100%}
+#page-home .app-drawer{position:absolute;inset:0;z-index:2;background:url('photo/20697.jpg') center center/cover no-repeat;transform:translateY(calc(100% - 82px));transition:transform .28s ease;will-change:transform}
+#page-home .app-drawer::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, rgba(140,157,189,.06), rgba(140,157,189,.0));pointer-events:none}
+#page-home .app-drawer.open{transform:translateY(0)}
+#page-home .drawer-grid{position:absolute;left:0;right:0;top:248px;bottom:146px;padding:0 22px 20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 10px;overflow-y:auto;-webkit-overflow-scrolling:touch;align-content:start}
+#page-home .home-weather{position:absolute!important;left:24px!important;top:56px!important;width:auto!important;display:flex!important;align-items:flex-start!important;gap:14px!important;text-align:left!important;background:none!important;border:0!important;padding:0!important;box-shadow:none!important}
+#page-home .home-weather .weather-icon{width:78px!important;height:78px!important;flex:0 0 auto}
+#page-home .home-weather .weather-info{display:flex;flex-direction:column;align-items:flex-start!important;text-align:left!important;gap:2px}
+#page-home .home-weather .weather-temp{font-size:32px!important;font-weight:700!important;line-height:1.05!important;color:#fff!important}
+#page-home .home-weather .weather-desc{font-size:12px!important;font-weight:500!important;color:#fff!important;opacity:.98!important}
+#page-home .home-weather .weather-range{font-size:12px!important;font-weight:500!important;color:#fff!important;opacity:.9!important;line-height:1.2!important}
+#page-home .home-weather .weather-location{font-size:12px!important;font-weight:400!important;color:#fff!important;opacity:.86!important;line-height:1.2!important}
+#page-home .weather-range::before{content:'';display:none}
+.generic-app-page{background:#f7f7fb;color:#111;display:none;flex-direction:column;height:100%}
+.generic-app-page.active{display:flex}
+.generic-app-header{height:56px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:0 12px;border-bottom:1px solid #ececf3;background:#fff}
+.generic-app-header h3{margin:0;text-align:center;font-size:16px;font-weight:700}
+.generic-app-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;background:#fbfbfe}
+.generic-app-icon-wrap{width:92px;height:92px;border-radius:28px;display:grid;place-items:center;background:#eef2f7;margin-bottom:18px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.generic-app-icon-wrap svg{width:76px;height:76px}
+.generic-app-copy h2{margin:0 0 8px;font-size:28px;color:#101214}
+.generic-app-copy p{margin:0;max-width:270px;color:#6d7280;line-height:1.5;font-size:14px}
+.app-shell:has(#page-home.active) > .app-status{display:flex!important}
+@media (max-height:740px){#page-home .drawer-grid{top:230px;bottom:134px}#page-home .home-main-grid{top:43%}}
+
 </style>
 </head>
 
@@ -1338,47 +1386,42 @@ body,button,input,textarea,select{
 
           </div>
         </div>
-  <section class="app-page home-wall" id="page-home">
-   
-<button class="home-weather" id="homeWeather"
-        type="button" aria-label="ดูสภาพอากาศ">
+    <section class="app-page home-wall" id="page-home">
+    <div class="home-layer">
+      <div class="home-main-grid" id="homeMainGrid"></div>
+      <div class="home-page-dots" aria-hidden="true">
+        <span></span><span class="active"></span><span></span><span></span><span></span>
+      </div>
+      <div class="home-dock" id="homeDock"></div>
+      <button class="home-swipe-up" id="openDrawerHint" type="button" aria-label="เปิดหน้ารวมแอพ">
+        <span class="home-swipe-bar"></span>
+      </button>
+    </div>
 
-  <svg class="weather-icon" viewBox="0 0 100 100"
-       aria-hidden="true">
-    <circle cx="58" cy="36" r="24" fill="#FFD45C"/>
-    <circle cx="58" cy="36" r="28"
-            fill="none" stroke="#F5BB50"
-            stroke-width="3" opacity=".55"/>
-    <path d="M23 76h51c10 0 15-6 15-14s-7-14-15-14h-5
-             C66 35 54 30 43 35c-8 3-12 9-13 17
-             C17 49 10 57 10 65c0 7 5 11 13 11Z"
-          fill="#FFFFFF"/>
-  </svg>
-
-  <span class="weather-info">
-    <span class="weather-temp" id="weatherTemp">--°</span>
-    <span class="weather-desc" id="weatherDesc">
-      แตะเพื่อดูสภาพอากาศ
-    </span>
-    <span class="weather-location" id="weatherLocation">
-      อ้อมน้อย
-    </span>
-  </span>
-</button>
-
-
-<div class="home-grid">
-  <button class="home-app" data-open="line" type="button">
-    <span class="app-icon line-icon">
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path fill="#fff" d="M32 7C16.8 7 4.5 16.7 4.5 28.7c0 10.5 9.2 19.3 21.7 21.2l-1.3 7.3c-.2 1.1 1 1.7 1.9 1.1l12.6-7.5C51.1 48.1 59.5 39.6 59.5 28.7 59.5 16.7 47.2 7 32 7Z"/>
-        <text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Arial,Helvetica,sans-serif" font-size="15.5" font-weight="900" textLength="37" lengthAdjust="spacingAndGlyphs" fill="#06C755">LINE</text>
-      </svg>
-    </span>
-    <span>LINE</span>
-  </button>
-</div>
-</section>
+    <div class="app-drawer" id="appDrawer" aria-label="หน้ารวมแอพ">
+      <button class="drawer-close-zone" id="closeDrawerZone" type="button" aria-label="ปิดหน้ารวมแอพ">
+        <span class="home-swipe-bar"></span>
+      </button>
+      <button class="home-weather" id="homeWeather" type="button" aria-label="ดูสภาพอากาศ">
+        <svg class="weather-icon" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="58" cy="36" r="24" fill="#FFD45C"/>
+          <circle cx="58" cy="36" r="28" fill="none" stroke="#F5BB50" stroke-width="3" opacity=".55"/>
+          <path d="M23 76h51c10 0 15-6 15-14s-7-14-15-14h-5 C66 35 54 30 43 35c-8 3-12 9-13 17 C17 49 10 57 10 65c0 7 5 11 13 11Z" fill="#FFFFFF"/>
+        </svg>
+        <span class="weather-info">
+          <span class="weather-temp" id="weatherTemp">--°</span>
+          <span class="weather-desc" id="weatherDesc">กำลังโหลดสภาพอากาศ</span>
+          <span class="weather-range" id="weatherRange">↑--° / ↓--°</span>
+          <span class="weather-location" id="weatherLocation">บางแค</span>
+        </span>
+      </button>
+      <div class="drawer-grid" id="drawerGrid"></div>
+      <div class="drawer-page-dots" aria-hidden="true">
+        <span></span><span class="active"></span><span></span><span></span><span></span>
+      </div>
+      <div class="drawer-dock" id="drawerDock"></div>
+    </div>
+  </section>
 
   <section class="app-page clock-page" id="page-clock">
     <div class="app-header"><h2>นาฬิกา</h2><button class="icon-btn" id="clockMore" aria-label="ตัวเลือกเพิ่มเติม">⋮</button></div>
@@ -1470,6 +1513,20 @@ body,button,input,textarea,select{
     <div class="food-tabs"><button data-foodcat="thai" class="active">อาหารไทย</button><button data-foodcat="world">อาหารต่างชาติ</button></div>
     <div class="food-grid" id="foodGrid"></div>
     <button class="primary-action" id="chooseFood">เลือกเมนูนี้</button>
+  </section>
+  <section class="app-page generic-app-page" id="page-generic-app" aria-label="หน้าแอพทั่วไป">
+    <div class="generic-app-header">
+      <button class="icon-btn" id="genericAppBack" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button>
+      <h3 id="genericAppName">แอพ</h3>
+      <span class="generic-app-spacer"></span>
+    </div>
+    <div class="generic-app-body">
+      <div class="generic-app-icon-wrap" id="genericAppIconWrap"></div>
+      <div class="generic-app-copy">
+        <h2 id="genericAppTitle">แอพ</h2>
+        <p id="genericAppDescription">กำลังเตรียมหน้าจอนี้อยู่</p>
+      </div>
+    </div>
   </section>
   <div class="app-nav"><button class="icon-btn" id="navBack" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button><button class="icon-btn" id="navHome" aria-label="หน้าหลัก"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="4" rx="2" fill="currentColor"/></svg></button><button class="icon-btn" id="navRecent" aria-label="แอปล่าสุด"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="3"/></svg></button></div>
 </div>
@@ -2032,6 +2089,112 @@ shell.addEventListener('mousedown',e=>{navMouseY=e.clientY});
 shell.addEventListener('mouseup',e=>{if(navMouseY!==null&&navMouseY>shell.getBoundingClientRect().bottom-115&&navMouseY-e.clientY>45)revealNav();navMouseY=null});
 $('chatSticker').onclick=()=>alert('สติกเกอร์จะปลดล็อกตามเนื้อเรื่อง');
 
+
+const homeAppsMain=[
+  {id:'line',label:'LINE'},
+  {id:'clock',label:'นาฬิกา'},
+  {id:'notes',label:'Notes'},
+  {id:'files',label:'ไฟล์ส่วนตัว'},
+  {id:'calendar',label:'ปฏิทิน'},
+  {id:'x',label:'X'},
+  {id:'contacts',label:'รายชื่อ'},
+  {id:'calculator',label:'เครื่องคิดเลข'},
+  {id:'gallery',label:'แกลเลอรี'},
+  {id:'maps',label:'Maps'},
+  {id:'instagram',label:'Instagram'},
+  {id:'gmail',label:'Gmail'}
+];
+const homeDockApps=[
+  {id:'phone',label:'โทร'},
+  {id:'messages',label:'แชท'},
+  {id:'planet',label:'โลก'},
+  {id:'camera',label:'กล้อง'}
+];
+const genericAppMeta={
+  clock:['นาฬิกา','รวมปลุกและนาฬิกาสำหรับตารางเรียนของซัง'],
+  notes:['Notes','ใช้จดงานโรงเรียนและตารางงานเด็กดารา'],
+  files:['ไฟล์ส่วนตัว','เก็บรูป วิดีโอ และไฟล์ของซัง'],
+  calendar:['ปฏิทิน','รวมตารางเรียน งานถ่าย และนัดหมาย'],
+  x:['X','หน้าฟีดโซเชียลจะออกแบบต่อในขั้นถัดไป'],
+  contacts:['รายชื่อ','รวมรายชื่อครอบครัว เพื่อน และผู้ติดต่อ'],
+  calculator:['เครื่องคิดเลข','เครื่องคิดเลขสไตล์การ์ตูนสำหรับใช้งานในเกม'],
+  gallery:['แกลเลอรี','รวมรูปและวิดีโอของซัง'],
+  maps:['Maps','ใช้ดูแผนที่และสถานที่ในเนื้อเรื่อง'],
+  instagram:['Instagram','หน้า Instagram จะปลดล็อกตามสตอรี่'],
+  gmail:['Gmail','ตรวจอีเมลและข้อความจากโรงเรียน'],
+  phone:['โทร','ใช้สำหรับการโทรในเนื้อเรื่อง'],
+  messages:['แชท','ใช้สำหรับแชทเสริมในเกม'],
+  planet:['โลก','ศูนย์รวมแอพหรือกิจกรรมพิเศษ'],
+  camera:['กล้อง','ใช้ถ่ายรูปและปลดล็อกมินิเกมกล้องในภายหลัง']
+};
+function appIconSVG(id){
+  const map={
+    line:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="5" y="5" width="54" height="54" rx="17" fill="#54C95E"/><path d="M32 15c-11.8 0-21 7.7-21 17.7 0 8.7 7.5 15.9 17.6 17.4l-1 6c-.2.9.8 1.4 1.5.9l10.2-6.2c10-1.3 17.7-8.5 17.7-18 0-10-9.2-17.8-21-17.8Z" fill="#fff"/><text x="32" y="33" text-anchor="middle" dominant-baseline="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" textLength="34" lengthAdjust="spacingAndGlyphs" fill="#54C95E">LINE</text></svg>`,
+    clock:`<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#8FD6C6"/><circle cx="32" cy="32" r="19" fill="#F8F2BF" opacity=".98"/><path d="M32 18v13l9 8" stroke="#F9FAF1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="3.5" fill="#F9FAF1"/></svg>`,
+    notes:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="7" y="9" width="50" height="46" rx="14" fill="#98DDCB"/><circle cx="32" cy="15" r="4.5" fill="#F4E8A9"/><rect x="19" y="23" width="26" height="5" rx="2.5" fill="#F5F9F6"/><rect x="19" y="31" width="26" height="5" rx="2.5" fill="#F5F9F6"/><rect x="19" y="39" width="20" height="5" rx="2.5" fill="#F5F9F6"/></svg>`,
+    files:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 19a8 8 0 0 1 8-8h10l5 6h13a8 8 0 0 1 8 8v18a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8V19Z" fill="#D8C1A4"/><path d="M10 23h44v20a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8V23Z" fill="#D9C4AD"/></svg>`,
+    calendar:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 5 38 18h14l-11 8 4 13-13-8-13 8 4-13-11-8h14Z" fill="#F2E49B"/><text x="32" y="29" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="800" fill="#6B6234">22</text></svg>`,
+    x:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="16" fill="#000"/><path d="M18 18 46 46M40 18H46L24 46H18Z" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    contacts:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 16c0-6.6 5.4-12 12-12h12c6.6 0 12 5.4 12 12v17c0 6.6-5.4 12-12 12H28l-9 7c-1 .8-2.5.1-2.5-1.2V45.5A12 12 0 0 1 14 33V16Z" fill="#C9B09A"/><circle cx="25.5" cy="27" r="2.1" fill="#7D614A"/><circle cx="38.5" cy="27" r="2.1" fill="#7D614A"/><path d="M27 35c3 2 7 2 10 0" stroke="#7D614A" stroke-width="2.6" stroke-linecap="round"/></svg>`,
+    calculator:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="16" fill="#B6D7D0" opacity=".1"/><path d="M19 23h9" stroke="#F8BC9D" stroke-width="5" stroke-linecap="round"/><path d="M44 20v8M40 24h8" stroke="#F8BC9D" stroke-width="5" stroke-linecap="round"/><path d="M20 41h8M20 49h8" stroke="#F6D79B" stroke-width="5" stroke-linecap="round"/><path d="M40 40l8 8M48 40l-8 8" stroke="#9CD7C3" stroke-width="5" stroke-linecap="round"/></svg>`,
+    gallery:`<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20" fill="#F7BFAF"/><circle cx="32" cy="32" r="9" fill="#FFF6C5"/><path d="M32 7c5 0 10 2 13.7 5.8M51 32c0 5-2 10-5.8 13.7M32 57c-5 0-10-2-13.7-5.8M13 32c0-5 2-10 5.8-13.7" stroke="#F7BFAF" stroke-width="9" stroke-linecap="round"/></svg>`,
+    maps:`<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="#fff"/><path d="M32 15c7 0 12.5 5.4 12.5 12.2 0 8.7-12.5 21-12.5 21S19.5 35.9 19.5 27.2C19.5 20.4 25 15 32 15Z" fill="#4AA0F3"/><circle cx="32" cy="27" r="4.8" fill="#F7D04A"/><path d="M22 18a22 22 0 0 1 20 4" stroke="#41B66B" stroke-width="4" stroke-linecap="round"/></svg>`,
+    instagram:`<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="igGrad" x1="0" y1="64" x2="64" y2="0"><stop offset="0" stop-color="#f9ce34"/><stop offset=".4" stop-color="#ee2a7b"/><stop offset="1" stop-color="#6228d7"/></linearGradient></defs><rect x="8" y="8" width="48" height="48" rx="15" fill="url(#igGrad)"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="#fff" stroke-width="4"/><circle cx="32" cy="32" r="7.3" fill="none" stroke="#fff" stroke-width="4"/><circle cx="43.5" cy="20.5" r="2.3" fill="#fff"/></svg>`,
+    gmail:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="12" width="48" height="40" rx="10" fill="#fff"/><path d="M16 20v24" stroke="#EA4335" stroke-width="4"/><path d="M48 20v24" stroke="#4285F4" stroke-width="4"/><path d="M16 20 32 33 48 20" fill="none" stroke="#34A853" stroke-width="4" stroke-linejoin="round"/><path d="M16 20 32 34 48 20" fill="none" stroke="#FBBC05" stroke-width="4" opacity=".55" stroke-linejoin="round"/></svg>`,
+    phone:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M25 17c-6.5 0-10 11-3.2 21 6.6 9.8 17 14.3 23 8.8 1.3-1.2 1.1-3.3-.5-4.2l-6.7-4a3.5 3.5 0 0 0-4 .3l-2 1.7c-3.4-2.5-6-5.3-8-8.7l1.9-2.3a3.5 3.5 0 0 0 .1-4l-4-6.5c-.9-1.5-2.9-1.8-4.1-.7A8.8 8.8 0 0 0 25 17Z" fill="#F7B59A"/></svg>`,
+    messages:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 18c0-7.7 6.3-14 14-14h8c7.7 0 14 6.3 14 14v12c0 7.7-6.3 14-14 14h-6l-10 8c-1 .8-2.5.1-2.5-1.2V44A14 14 0 0 1 14 30V18Z" fill="#C9B09A"/><circle cx="26" cy="28" r="2.1" fill="#7D614A"/><circle cx="38" cy="28" r="2.1" fill="#7D614A"/><path d="M28 36c2.5 1.7 5.5 1.7 8 0" stroke="#7D614A" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+    planet:`<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="18" fill="#F1E8A2"/><ellipse cx="32" cy="33" rx="29" ry="10" fill="none" stroke="#8FD6C6" stroke-width="6"/></svg>`,
+    camera:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="13" width="46" height="38" rx="14" fill="#9BDCC7"/><circle cx="32" cy="32" r="12" fill="#F4ED9D"/><circle cx="32" cy="32" r="7" fill="#EAD86C"/><rect x="19" y="18" width="9" height="4" rx="2" fill="#CBEEDC"/></svg>`
+  };
+  return map[id]||`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="16" fill="#e6eaf2"/><text x="32" y="37" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#697183">${String(id||'?').slice(0,1).toUpperCase()}</text></svg>`;
+}
+function appButtonHtml(app){return `<button class="home-app-btn" type="button" data-launch="${app.id}" aria-label="เปิด${app.label}"><span class="icon-shell">${appIconSVG(app.id)}</span><span class="icon-label">${app.label}</span></button>`}
+function renderAppLauncher(){
+  const homeMain=$('homeMainGrid'), homeDock=$('homeDock'), drawerGrid=$('drawerGrid'), drawerDock=$('drawerDock');
+  if(homeMain)homeMain.innerHTML=homeAppsMain.map(appButtonHtml).join('');
+  if(homeDock)homeDock.innerHTML=homeDockApps.map(appButtonHtml).join('');
+  if(drawerGrid)drawerGrid.innerHTML=homeAppsMain.map(appButtonHtml).join('');
+  if(drawerDock)drawerDock.innerHTML=homeDockApps.map(appButtonHtml).join('');
+  document.querySelectorAll('[data-launch]').forEach(btn=>btn.onclick=()=>launchApp(btn.dataset.launch));
+}
+let drawerOpen=false, homeTouchStart=null;
+function setDrawer(open){
+  drawerOpen=!!open;
+  const drawer=$('appDrawer');
+  if(drawer)drawer.classList.toggle('open',drawerOpen);
+}
+function launchApp(appId){
+  setDrawer(false);
+  if(appId==='line'){ openPage('line'); return; }
+  const meta=genericAppMeta[appId]||[appId,'กำลังเตรียมหน้าจอนี้อยู่'];
+  $('genericAppName').textContent=meta[0];
+  $('genericAppTitle').textContent=meta[0];
+  $('genericAppDescription').textContent=meta[1];
+  $('genericAppIconWrap').innerHTML=appIconSVG(appId);
+  openPage('generic-app');
+}
+$('genericAppBack').onclick=()=>openPage('home');
+$('openDrawerHint').onclick=()=>setDrawer(true);
+$('closeDrawerZone').onclick=()=>setDrawer(false);
+$('page-home').addEventListener('touchstart',e=>{
+  if(!e.touches.length)return;
+  homeTouchStart={y:e.touches[0].clientY,open:drawerOpen};
+},{passive:true});
+$('page-home').addEventListener('touchend',e=>{
+  if(!homeTouchStart||!e.changedTouches.length)return;
+  const dy=e.changedTouches[0].clientY-homeTouchStart.y;
+  if(!homeTouchStart.open && dy<-55 && homeTouchStart.y>window.innerHeight*0.62){setDrawer(true);} 
+  else if(homeTouchStart.open && dy>55){setDrawer(false);} 
+  homeTouchStart=null;
+},{passive:true});
+const originalOpenPage=openPage;
+openPage=function(next){
+  if(next!=='home')setDrawer(false);
+  originalOpenPage(next);
+  if(next==='home'){renderAppLauncher();}
+};
+renderAppLauncher();
+
 restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();setInterval(syncTime,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTime()});openPage('home');$('lineToast').classList.remove('show');
 
 (function(){
@@ -2042,8 +2205,8 @@ restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,4
   if (!card || !temp || !desc || !locationText) return;
 
   // Fixed location: Om Noi, Samut Sakhon. No GPS or location permission.
-  const lat = 13.705;
-  const lon = 100.303;
+  const lat = 13.712;
+  const lon = 100.421;
   let loading = false;
 
   function weatherName(code) {
@@ -2060,11 +2223,13 @@ restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,4
     if (loading) return;
     loading = true;
     desc.textContent = 'กำลังโหลดสภาพอากาศ';
-    locationText.textContent = 'อ้อมน้อย';
+    locationText.textContent = 'บางแค';
+    const rangeText = document.getElementById('weatherRange');
     try {
       const url = 'https://api.open-meteo.com/v1/forecast' +
         '?latitude=' + lat + '&longitude=' + lon +
         '&current=temperature_2m,weather_code' +
+        '&daily=temperature_2m_max,temperature_2m_min' +
         '&timezone=Asia%2FBangkok';
       const response = await fetch(url);
       if (!response.ok) throw new Error('Weather unavailable');
@@ -2074,9 +2239,15 @@ restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,4
       }
       temp.textContent = Math.round(data.current.temperature_2m) + '°';
       desc.textContent = weatherName(data.current.weather_code);
+      const hi = Math.round(data.daily?.temperature_2m_max?.[0] ?? data.current.temperature_2m);
+      const lo = Math.round(data.daily?.temperature_2m_min?.[0] ?? data.current.temperature_2m);
+      const rangeEl = document.getElementById('weatherRange');
+      if(rangeEl) rangeEl.textContent = '↑' + hi + '° / ↓' + lo + '°';
     } catch (error) {
       temp.textContent = '--°';
       desc.textContent = 'โหลดข้อมูลไม่สำเร็จ แตะเพื่อลองใหม่';
+      const rangeEl = document.getElementById('weatherRange');
+      if(rangeEl) rangeEl.textContent = '↑--° / ↓--°';
     } finally {
       loading = false;
     }
