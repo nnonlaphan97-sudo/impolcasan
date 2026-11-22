@@ -994,6 +994,45 @@ body,button,input,textarea,select{
 /* Home directory previews: white dividers across favorite/friend/group mosaics. */
 #page-line .line-mosaic{background:#fff!important}
 #page-line .line-mosaic>span{border:1px solid #fff!important;background:#fff!important}
+
+/* LINE 2026 screenshot-inspired chat room and conversations */
+#page-chat{background:#d5dce8!important;padding-top:39px!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+#page-chat:not(.active){display:none!important}
+#page-chat .chat-header{height:59px!important;min-height:59px!important;padding:6px 9px!important;background:#d5dce8!important;border:0!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:2px!important;flex-shrink:0!important}
+#page-chat .chat-header-left{display:flex;align-items:center;gap:2px;min-width:0;flex:1}
+#page-chat .chat-header-actions{display:flex;align-items:center;gap:0;flex-shrink:0}
+#page-chat .chat-header .icon-btn{color:#111!important;background:transparent!important;border:0!important;width:32px!important;min-width:32px!important;height:38px!important;padding:4px!important;display:grid!important;place-items:center!important}
+#page-chat .chat-header .icon-btn svg{width:24px!important;height:24px!important}
+#page-chat .chat-back-count{font-size:13px;font-weight:700;white-space:nowrap;margin-right:5px}
+#page-chat .chat-title-btn{border:0;background:none;min-width:0;text-align:left;padding:0;flex:1}
+#page-chat #chatTitle{font-size:18px!important;font-weight:750!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0!important}
+#page-chat .chat-messages{flex:1!important;min-height:0!important;padding:12px 10px 22px!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;gap:15px!important;background:#d5dce8!important}
+#page-chat .chat-date{align-self:center;background:#b6bfce!important;color:#fff!important;font-size:11px!important;border-radius:15px!important;padding:4px 13px!important;margin:4px 0 8px!important}
+#page-chat .chat-message-row{position:relative;display:flex;align-items:flex-end;gap:7px;max-width:97%;width:fit-content}
+#page-chat .chat-message-row.in{align-self:flex-start;padding-left:0;padding-right:35px}
+#page-chat .chat-message-row.out{align-self:flex-end;flex-direction:row-reverse;padding-left:35px}
+#page-chat .chat-person-avatar{width:30px;height:30px;min-width:30px;align-self:flex-start;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:13px;overflow:hidden}
+#page-chat .chat-person-avatar img{width:100%;height:100%;object-fit:cover}
+#page-chat .chat-bubble{position:relative;padding:10px 13px;font-size:15px;line-height:1.5;max-width:min(74vw,360px);min-width:15px;overflow-wrap:anywhere;white-space:pre-wrap;box-shadow:none!important}
+#page-chat .chat-bubble.in{background:#fff;border-radius:20px 20px 20px 5px}
+#page-chat .chat-bubble.out{background:#6be46d;border-radius:20px 20px 5px 20px}
+#page-chat .chat-message-meta{display:flex;flex-direction:column;gap:1px;color:#777f8a;font-size:10px;white-space:nowrap;align-self:flex-end;padding-bottom:2px}
+#page-chat .chat-link{color:#1769dc;text-decoration:underline;overflow-wrap:anywhere}
+#page-chat .chat-message-media{max-width:100%;max-height:280px;border-radius:10px;display:block}
+#page-chat .chat-compose{background:#fff!important;min-height:62px!important;padding:8px 9px!important;gap:4px!important;display:flex!important;align-items:center!important;border-top:0!important;flex-shrink:0!important}
+#page-chat .chat-compose .icon-btn{background:transparent!important;color:#151515!important;width:32px!important;height:36px!important;min-width:32px!important;border:0!important;display:grid!important;place-items:center!important;padding:3px!important;border-radius:0!important}
+#page-chat .chat-compose .icon-btn svg{width:25px!important;height:25px!important}
+#page-chat .chat-input-wrap{min-width:0;flex:1;display:flex;align-items:center;height:42px;border-radius:24px;background:#f4f4f5;padding:0 5px 0 12px}
+#page-chat .chat-input-wrap input{min-width:0!important;flex:1!important;width:100%!important;border:0!important;outline:0!important;background:transparent!important;font-size:15px!important;padding:0!important;border-radius:0!important;box-shadow:none!important}
+#page-chat .chat-input-wrap input::placeholder{color:#b9bdc4}
+#page-chat .chat-input-wrap #chatSticker{width:28px!important;min-width:28px!important;color:#888!important}
+#page-chat #sendChat{width:34px!important;min-width:34px!important;height:34px!important;border-radius:50%!important;background:#06c755!important;color:white!important;border:0!important;display:grid;place-items:center;flex-shrink:0}
+#page-chat #sendChat[hidden],#page-chat #chatVoice[hidden]{display:none!important}
+#page-chat #sendChat svg{width:20px;height:20px}
+#page-line .chat-item .avatar{border-radius:50%!important;width:52px!important;height:52px!important}
+#page-line .chat-item{min-height:81px!important;gap:13px!important}
+#page-line .chat-name{font-size:16px!important;font-weight:650!important}
+#page-line .chat-last{font-size:13px!important;color:#929292!important}
 </style>
 </head>
 
@@ -1335,10 +1374,13 @@ body,button,input,textarea,select{
     </div>
   </section>
   <section class="app-page chat-room" id="page-chat">
-    <div class="app-header chat-header"><button class="icon-btn" data-back="line" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button><h3 id="chatTitle">แม่นมนิว</h3><button class="icon-btn" id="chatCall" aria-label="โทร"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3c-2 0-4 3-3 7 2 7 7 12 14 14 4 1 7-1 7-3l-1-4-6-3-3 3c-3-1-5-3-6-6l3-3-3-6Z"/></svg></button><button class="icon-btn" id="chatMenu" aria-label="เมนู"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
+    <div class="chat-header">
+      <div class="chat-header-left"><button class="icon-btn chat-back-btn" data-back="line" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button><span class="chat-back-count" id="chatBackCount">3</span><button class="chat-title-btn" id="chatTitleBtn" type="button"><h3 id="chatTitle">แม่นมนิว</h3></button></div>
+      <div class="chat-header-actions"><button class="icon-btn" type="button" id="chatSearch" aria-label="ค้นหาในแชท"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button><button class="icon-btn" type="button" id="chatCall" aria-label="โทร"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 2.2c1.2 2.5 3 4.4 5.5 5.5L16 13l5 2v4c0 1.1-1 2-2.2 2C10.4 21 3 13.6 3 5.2 3 4 3.9 3 5 3Z"/></svg></button><button class="icon-btn" type="button" id="chatCalendar" aria-label="ปฏิทิน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M7 2v5M17 2v5M3 9h18"/><text x="12" y="17" font-size="8" fill="currentColor" stroke="none" text-anchor="middle">31</text></svg></button><button class="icon-btn" type="button" id="chatMenu" aria-label="เมนู"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button></div>
+    </div>
     <div class="chat-messages" id="chatMessages"></div>
     <div class="choice-box" id="chatChoices" style="display:none"></div>
-    <div class="chat-compose"><button class="icon-btn" id="chatPlus" aria-label="เพิ่มไฟล์"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16"/></svg></button><input id="chatInput" placeholder="พิมพ์ข้อความ"/><button class="icon-btn" type="button" aria-label="สติกเกอร์" id="chatSticker"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14q4 5 8 0M8 9h.01M16 9h.01"/></svg></button><button id="sendChat" aria-label="ส่งข้อความ"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 21 3l-6 18-3-8-9-2Zm9 2 9-10"/></svg></button></div>
+    <div class="chat-compose"><button class="icon-btn" type="button" id="chatPlus" aria-label="เพิ่มเติม"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></button><button class="icon-btn" type="button" id="chatCamera" aria-label="กล้อง"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="14" r="3"/></svg></button><button class="icon-btn" type="button" id="chatGallery" aria-label="รูปภาพ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8" cy="9" r="1"/><path d="m3 18 6-6 4 4 3-3 5 5"/></svg></button><div class="chat-input-wrap"><input id="chatInput" placeholder="Aa" autocomplete="off" /><button class="icon-btn" type="button" id="chatSticker" aria-label="สติกเกอร์"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 10h.01M16 10h.01M8 15q4 4 8 0"/></svg></button></div><button class="icon-btn" type="button" id="chatVoice" aria-label="ข้อความเสียง"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="14" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v5M8 22h8"/></svg></button><button id="sendChat" type="button" hidden aria-label="ส่งข้อความ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 12 18-9-5 18-4-8-9-1Z"/></svg></button></div>
   </section>
   <section class="app-page food-page" id="page-food">
     <div class="app-header"><button class="icon-btn" data-back="chat" aria-label="ย้อนกลับ">‹</button><h3 style="flex:1">ครัวของแม่นมนิว</h3><span>♨</span></div>
@@ -1475,13 +1517,57 @@ document.querySelectorAll('[data-clocktab]').forEach(b=>b.onclick=()=>{clockTab=
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function avatarSVG(id){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-8 16-8 16 0"/></svg>'}
 function renderChats(){const order=['nanny','tay','new'];$('chatList').innerHTML=order.map(id=>{const last=chats[id][chats[id].length-1];return '<button class="chat-item" data-chat="'+id+'"><span class="avatar">'+avatars[id]+'</span><span class="chat-copy"><div class="chat-name">'+names[id]+'</div><div class="chat-last">'+escapeHtml(last?.text||'')+'</div></span><span class="chat-meta">'+(id==='nanny'&&notificationSent?'07:01':'เมื่อวาน')+(id==='nanny'&&notificationSent&&!chatRead?'<br><span class="unread">2</span>':'')+'</span></button>'}).join('');$('chatList').querySelectorAll('[data-chat]').forEach(b=>b.onclick=()=>openChat(b.dataset.chat))}
-function openChat(id){selectedChat=id;if(id==='nanny'){chatRead=true;$('lineToast').classList.remove('show');persist()}$('chatTitle').textContent=names[id];openPage('chat');renderMessages()}
-$('chatTitle').style.cursor='pointer';
-$('chatTitle').onclick=()=>{const n=({nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'})[selectedChat];if(n)showLineFriendProfile(n,'chat')};
-function renderMessages(){const wrap=$('chatMessages');wrap.innerHTML='<div class="chat-date">'+(selectedChat==='nanny'?'วันนี้':'เมื่อวาน')+'</div>'+chats[selectedChat].map(m=>'<div class="bubble '+(m.from==='out'?'out':'in')+'">'+escapeHtml(m.text)+'</div>').join('');wrap.scrollTop=wrap.scrollHeight;const choices=$('chatChoices');if(selectedChat==='nanny'&&!foodOrdered){choices.style.display='flex';choices.innerHTML='<button id="breakfastReply">ซังอยากกินของอร่อย ๆ ค้าบบบ</button><button id="breakfastMenu">เลือกเมนูอาหารเช้า</button>';$('breakfastReply').onclick=()=>{sendMessage('ซังอยากกินของอร่อย ๆ ค้าบบบ');addReply('ได้เลยค่ะคุณหนู เลือกเมนูที่อยากทานได้เลยนะคะ')};$('breakfastMenu').onclick=()=>openPage('food')}else{choices.style.display='none'}}
-function sendMessage(text){if(!text.trim())return;chats[selectedChat].push({from:'out',text:text.trim(),time:timeStr()});$('chatInput').value='';persist();renderMessages()}
+function openChat(id){
+ selectedChat=id;
+ if(id==='nanny'){chatRead=true;$('lineToast').classList.remove('show');persist()}
+ $('chatTitle').textContent=names[id]||'LINE';
+ $('chatBackCount').textContent=String(Object.keys(chats).filter(k=>k!==id).length);
+ openPage('chat');renderMessages();updateChatComposer();
+}
+$('chatTitleBtn').onclick=()=>{const n=({nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'})[selectedChat];if(n)showLineFriendProfile(n,'chat')};
+function renderChatText(text){
+ const raw=String(text||'');
+ return raw.split(/(https?:\/\/[^\s]+)/g).map(part=>{
+  if(/^https?:\/\//.test(part))return '<a class="chat-link" href="'+escapeHtml(part)+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(part)+'</a>';
+  return escapeHtml(part);
+ }).join('');
+}
+function renderMessages(){
+ const wrap=$('chatMessages');
+ const arr=chats[selectedChat]||[];
+ wrap.innerHTML='<div class="chat-date">'+(selectedChat==='nanny'?'วันนี้':'เมื่อวาน')+'</div>'+arr.map(m=>{
+  const out=m.from==='out';
+  const side=out?'out':'in';
+  const time=escapeHtml(m.time||'');
+  const photo=(!out&&typeof lineFriendProfiles!=='undefined')?((lineFriendProfiles[({nanny:'แม่นมนิว',tay:'ปะป๊าเต',new:'พ่อพ่อนิววี่'})[selectedChat]]||{}).avatar||''):'';
+  const avatar=out?'':'<span class="chat-person-avatar">'+(photo?'<img src="'+escapeHtml(photo)+'" alt="" onerror="this.style.display=\'none\'">':escapeHtml((names[selectedChat]||'').slice(0,1)))+'</span>';
+  const content=m.src?'<img class="chat-message-media" src="'+escapeHtml(m.src)+'" alt="รูปภาพในแชท">':'<span class="chat-message-text">'+renderChatText(m.text)+'</span>';
+  return '<div class="chat-message-row '+side+'">'+avatar+'<div class="chat-bubble '+side+'">'+content+'</div><div class="chat-message-meta">'+(out?'<span>อ่านแล้ว</span>':'')+'<span>'+time+'</span></div></div>';
+ }).join('');
+ wrap.scrollTop=wrap.scrollHeight;
+ const choices=$('chatChoices');
+ if(selectedChat==='nanny'&&!foodOrdered){
+  choices.style.display='flex';
+  choices.innerHTML='<button id="breakfastReply">ซังอยากกินของอร่อย ๆ ค้าบบบ</button><button id="breakfastMenu">เลือกเมนูอาหารเช้า</button>';
+  $('breakfastReply').onclick=()=>{sendMessage('ซังอยากกินของอร่อย ๆ ค้าบบบ');addReply('ได้เลยค่ะคุณหนู เลือกเมนูที่อยากทานได้เลยนะคะ')};
+  $('breakfastMenu').onclick=()=>openPage('food');
+ }else choices.style.display='none';
+}
+function sendMessage(text){
+ if(!String(text||'').trim())return;
+ chats[selectedChat].push({from:'out',text:text.trim(),time:timeStr()});
+ $('chatInput').value='';persist();renderMessages();updateChatComposer();
+}
 function addReply(text){chats[selectedChat].push({from:'in',text,time:timeStr()});persist();renderMessages()}
-$('sendChat').onclick=()=>sendMessage($('chatInput').value);$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage(e.target.value)});
+function updateChatComposer(){const typing=!!$('chatInput').value.trim();$('chatVoice').hidden=typing;$('sendChat').hidden=!typing}
+$('sendChat').onclick=()=>sendMessage($('chatInput').value);
+$('chatInput').addEventListener('input',updateChatComposer);
+$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendMessage(e.target.value)}});
+$('chatSearch').onclick=()=>{const term=prompt('ค้นหาข้อความในแชท');if(term===null)return;const msgs=[...$('chatMessages').querySelectorAll('.chat-message-row')];msgs.forEach(m=>m.style.display=m.textContent.toLocaleLowerCase().includes(term.toLocaleLowerCase())?'flex':'none')};
+$('chatCalendar').onclick=()=>alert('ปฏิทิน LINE จะปลดล็อกตามเนื้อเรื่อง');
+$('chatCamera').onclick=()=>alert('กล้องจะปลดล็อกตามเนื้อเรื่อง');
+$('chatGallery').onclick=()=>alert('รูปภาพจะปลดล็อกตามเนื้อเรื่อง');
+$('chatVoice').onclick=()=>alert('ข้อความเสียงจะปลดล็อกตามเนื้อเรื่อง');
 $('lineToast').onclick=()=>{if(alarmOpen)return;if(!phone.classList.contains('unlocked'))return;openChat('nanny')};
 const foods={thai:[['ข้าวผัดไข่','','ผัดข้าวและไข่'],['ข้าวต้มหมู','','ต้มข้าวกับหมู'],['ไข่เจียวหมูสับ','','ตีไข่แล้วทอด'],['ผัดกะเพราหมู','','ผัดหมูและกะเพรา']],world:[['แพนเค้ก','','ผสมแป้งและทอด'],['สปาเกตตี','','ต้มเส้นและทำซอส'],['แซนด์วิช','','ประกอบขนมปัง'],['ออมเล็ต','','ตีไข่และพับไข่']]};
 function svgFoodIcon(){return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18M5 18c0-7 3-11 7-11s7 4 7 11M12 4v3"/></svg>'}
@@ -1828,7 +1914,7 @@ shell.addEventListener('touchend',e=>{if(navTouchY===null)return;const delta=nav
 let navMouseY=null;
 shell.addEventListener('mousedown',e=>{navMouseY=e.clientY});
 shell.addEventListener('mouseup',e=>{if(navMouseY!==null&&navMouseY>shell.getBoundingClientRect().bottom-115&&navMouseY-e.clientY>45)revealNav();navMouseY=null});
-$('chatSticker').onclick=()=>{};
+$('chatSticker').onclick=()=>alert('สติกเกอร์จะปลดล็อกตามเนื้อเรื่อง');
 
 restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();setInterval(syncTime,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTime()});openPage('home');$('lineToast').classList.remove('show');
 
