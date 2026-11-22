@@ -982,6 +982,14 @@ body,button,input,textarea,select{
 #page-line .line-birthday-face img{width:100%;height:100%;object-fit:cover}
 #page-line-directory .line-birthday-empty{color:#888;padding:28px 12px;text-align:center;font-size:14px}
 #page-line-directory .line-dir-birthday-date{display:block;margin-top:4px;color:#999;font-size:12px}
+
+/* Full-image viewer for circular LINE profile avatars */
+#page-line-profile .line-profile-picture,#page-line-own-profile .line-own-avatar{cursor:pointer}
+.line-avatar-lightbox{position:absolute;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.94);padding:58px 12px;box-sizing:border-box}
+.line-avatar-lightbox.is-open{display:flex}
+.line-avatar-lightbox img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:0}
+.line-avatar-lightbox-close{position:absolute;top:16px;right:16px;width:42px;height:42px;display:grid;place-items:center;padding:9px;border:0;border-radius:50%;background:#ffffff26;color:#fff;cursor:pointer}
+.line-avatar-lightbox-close svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 </style>
 </head>
 
@@ -1599,8 +1607,8 @@ lineFriendProfiles['JAIDEE'].avatar='photo/IMG_5872.jpeg';
 lineFriendProfiles['JAIDEE'].cover='photo/IMG_5871.jpeg';
 lineFriendProfiles['JUMMO'].avatar='photo/IMG_5874.jpeg';
 lineFriendProfiles['JUMMO'].cover='photo/IMG_5873.jpeg';
-lineFriendProfiles['NONG NOOONG'].avatar='photo/IMG_5876.jpeg';
-lineFriendProfiles['NONG NOOONG'].cover='photo/IMG_5875.jpeg';
+lineFriendProfiles['NONG NOOONG'].avatar='photo/IMG_5975.jpeg';
+lineFriendProfiles['NONG NOOONG'].cover='photo/IMG_5974.jpeg';
 lineFriendProfiles['WESLEY'].avatar='photo/IMG_5877.jpeg';
 lineFriendProfiles['WESLEY'].cover='photo/IMG_5878.jpeg';
 lineFriendProfiles['ANY'].avatar='photo/IMG_5879.jpeg';
@@ -1740,12 +1748,38 @@ $('lineOwnClose').onclick=()=>{lineRequestedTab='home';openPage('line');};
   $(id).onclick=()=>{ /* UI reserved; no fake completed action */ };
 });
 
+
+// Tap the round avatar to view the original, uncropped image.
+function setupLineAvatarViewer(pageId,avatarId,getImage){
+ const page=$(pageId),avatar=$(avatarId);
+ if(!page||!avatar)return;
+ const viewer=document.createElement('div');
+ viewer.className='line-avatar-lightbox';
+ viewer.setAttribute('role','dialog');
+ viewer.setAttribute('aria-modal','true');
+ viewer.setAttribute('aria-label','ดูรูปโปรไฟล์ขนาดใหญ่');
+ viewer.innerHTML='<button type="button" class="line-avatar-lightbox-close" aria-label="ปิดรูป"><svg viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></svg></button><img alt="รูปโปรไฟล์ขนาดใหญ่">';
+ page.appendChild(viewer);
+ const close=()=>{viewer.classList.remove('is-open');viewer.querySelector('img').removeAttribute('src');};
+ avatar.addEventListener('click',()=>{
+  const image=getImage();
+  if(!image)return;
+  viewer.querySelector('img').src=image;
+  viewer.classList.add('is-open');
+ });
+ viewer.querySelector('button').addEventListener('click',close);
+ viewer.addEventListener('click',e=>{if(e.target===viewer)close();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&viewer.classList.contains('is-open'))close();});
+}
+setupLineAvatarViewer('page-line-own-profile','lineOwnAvatar',()=>lineOwnProfile.avatar);
+setupLineAvatarViewer('page-line-profile','friendProfileAvatar',()=>lineFriendProfiles[currentLineFriend]?.avatar||'');
+
 // Updated profile photos (user-supplied paths).
 lineFriendProfiles['NEONA'].avatar='photo/IMG_5956.jpeg';
 lineFriendProfiles['BABII'].avatar='photo/IMG_5957.jpeg';
 lineFriendProfiles['คุณตาถา'].avatar='photo/IMG_5958.jpeg';
 lineFriendProfiles['คุณตาถา'].cover='photo/IMG_5959.jpeg';
-lineFriendProfiles['NONG NOOONG'].cover='photo/IMG_5960.jpeg';
+lineFriendProfiles['NONG NOOONG'].cover='photo/IMG_5974.jpeg';
 lineFriendProfiles['TING TING']={avatar:'photo/IMG_5961.jpeg',cover:'',birthday:'',status:''};
 lineFriendProfiles['JEWEL'].avatar='photo/IMG_5962.jpeg';
 const lineDirectoryFavorites=['ปะป๊าเต','พ่อพ่อนิววี่','JUMMO'];
