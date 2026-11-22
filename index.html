@@ -581,7 +581,7 @@ body,button,input,textarea,select{
 .shortcut-phone{display:flex;align-items:center;justify-content:center}
 .clock-area .date{color:#D2E7FA!important;text-shadow:0 1px 4px rgba(25,22,28,.52)!important}
 /* Alarm setup and ringing are temporarily disabled */
-.home-app[data-open="clock"],#page-clock,#alarmModal,#alarmFull{display:none!important}
+.home-app[data-open="clock"]{display:none!important}
 
 /* PIN uses the same wallpaper as the lock screen, blurred behind controls */
 .pin-screen{
@@ -1112,53 +1112,70 @@ body,button,input,textarea,select{
 #page-chat #sendChat[hidden]{display:none!important;}
 
 
-/* === Swipe-up app drawer + expanded home apps === */
-#page-home.home-wall{position:relative!important;overflow:hidden!important;padding-top:0!important;background:url('photo/20697.jpg') center center/cover no-repeat!important;}
-#page-home .home-layer{position:absolute;inset:0;z-index:1}
-#page-home .home-main-grid{position:absolute;left:0;right:0;top:44%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 10px;padding:0 22px;align-content:start}
-#page-home .home-dock,#page-home .drawer-dock{position:absolute;left:18px;right:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:14px 12px;border-radius:30px;background:rgba(198,209,226,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1.4px rgba(255,255,255,.35)}
-#page-home .home-dock{bottom:34px;z-index:3}
-#page-home .drawer-dock{bottom:18px}
-#page-home .home-page-dots,#page-home .drawer-page-dots{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:7px;align-items:center}
-#page-home .home-page-dots{bottom:118px}
-#page-home .drawer-page-dots{bottom:118px}
-#page-home .home-page-dots span,#page-home .drawer-page-dots span{width:9px;height:9px;border-radius:50%;background:#f2e9be;opacity:.6}
-#page-home .home-page-dots span:nth-child(1),#page-home .home-page-dots span:nth-child(3),#page-home .drawer-page-dots span:nth-child(1),#page-home .drawer-page-dots span:nth-child(3){background:#c6eadf}
-#page-home .home-page-dots span:nth-child(4),#page-home .drawer-page-dots span:nth-child(4){background:#d8c8d0}
-#page-home .home-page-dots .active,#page-home .drawer-page-dots .active{opacity:1;background:#f7f0b2}
-#page-home .home-swipe-up,#page-home .drawer-close-zone{position:absolute;left:50%;transform:translateX(-50%);background:none;border:0;display:grid;place-items:center;z-index:4;padding:0}
-#page-home .home-swipe-up{bottom:6px;width:90px;height:28px}
-#page-home .drawer-close-zone{top:6px;width:90px;height:26px;left:50%}
-#page-home .home-swipe-bar{display:block;width:54px;height:5px;border-radius:999px;background:rgba(255,255,255,.78);box-shadow:0 1px 4px rgba(0,0,0,.12)}
-#page-home .home-app-btn{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:9px;color:#fff;font-size:10px;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,.22)}
-#page-home .home-app-btn .icon-shell{width:54px;height:54px;display:grid;place-items:center}
-#page-home .home-dock .home-app-btn .icon-shell,#page-home .drawer-dock .home-app-btn .icon-shell{width:48px;height:48px}
-#page-home .home-app-btn .icon-label{width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#page-home .home-app-btn svg{display:block;width:100%;height:100%}
-#page-home .app-drawer{position:absolute;inset:0;z-index:2;background:url('photo/20697.jpg') center center/cover no-repeat;transform:translateY(calc(100% - 82px));transition:transform .28s ease;will-change:transform}
-#page-home .app-drawer::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, rgba(140,157,189,.06), rgba(140,157,189,.0));pointer-events:none}
-#page-home .app-drawer.open{transform:translateY(0)}
-#page-home .drawer-grid{position:absolute;left:0;right:0;top:248px;bottom:146px;padding:0 22px 20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 10px;overflow-y:auto;-webkit-overflow-scrolling:touch;align-content:start}
-#page-home .home-weather{position:absolute!important;left:24px!important;top:56px!important;width:auto!important;display:flex!important;align-items:flex-start!important;gap:14px!important;text-align:left!important;background:none!important;border:0!important;padding:0!important;box-shadow:none!important}
-#page-home .home-weather .weather-icon{width:78px!important;height:78px!important;flex:0 0 auto}
-#page-home .home-weather .weather-info{display:flex;flex-direction:column;align-items:flex-start!important;text-align:left!important;gap:2px}
-#page-home .home-weather .weather-temp{font-size:32px!important;font-weight:700!important;line-height:1.05!important;color:#fff!important}
-#page-home .home-weather .weather-desc{font-size:12px!important;font-weight:500!important;color:#fff!important;opacity:.98!important}
-#page-home .home-weather .weather-range{font-size:12px!important;font-weight:500!important;color:#fff!important;opacity:.9!important;line-height:1.2!important}
-#page-home .home-weather .weather-location{font-size:12px!important;font-weight:400!important;color:#fff!important;opacity:.86!important;line-height:1.2!important}
-#page-home .weather-range::before{content:'';display:none}
-.generic-app-page{background:#f7f7fb;color:#111;display:none;flex-direction:column;height:100%}
+/* POLCASAN home layout: reference icon grid, transparent dock, gesture-only navigation */
+#page-home.home-wall{
+  position:relative!important;overflow:hidden!important;padding:0!important;
+  background:#8498b5!important;
+}
+#page-home.home-wall::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url('photo/20697.jpg') center center / cover no-repeat;
+}
+#page-home .home-layer{position:absolute;inset:0;z-index:1;display:block}
+#page-home .home-weather{
+  position:absolute!important;top:14.5%!important;left:10%!important;
+  width:60%!important;display:flex!important;flex-direction:column!important;
+  align-items:flex-start!important;gap:5px!important;margin:0!important;padding:0!important;
+  border:0!important;background:transparent!important;box-shadow:none!important;text-align:left!important;
+  color:#fff!important;text-shadow:none!important;z-index:2;
+}
+#page-home .home-weather .weather-icon{width:114px!important;height:100px!important;align-self:flex-start!important;margin-left:38px!important;flex-shrink:0!important;}
+#page-home .home-weather .weather-info{display:flex!important;flex-direction:column!important;gap:3px!important;align-items:flex-start!important;text-align:left!important}
+#page-home .home-weather .weather-temp{font-size:40px!important;line-height:1.15!important;font-weight:700!important;color:white!important}
+#page-home .home-weather .weather-desc{font-size:16px!important;color:white!important;font-weight:400!important;opacity:1!important}
+#page-home .home-weather .weather-range{font-size:14px!important;color:#fff!important;opacity:.9!important}
+#page-home .home-weather .weather-location{font-size:14px!important;color:#fff!important;opacity:.8!important;font-weight:400!important}
+#page-home .home-main-grid{
+  position:absolute!important;left:0!important;right:0!important;top:auto!important;bottom:23%!important;
+  transform:none!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:23px 5px!important;padding:0 13px!important;align-content:end!important;margin:0!important;
+}
+#page-home .home-app-btn{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:7px;padding:0;min-width:0;color:#fff;font-family:inherit;font-size:clamp(10px,2.5vw,13px);font-weight:400;text-shadow:0 1px 2px #32436344;white-space:nowrap}
+#page-home .home-app-btn .icon-shell{width:clamp(40px,12.3vw,62px);height:clamp(40px,12.3vw,62px);display:grid;place-items:center;flex-shrink:0;border-radius:0;background:transparent;box-shadow:none}
+#page-home .home-app-btn svg{width:100%;height:100%;display:block;overflow:visible}
+#page-home .home-app-btn .icon-label{display:block;overflow:hidden;text-overflow:ellipsis;max-width:100%;white-space:nowrap}
+#page-home .home-dock{
+  position:absolute!important;left:0!important;right:0!important;bottom:5.7%!important;
+  width:100%!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  padding:0 13px!important;gap:5px!important;margin:0!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important;
+}
+#page-home .home-dock .home-app-btn .icon-shell{width:clamp(43px,12.8vw,62px);height:clamp(43px,12.8vw,62px)}
+#page-home .home-dock .home-app-btn .icon-label{display:none!important}
+#page-home .home-page-dots{position:absolute;left:50%;transform:translateX(-50%);bottom:17.4%;display:flex;align-items:center;gap:6px}
+#page-home .home-page-dots span{width:10px;height:10px;border-radius:50%;background:#b1d7cd;opacity:.85}
+#page-home .home-page-dots span:nth-child(2){background:#f7e7a7}
+#page-home .home-page-dots span:nth-child(3){background:#c9b4ae}
+#page-home .home-page-dots span:nth-child(4){background:#d6e1d4}
+#page-home .home-page-dots span:nth-child(5){background:#b6bec6}
+#page-home .home-page-dots .active{opacity:1;transform:scale(1.1)}
+#page-home .home-swipe-up{display:none!important}
+/* Navigation controls are hidden until the existing bottom-edge swipe gesture. */
+.app-nav{height:50px!important;position:absolute!important;z-index:50!important;left:0!important;right:0!important;bottom:0!important;display:flex!important;justify-content:space-around!important;align-items:center!important;gap:0!important;padding:0 36px 4px!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:translateY(110%);transition:transform .2s ease;pointer-events:none}
+.app-nav.nav-visible{transform:translateY(0)!important;pointer-events:auto!important}
+.app-nav .icon-btn{width:38px!important;height:38px!important;padding:0!important;border:0!important;background:transparent!important;border-radius:0!important;display:grid!important;place-items:center!important;box-shadow:none!important}
+.app-nav .icon-btn svg{width:31px!important;height:31px!important;display:block!important}
+.generic-app-page{background:#f9fafc;color:#111;display:none;flex-direction:column;height:100%}
 .generic-app-page.active{display:flex}
 .generic-app-header{height:56px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:0 12px;border-bottom:1px solid #ececf3;background:#fff}
 .generic-app-header h3{margin:0;text-align:center;font-size:16px;font-weight:700}
 .generic-app-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;background:#fbfbfe}
-.generic-app-icon-wrap{width:92px;height:92px;border-radius:28px;display:grid;place-items:center;background:#eef2f7;margin-bottom:18px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.generic-app-icon-wrap{width:92px;height:92px;border-radius:28px;display:grid;place-items:center;background:#eef2f7;margin-bottom:18px}
 .generic-app-icon-wrap svg{width:76px;height:76px}
 .generic-app-copy h2{margin:0 0 8px;font-size:28px;color:#101214}
 .generic-app-copy p{margin:0;max-width:270px;color:#6d7280;line-height:1.5;font-size:14px}
-.app-shell:has(#page-home.active) > .app-status{display:flex!important}
-@media (max-height:740px){#page-home .drawer-grid{top:230px;bottom:134px}#page-home .home-main-grid{top:43%}}
-
+@media(max-height:710px){#page-home .home-weather{top:12%!important}#page-home .home-weather .weather-icon{height:75px!important;width:95px!important}#page-home .home-main-grid{bottom:23%!important;gap:12px 5px!important}#page-home .home-app-btn .icon-shell{width:clamp(35px,10vw,51px);height:clamp(35px,10vw,51px)}}
 </style>
 </head>
 
@@ -1388,25 +1405,11 @@ body,button,input,textarea,select{
         </div>
     <section class="app-page home-wall" id="page-home">
     <div class="home-layer">
-      <div class="home-main-grid" id="homeMainGrid"></div>
-      <div class="home-page-dots" aria-hidden="true">
-        <span></span><span class="active"></span><span></span><span></span><span></span>
-      </div>
-      <div class="home-dock" id="homeDock"></div>
-      <button class="home-swipe-up" id="openDrawerHint" type="button" aria-label="เปิดหน้ารวมแอพ">
-        <span class="home-swipe-bar"></span>
-      </button>
-    </div>
-
-    <div class="app-drawer" id="appDrawer" aria-label="หน้ารวมแอพ">
-      <button class="drawer-close-zone" id="closeDrawerZone" type="button" aria-label="ปิดหน้ารวมแอพ">
-        <span class="home-swipe-bar"></span>
-      </button>
       <button class="home-weather" id="homeWeather" type="button" aria-label="ดูสภาพอากาศ">
         <svg class="weather-icon" viewBox="0 0 100 100" aria-hidden="true">
           <circle cx="58" cy="36" r="24" fill="#FFD45C"/>
           <circle cx="58" cy="36" r="28" fill="none" stroke="#F5BB50" stroke-width="3" opacity=".55"/>
-          <path d="M23 76h51c10 0 15-6 15-14s-7-14-15-14h-5 C66 35 54 30 43 35c-8 3-12 9-13 17 C17 49 10 57 10 65c0 7 5 11 13 11Z" fill="#FFFFFF"/>
+          <path d="M23 76h51c10 0 15-6 15-14s-7-14-15-14h-5 C66 35 54 30 43 35c-8 3-12 9-13 17 C17 49 10 57 10 65c0 7 5 11 13 11Z" fill="#fff"/>
         </svg>
         <span class="weather-info">
           <span class="weather-temp" id="weatherTemp">--°</span>
@@ -1415,11 +1418,9 @@ body,button,input,textarea,select{
           <span class="weather-location" id="weatherLocation">บางแค</span>
         </span>
       </button>
-      <div class="drawer-grid" id="drawerGrid"></div>
-      <div class="drawer-page-dots" aria-hidden="true">
-        <span></span><span class="active"></span><span></span><span></span><span></span>
-      </div>
-      <div class="drawer-dock" id="drawerDock"></div>
+      <div class="home-main-grid" id="homeMainGrid"></div>
+      <div class="home-page-dots" aria-hidden="true"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+      <div class="home-dock" id="homeDock"></div>
     </div>
   </section>
 
@@ -1528,7 +1529,11 @@ body,button,input,textarea,select{
       </div>
     </div>
   </section>
-  <div class="app-nav"><button class="icon-btn" id="navBack" aria-label="ย้อนกลับ"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4-8 8 8 8"/></svg></button><button class="icon-btn" id="navHome" aria-label="หน้าหลัก"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="4" rx="2" fill="currentColor"/></svg></button><button class="icon-btn" id="navRecent" aria-label="แอปล่าสุด"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="3"/></svg></button></div>
+  <div class="app-nav" aria-label="ปุ่มนำทาง ปัดขึ้นจากขอบล่างเพื่อแสดง">
+    <button class="icon-btn" id="navBack" aria-label="ย้อนกลับ" type="button"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2.8 25.2 13.2 36.6 14.9 28.4 22.9 30.3 34.3 20 29 9.7 34.3 11.6 22.9 3.4 14.9 14.8 13.2Z" fill="#F9E79C" stroke="#F1D980" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+    <button class="icon-btn" id="navHome" aria-label="หน้าหลัก" type="button"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="10.5" cy="11.3" r="6.3" fill="#D9BBA0"/><circle cx="29.5" cy="11.3" r="6.3" fill="#D9BBA0"/><rect x="6" y="8" width="28" height="28" rx="12.5" fill="#D9BBA0"/><circle cx="15" cy="21" r="1.2" fill="#775F50"/><circle cx="25" cy="21" r="1.2" fill="#775F50"/><path d="M18.4 26.5q1.6 1.4 3.2 0" stroke="#775F50" stroke-width="1.7" fill="none" stroke-linecap="round"/><path d="M19.2 24h1.6" stroke="#775F50" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <button class="icon-btn" id="navRecent" aria-label="แอปล่าสุด" type="button"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2.8 25.2 13.2 36.6 14.9 28.4 22.9 30.3 34.3 20 29 9.7 34.3 11.6 22.9 3.4 14.9 14.8 13.2Z" fill="#A7E4DB" stroke="#8DD2C7" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+  </div>
 </div>
 <button class="toast" id="lineToast"><span class="avatar">น</span><span><strong>LINE · แม่นมนิว</strong><br><small>คุณหนูซัง เช้านี้อยากทานอะไรดีคะ?</small></span></button>
 <div class="alarm-full" id="alarmFull"><div style="text-align:center"><div style="font-size:14px">นาฬิกาปลุก</div><div class="ring-time" id="ringTime">07:00</div><div class="ring-label">ตื่นไปโรงเรียน</div><div style="margin-top:15px;font-size:13px;opacity:.7">จันทร์–ศุกร์</div></div><div style="font-size:52px">◷</div><div class="ring-actions"><button class="snooze" id="snoozeAlarm">เลื่อน 5 นาที</button><button class="dismiss" id="dismissAlarm">ปิด</button></div></div>
@@ -2148,24 +2153,16 @@ function appIconSVG(id){
   };
   return map[id]||`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="16" fill="#e6eaf2"/><text x="32" y="37" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#697183">${String(id||'?').slice(0,1).toUpperCase()}</text></svg>`;
 }
-function appButtonHtml(app){return `<button class="home-app-btn" type="button" data-launch="${app.id}" aria-label="เปิด${app.label}"><span class="icon-shell">${appIconSVG(app.id)}</span><span class="icon-label">${app.label}</span></button>`}
+function appButtonHtml(app, dock=false){return `<button class="home-app-btn" type="button" data-launch="${app.id}" aria-label="เปิด${app.label}"><span class="icon-shell">${appIconSVG(app.id)}</span>${dock?'':`<span class="icon-label">${app.label}</span>`}</button>`}
 function renderAppLauncher(){
-  const homeMain=$('homeMainGrid'), homeDock=$('homeDock'), drawerGrid=$('drawerGrid'), drawerDock=$('drawerDock');
-  if(homeMain)homeMain.innerHTML=homeAppsMain.map(appButtonHtml).join('');
-  if(homeDock)homeDock.innerHTML=homeDockApps.map(appButtonHtml).join('');
-  if(drawerGrid)drawerGrid.innerHTML=homeAppsMain.map(appButtonHtml).join('');
-  if(drawerDock)drawerDock.innerHTML=homeDockApps.map(appButtonHtml).join('');
-  document.querySelectorAll('[data-launch]').forEach(btn=>btn.onclick=()=>launchApp(btn.dataset.launch));
-}
-let drawerOpen=false, homeTouchStart=null;
-function setDrawer(open){
-  drawerOpen=!!open;
-  const drawer=$('appDrawer');
-  if(drawer)drawer.classList.toggle('open',drawerOpen);
+  const main=$('homeMainGrid'),dock=$('homeDock');
+  if(main)main.innerHTML=homeAppsMain.map(app=>appButtonHtml(app,false)).join('');
+  if(dock)dock.innerHTML=homeDockApps.map(app=>appButtonHtml(app,true)).join('');
+  document.querySelectorAll('[data-launch]').forEach(b=>b.onclick=()=>launchApp(b.dataset.launch));
 }
 function launchApp(appId){
-  setDrawer(false);
-  if(appId==='line'){ openPage('line'); return; }
+  if(appId==='line'){openPage('line');return;}
+  if(appId==='clock'){openPage('clock');return;}
   const meta=genericAppMeta[appId]||[appId,'กำลังเตรียมหน้าจอนี้อยู่'];
   $('genericAppName').textContent=meta[0];
   $('genericAppTitle').textContent=meta[0];
@@ -2174,25 +2171,6 @@ function launchApp(appId){
   openPage('generic-app');
 }
 $('genericAppBack').onclick=()=>openPage('home');
-$('openDrawerHint').onclick=()=>setDrawer(true);
-$('closeDrawerZone').onclick=()=>setDrawer(false);
-$('page-home').addEventListener('touchstart',e=>{
-  if(!e.touches.length)return;
-  homeTouchStart={y:e.touches[0].clientY,open:drawerOpen};
-},{passive:true});
-$('page-home').addEventListener('touchend',e=>{
-  if(!homeTouchStart||!e.changedTouches.length)return;
-  const dy=e.changedTouches[0].clientY-homeTouchStart.y;
-  if(!homeTouchStart.open && dy<-55 && homeTouchStart.y>window.innerHeight*0.62){setDrawer(true);} 
-  else if(homeTouchStart.open && dy>55){setDrawer(false);} 
-  homeTouchStart=null;
-},{passive:true});
-const originalOpenPage=openPage;
-openPage=function(next){
-  if(next!=='home')setDrawer(false);
-  originalOpenPage(next);
-  if(next==='home'){renderAppLauncher();}
-};
 renderAppLauncher();
 
 restore();alarmOpen=false;breakfastStarted=true;gameMinute=Math.max(gameMinute,421);syncTime();setInterval(syncTime,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTime()});openPage('home');$('lineToast').classList.remove('show');
