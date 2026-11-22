@@ -1075,6 +1075,42 @@ body,button,input,textarea,select{
 #page-chat,#page-chat .chat-header,#page-chat .chat-header h3,#page-chat .chat-bubble{color:#111!important}
 #page-chat .chat-message-meta{color:#41464f!important}
 #page-chat .chat-compose input{color:#111!important}
+
+/* 2026 LINE chat corrections: round avatars, no bubble tails, display-only composer */
+#page-chat .chat-person-avatar,
+#page-line .chat-item .avatar,
+#page-line .line-profile-avatar,
+#page-line .line-friend-avatar,
+#page-line-profile .line-profile-picture,
+#page-line-own-profile .line-own-avatar {
+ border-radius:50%!important;
+ overflow:hidden!important;
+ clip-path:circle(50% at 50% 50%);
+}
+#page-chat .chat-person-avatar img,
+#page-line .chat-item .avatar img,
+#page-line .line-profile-avatar img,
+#page-line .line-friend-avatar img,
+#page-line-profile .line-profile-picture img,
+#page-line-own-profile .line-own-avatar img {
+ display:block!important;
+ width:100%!important;
+ height:100%!important;
+ object-fit:cover!important;
+ border-radius:50%!important;
+}
+#page-chat .chat-bubble.in,
+#page-chat .chat-bubble.out {
+ border-radius:20px!important;
+}
+#page-chat .chat-bubble::before,
+#page-chat .chat-bubble::after {
+ content:none!important;
+ display:none!important;
+}
+#page-chat #chatInput[readonly]{pointer-events:none!important;caret-color:transparent!important;user-select:none!important;}
+#page-chat #sendChat[hidden]{display:none!important;}
+
 </style>
 </head>
 
@@ -1426,7 +1462,7 @@ body,button,input,textarea,select{
     </div>
     <div class="chat-messages" id="chatMessages"></div>
     <div class="choice-box" id="chatChoices" style="display:none"></div>
-    <div class="chat-compose"><button class="icon-btn" type="button" id="chatPlus" aria-label="เพิ่มเติม"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></button><button class="icon-btn" type="button" id="chatCamera" aria-label="กล้อง"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="14" r="3"/></svg></button><button class="icon-btn" type="button" id="chatGallery" aria-label="รูปภาพ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8" cy="9" r="1"/><path d="m3 18 6-6 4 4 3-3 5 5"/></svg></button><div class="chat-input-wrap"><input id="chatInput" placeholder="Aa" autocomplete="off" /><button class="icon-btn" type="button" id="chatSticker" aria-label="สติกเกอร์"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 10h.01M16 10h.01M8 15q4 4 8 0"/></svg></button></div><button class="icon-btn" type="button" id="chatVoice" aria-label="ข้อความเสียง"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="14" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v5M8 22h8"/></svg></button><button id="sendChat" type="button" hidden aria-label="ส่งข้อความ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 12 18-9-5 18-4-8-9-1Z"/></svg></button></div>
+    <div class="chat-compose"><button class="icon-btn" type="button" id="chatPlus" aria-label="เพิ่มเติม"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></button><button class="icon-btn" type="button" id="chatCamera" aria-label="กล้อง"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="14" r="3"/></svg></button><button class="icon-btn" type="button" id="chatGallery" aria-label="รูปภาพ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8" cy="9" r="1"/><path d="m3 18 6-6 4 4 3-3 5 5"/></svg></button><div class="chat-input-wrap"><input id="chatInput" placeholder="Aa" autocomplete="off" readonly inputmode="none" tabindex="-1" aria-label="ช่องข้อความ ใช้ตัวเลือกตามเนื้อเรื่อง ไม่สามารถพิมพ์เองได้" /><button class="icon-btn" type="button" id="chatSticker" aria-label="สติกเกอร์"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 10h.01M16 10h.01M8 15q4 4 8 0"/></svg></button></div><button class="icon-btn" type="button" id="chatVoice" aria-label="ข้อความเสียง"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="14" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v5M8 22h8"/></svg></button><button id="sendChat" type="button" hidden aria-label="ส่งข้อความ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 12 18-9-5 18-4-8-9-1Z"/></svg></button></div>
   </section>
   <section class="app-page food-page" id="page-food">
     <div class="app-header"><button class="icon-btn" data-back="chat" aria-label="ย้อนกลับ">‹</button><h3 style="flex:1">ครัวของแม่นมนิว</h3><span>♨</span></div>
@@ -1480,7 +1516,11 @@ function syncTime(){
  $('date').textContent=d;
 }
 function persist(){try{localStorage.setItem(saveKey,JSON.stringify({gameMinute,breakfastStarted,notificationSent,chatRead,foodOrdered,alarms,chats}))}catch(e){}}
-function restore(){try{const x=JSON.parse(localStorage.getItem(saveKey)||'null');if(!x)return;gameMinute=x.gameMinute??420;breakfastStarted=!!x.breakfastStarted;notificationSent=!!x.notificationSent;chatRead=!!x.chatRead;foodOrdered=!!x.foodOrdered;if(Array.isArray(x.alarms))alarms=x.alarms;if(x.chats)chats=x.chats;}catch(e){}}
+function restore(){try{const x=JSON.parse(localStorage.getItem(saveKey)||'null');if(!x)return;gameMinute=x.gameMinute??420;breakfastStarted=!!x.breakfastStarted;notificationSent=!!x.notificationSent;chatRead=!!x.chatRead;foodOrdered=!!x.foodOrdered;if(Array.isArray(x.alarms))alarms=x.alarms;if(x.chats)chats=x.chats;
+    // Remove accidental free-typed reply shown in the New chat, leaving authored replies intact.
+    if(Array.isArray(chats.new)){
+      chats.new=chats.new.filter(m=>!(m.from==='out' && /^['‘’"\s]*ขว้า['‘’"\s]*$/.test(String(m.text||''))));
+    }}catch(e){}}
 function soundAlarm(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;alarmTone=new C();const osc=alarmTone.createOscillator(),gain=alarmTone.createGain();osc.type='sine';osc.frequency.value=790;gain.gain.value=.07;osc.connect(gain);gain.connect(alarmTone.destination);osc.start();setTimeout(()=>{try{osc.stop()}catch(e){}},500)}catch(e){}}
 function stopAlarm(){if(alarmTone){alarmTone.close().catch(()=>{});alarmTone=null}}
 function showAlarm(){alarmOpen=true;$('ringTime').textContent=timeStr();$('alarmFull').classList.add('show');soundAlarm()}
@@ -1620,10 +1660,16 @@ function sendMessage(text){
  $('chatInput').value='';persist();renderMessages();updateChatComposer();
 }
 function addReply(text){chats[selectedChat].push({from:'in',text,time:timeStr()});persist();renderMessages()}
-function updateChatComposer(){const typing=!!$('chatInput').value.trim();$('chatVoice').hidden=typing;$('sendChat').hidden=!typing}
-$('sendChat').onclick=()=>sendMessage($('chatInput').value);
-$('chatInput').addEventListener('input',updateChatComposer);
-$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendMessage(e.target.value)}});
+function updateChatComposer(){
+ $('chatInput').value='';
+ $('chatVoice').hidden=false;
+ $('sendChat').hidden=true;
+}
+$('sendChat').onclick=()=>{};
+$('chatInput').addEventListener('focus',e=>e.target.blur());
+$('chatInput').addEventListener('beforeinput',e=>e.preventDefault());
+$('chatInput').addEventListener('keydown',e=>e.preventDefault());
+updateChatComposer();
 $('chatSearch').onclick=()=>{const term=prompt('ค้นหาข้อความในแชท');if(term===null)return;const msgs=[...$('chatMessages').querySelectorAll('.chat-message-row')];msgs.forEach(m=>m.style.display=m.textContent.toLocaleLowerCase().includes(term.toLocaleLowerCase())?'flex':'none')};
 $('chatCalendar').onclick=()=>alert('ปฏิทิน LINE จะปลดล็อกตามเนื้อเรื่อง');
 $('chatCamera').onclick=()=>alert('กล้องจะปลดล็อกตามเนื้อเรื่อง');
