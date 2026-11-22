@@ -990,6 +990,10 @@ body,button,input,textarea,select{
 .line-avatar-lightbox img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:0}
 .line-avatar-lightbox-close{position:absolute;top:16px;right:16px;width:42px;height:42px;display:grid;place-items:center;padding:9px;border:0;border-radius:50%;background:#ffffff26;color:#fff;cursor:pointer}
 .line-avatar-lightbox-close svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+/* Home directory previews: white dividers across favorite/friend/group mosaics. */
+#page-line .line-mosaic{background:#fff!important}
+#page-line .line-mosaic>span{border:1px solid #fff!important;background:#fff!important}
 </style>
 </head>
 
@@ -1664,7 +1668,7 @@ $('friendProfileMore').onclick=()=>alert('โปรไฟล์ '+currentLineFri
 $('friendProfileShown').onclick=()=>{};
 function renderLineFriends(filter=''){
   const target=document.getElementById('lineFriendsResults');if(!target)return;
-  const matched=lineFriends.filter(n=>n.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
+  const matched=lineFriends.filter(n=>n.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase())).sort((a,b)=>a.localeCompare(b,'th',{sensitivity:'base',numeric:true}));
   const safe=n=>n.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   target.innerHTML='<div class="line-friend-count">เพื่อน '+matched.length+' คน</div>'+matched.map(n=>'<button class="line-friend-item" type="button" data-friend="'+safe(n)+'"><span class="line-friend-avatar">'+safe(n.slice(0,1))+'</span><span>'+safe(n)+'</span></button>').join('');
   target.querySelectorAll('[data-friend]').forEach(b=>b.onclick=()=>showLineFriendProfile(b.dataset.friend));
@@ -1713,8 +1717,8 @@ function setLineTab(tab){
    '<div class="line-home-search">'+lineIcon('search')+'<input id="lineFriendSearch" placeholder="ค้นหา" aria-label="ค้นหาเพื่อน">'+lineIcon('scan')+'</div>'+
    '<div class="line-section-heading"><strong>รายชื่อเพื่อน</strong><button id="lineSeeAll">ดูทั้งหมด</button></div>'+
    lineFriendGroup('วันเกิดเดือน'+lineThaiMonths[new Date().getMonth()],lineCurrentBirthdayFriends().length?'เพื่อนเกิดเดือนนี้ '+lineCurrentBirthdayFriends().length+' คน':'ไม่มีเพื่อนที่ระบุวันเกิดในเดือนนี้','gift',String(lineCurrentBirthdayFriends().length), 'birthday')+
-   lineFriendGroup('รายการโปรด','ปะป๊าเต, พ่อพ่อนิววี่, จัมโม่','bookmark','3','favorites')+
-   lineFriendGroup('เพื่อน','จัมโม่, น้องนุ่ง, เบบี๋, คิงแมน','user',String(lineFriends.length),'friends')+
+   lineFriendGroup('รายการโปรด','ปะป๊าเต, พ่อพ่อนิววี่, JUMMO','bookmark','3','favorites')+
+   lineFriendGroup('เพื่อน','JUMMO, NONG NOOONG, BABII, KING MAN','user',String(lineFriends.length),'friends')+
    lineFriendGroup('กลุ่ม','ดิส, ซีฟู้ด, เสาตึก, ลูกเพื่อนพ่อ, แฟมิลี่','user','5', 'groups')+
    '<div class="line-section-heading line-services-heading"><strong>บริการ</strong><span>ดูทั้งหมด</span></div>'+lineServices()+'<div id="lineFriendsResults" hidden></div>';
   extra.querySelector('.line-profile').addEventListener('click',showLineOwnProfile);
@@ -1799,6 +1803,7 @@ function renderLineDirectory(){
  const q=$('lineDirectorySearch').value.trim().toLocaleLowerCase();
  let items=lineDirectoryTab==='birthday'?lineCurrentBirthdayFriends():lineDirectoryTab==='favorites'?lineDirectoryFavorites:lineDirectoryTab==='groups'?lineDirectoryGroups:lineDirectoryTab==='official'?[]:[...lineDirectoryFeatured,...lineFriends.filter(n=>!lineDirectoryFeatured.includes(n)&&!Object.values(lineAlias).includes(n))];
  items=items.filter(n=>n.toLocaleLowerCase().includes(q));
+ if(lineDirectoryTab!=='birthday')items.sort((a,b)=>a.localeCompare(b,'th',{sensitivity:'base',numeric:true}));
  const heading=lineDirectoryTab==='birthday'?'วันเกิดเดือน'+lineThaiMonths[new Date().getMonth()]:lineDirectoryTab==='favorites'?'รายการโปรด':lineDirectoryTab==='groups'?'กลุ่ม':lineDirectoryTab==='official'?'บัญชีทางการ':'เพื่อน';
  $('lineDirectoryContent').innerHTML='<div class="line-dir-count">'+heading+' '+items.length+'</div>'+(lineDirectoryTab==='birthday'&&!items.length?'<p class="line-birthday-empty">ไม่มีเพื่อนที่ระบุวันเกิดในเดือนนี้</p>':'')+items.map(n=>'<button class="line-dir-row" data-dir-person="'+escapeHtml(n)+'"><span class="line-dir-face">'+(lineDirectoryTab==='groups'?lineGroupAvatar(n):lineFriendImage(lineAlias[n]||n))+'</span><span>'+escapeHtml(n)+(lineDirectoryTab==='birthday'?'<small class="line-dir-birthday-date">'+escapeHtml(lineFriendProfiles[n]?.birthday||'')+'</small>':'')+'</span></button>').join('');
  $('lineDirectoryContent').querySelectorAll('[data-dir-person]').forEach(b=>b.onclick=()=>{
